@@ -13,6 +13,27 @@ export type DlgNode = {
 
 // fn values are action keys dispatched by DialogueBox
 export const DLG: Record<string, DlgNode> = {
+  james_lobby: { sp: 'JAMES HAWKINS', tx: "Oh hey! New applicant?\nWelcome to PostHog HQ. I'm James — co-CEO.\nWhat do you want to know?",
+    opts: [{ l: "What's PostHog for?", n: 'james_lobby2' }, { l: "Do you moisturize?", n: 'james_moist' }, { l: "Can we hop on a quick call?", n: 'james_call' }] },
+  james_lobby2: { sp: 'JAMES HAWKINS', tx: "Product analytics. Session replay.\nFeature flags. A/B tests. Surveys.\n\nAll in one. Built for engineers.\nNo ticket to the data team required.",
+    opts: [{ l: "← Back", n: 'james_lobby' }] },
+
+  tim_lobby: { sp: 'TIM GLASER', tx: "*points at the doors*\n\nEach room is a different team.\nTalk to people. Press SPACE.\n\nI'll be here.",
+    opts: [{ l: "What are you working on?", n: 'tim_work' }, { l: "You're shorter than James.", n: 'tim_height' }] },
+
+  enter_engineering: { sp: 'DOOR', tx: "[ ENGINEERING ]\n\nWhere the product gets built.\nClickHouse. TypeScript.\nPost-it notes on every surface.",
+    opts: [{ l: "Enter →", n: null, fn: 'enter_burrow' }, { l: "Not now", n: null }] },
+  enter_gtm: { sp: 'DOOR', tx: "[ GTM ]\n\nMarketing. Content. Growth.\nThey made isgoogleanalyticsillegal.com\ntrend on Hacker News.",
+    opts: [{ l: "Enter →", n: null, fn: 'enter_den' }, { l: "Not now", n: null }] },
+  enter_company: { sp: 'DOOR', tx: "[ COMPANY ]\n\nOps. Hiring. Merch. Paul.\nSomeone wore a suit once.\nPerformance reviews stopped shortly after.",
+    opts: [{ l: "Enter →", n: null, fn: 'enter_vault' }, { l: "Not now", n: null }] },
+  enter_secret: { sp: 'DOOR', tx: "[ TOP SECRET ]\n\n⚠ RESTRICTED ACCESS ⚠\n\nYou didn't see this door.\nAnd you definitely don't know the password.",
+    opts: [{ l: "I know the password.", n: null, fn: 'enter_trash' }, { l: "[ back away ]", n: null }] },
+  enter_hogpatch: { sp: 'DOOR', tx: "[ THE STREET ]\n\nHogPatch, San Francisco.\nThe whole team hangs out here.\nAlso, there's a bus.",
+    opts: [{ l: "Head outside →", n: null, fn: 'enter_hogpatch' }, { l: "Not now", n: null }] },
+  enter_lobby_from_street: { sp: 'ENTRANCE', tx: "[ POSTHOG HQ ]\n\nYou head back inside.",
+    opts: [{ l: "← Enter lobby", n: null, fn: 'enter_lobby' }, { l: "Stay outside", n: null }] },
+
   james_root: { sp: 'JAMES HAWKINS', tx: "Oh hey! New applicant?\nWelcome to HogPatch. I'm James — co-CEO.\nWhat do you want to know?",
     opts: [{ l: "What do you do here?", n: 'james_role' }, { l: "Do you moisturize?", n: 'james_moist' }, { l: "Can we hop on a quick call?", n: 'james_call' }, { l: "Favourite food?", n: 'james_food' }] },
   james_role: { sp: 'JAMES HAWKINS', tx: "I push ambition. Tim sets the pace.\nTogether we're unstoppable.\n\nAlso I once put a billboard of my face\nin a city. No regrets.",
@@ -59,8 +80,8 @@ export const DLG: Record<string, DlgNode> = {
     opts: [{ l: "Enter →", n: null, fn: 'enter_den' }, { l: "Not now", n: null }] },
   door_vault_enter: { sp: 'DOOR', tx: "[ THE MERCH VAULT ]\n\nOverflowing with hoodies, stickers,\nand the $996 action figure behind glass.\nPaul guards the door. He has gelato.",
     opts: [{ l: "Enter →", n: null, fn: 'enter_vault' }, { l: "Not now", n: null }] },
-  exit_area: { sp: 'EXIT', tx: "[ You head back to HogPatch. ]",
-    opts: [{ l: "← Leave", n: null, fn: 'enter_hogpatch' }] },
+  exit_area: { sp: 'EXIT', tx: "[ You head back to the lobby. ]",
+    opts: [{ l: "← Leave", n: null, fn: 'enter_lobby' }] },
 
   marius_root: { sp: 'MARIUS ANDRA', tx: "*doesn't look up*\n\nOh. Hi. What.",
     opts: [{ l: "What do you do?", n: 'marius_role' }, { l: "Tell me about Post-it notes", n: 'marius_postit' }, { l: "What's the three finger rule?", n: 'marius_3finger' }] },

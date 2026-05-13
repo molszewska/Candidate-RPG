@@ -12,14 +12,16 @@ export const AREA_SPAWNS: Record<Area, { x: number; y: number }> = {
   vault:    { x: 8, y: 10 },
   trash:    { x: 8, y: 10 },
   hogpatch: { x: 10, y: 7 },
+  lobby:    { x: 10, y: 12 },
 };
 
 export const AREA_NAMES: Record<Area, string> = {
   hogpatch: 'HOGPATCH',
-  burrow:   'THE BURROW',
-  den:      'THE DEN',
-  vault:    'THE MERCH VAULT',
-  trash:    'THE TRASH FOLDER',
+  burrow:   'ENGINEERING',
+  den:      'GTM',
+  vault:    'COMPANY',
+  trash:    'TOP SECRET',
+  lobby:    'POSTHOG HQ',
 };
 
 const SOLID_TILES: Set<number> = new Set([
@@ -43,11 +45,7 @@ export function getTileAct(area: Area, tx: number, ty: number): string | null {
     if (t === T.DUMP)   return 'dumpster';
     if (t === T.SIGN)   return 'sign';
     if (t === T.BILL)   return 'billboard';
-    if (t === T.DOOR) {
-      if (tx <= 7)              return 'door_burrow_enter';
-      if (tx >= 9 && tx <= 12)  return 'door_den_enter';
-      if (tx >= 17)             return 'door_vault_enter';
-    }
+    if (t === T.DOOR) return 'enter_lobby_from_street';
     return null;
   }
 
@@ -76,6 +74,17 @@ export function getTileAct(area: Area, tx: number, ty: number): string | null {
 
   if (area === 'trash') {
     if (t === T.DOOR) return 'exit_area';
+    return null;
+  }
+
+  if (area === 'lobby') {
+    if (t === T.DOOR) {
+      if (tx === 4  && ty <= 5)  return 'enter_engineering';
+      if (tx === 14 && ty <= 5)  return 'enter_gtm';
+      if (tx === 4  && ty >= 8)  return 'enter_company';
+      if (tx === 14 && ty >= 8)  return 'enter_secret';
+      if (tx === 6)              return 'enter_hogpatch';
+    }
     return null;
   }
 

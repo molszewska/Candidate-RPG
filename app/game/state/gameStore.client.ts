@@ -19,14 +19,16 @@ const AREA_SPAWNS: Record<Area, { x: number; y: number }> = {
   den:      { x: 8,  y: 10 },
   vault:    { x: 8,  y: 10 },
   trash:    { x: 8,  y: 10 },
+  lobby:    { x: 10, y: 12 },
 };
 
 const AREA_NAMES: Record<Area, string> = {
   hogpatch: 'HOGPATCH',
-  burrow:   'THE BURROW',
-  den:      'THE DEN',
-  vault:    'THE MERCH VAULT',
-  trash:    'THE TRASH FOLDER',
+  burrow:   'ENGINEERING',
+  den:      'GTM',
+  vault:    'COMPANY',
+  trash:    'TOP SECRET',
+  lobby:    'POSTHOG HQ',
 };
 
 const getInitialAchievements = (): Set<string> => {
@@ -65,9 +67,9 @@ const TRASH_RECENT_DLGS = [
 
 export const useGameStore = create<GameState & GameActions>((set, get) => ({
   screen: 'howToPlay',
-  area: 'hogpatch',
-  areaName: 'HOGPATCH',
-  player: { species: 'human', color: '#E8B88A', outfit: 'hoodie', name: 'APPLICANT', x: 10, y: 7, dir: 2 },
+  area: 'lobby',
+  areaName: 'POSTHOG HQ',
+  player: { species: 'human', color: '#E8B88A', outfit: 'hoodie', name: 'APPLICANT', x: 10, y: 12, dir: 2 },
   dialogue: null,
   achievementToast: null,
   achievements: getInitialAchievements(),

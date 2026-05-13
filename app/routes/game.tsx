@@ -1,7 +1,8 @@
-import { useState } from 'react';
 import type { Route } from './+types/game';
 import { GameCanvas } from '../game/engine/GameCanvas';
 import { HowToPlay } from '../game/ui/HowToPlay';
+import { CharacterCreator } from '../game/ui/CharacterCreator';
+import { useGameStore } from '../game/state/gameStore.client';
 
 export function meta(_: Route.MetaArgs) {
   return [{ title: 'HogPatch — A PostHog Experience' }];
@@ -19,13 +20,24 @@ const FRAME: React.CSSProperties = {
 };
 
 export default function GameRoute() {
-  const [started, setStarted] = useState(false);
+  const screen = useGameStore((s) => s.screen);
+  const setScreen = useGameStore((s) => s.setScreen);
 
-  if (!started) {
+  if (screen === 'howToPlay') {
     return (
       <div style={WRAP}>
         <div style={FRAME}>
-          <HowToPlay onStart={() => setStarted(true)} />
+          <HowToPlay onStart={() => setScreen('charCreator')} />
+        </div>
+      </div>
+    );
+  }
+
+  if (screen === 'charCreator') {
+    return (
+      <div style={WRAP}>
+        <div style={FRAME}>
+          <CharacterCreator />
         </div>
       </div>
     );

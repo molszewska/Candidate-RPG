@@ -85,7 +85,7 @@ function FileRow({ label, onOpen, autoFocus }: { label: string; onOpen: () => vo
       autoFocus={autoFocus}
       style={{
         display: 'flex', alignItems: 'center', gap: 10, padding: '5px 0',
-        borderBottom: '1px solid #1a1a1a', cursor: 'pointer', width: '100%',
+        cursor: 'pointer', width: '100%',
         background: 'transparent', border: 'none', borderBottom: '1px solid #1a1a1a',
         textAlign: 'left', outline: 'none',
       }}

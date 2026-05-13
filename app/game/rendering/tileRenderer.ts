@@ -306,12 +306,39 @@ export function drawBillboard(ctx: CanvasRenderingContext2D) {
   ctx.fillRect(bx + W / 2 + 4,  by + H - 8, 6, 10);
 }
 
+const LOBBY_LABELS = [
+  { tx: 4,  ty: 3,  text: 'ENGINEERING', color: '#4a9de0' },
+  { tx: 14, ty: 3,  text: 'GTM',         color: '#2ECC71' },
+  { tx: 4,  ty: 8,  text: 'COMPANY',     color: '#F9BD2B' },
+  { tx: 14, ty: 8,  text: 'TOP SECRET',  color: '#c94040' },
+  { tx: 6,  ty: 12, text: 'THE STREET',  color: '#F9BD2B' },
+] as const;
+
+export function drawLobbyLabels(ctx: CanvasRenderingContext2D) {
+  ctx.font = '6px "Press Start 2P"';
+  ctx.textAlign = 'center';
+  for (const { tx, ty, text, color } of LOBBY_LABELS) {
+    const cx = tx * TILE + TILE / 2;
+    const cy = ty * TILE - 4;
+    const tw = ctx.measureText(text).width;
+    px(ctx, Math.round(cx - tw / 2 - 4), cy - 10, Math.round(tw + 8), 12, 'rgba(14,14,14,0.85)');
+    ctx.fillStyle = color;
+    ctx.fillText(text, cx, cy);
+  }
+  ctx.textAlign = 'left';
+}
+
 export function drawMap(ctx: CanvasRenderingContext2D, area: Area, map: MapGrid) {
   for (let ty = 0; ty < ROWS; ty++) {
     for (let tx = 0; tx < COLS; tx++) {
       const t = map[ty][tx];
-      if (area === 'hogpatch') drawTile(ctx, tx, ty, t);
-      else drawInteriorTile(ctx, tx, ty, t);
+      if (area === 'hogpatch') {
+        drawTile(ctx, tx, ty, t);
+      } else if (t === T.WALL || t === T.ROOF || t === T.DOOR) {
+        drawTile(ctx, tx, ty, t);
+      } else {
+        drawInteriorTile(ctx, tx, ty, t);
+      }
     }
   }
   if (area === 'trash') return;

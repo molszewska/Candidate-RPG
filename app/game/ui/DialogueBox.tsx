@@ -10,6 +10,7 @@ function executeFn(fn: string, setArea: (a: Area) => void) {
     case 'enter_den':      setArea('den');      break;
     case 'enter_vault':    setArea('vault');    break;
     case 'enter_hogpatch': setArea('hogpatch'); break;
+    case 'enter_lobby':    setArea('lobby');    break;
     case 'open_ga_site':   window.open('https://isgoogleanalyticsillegal.com', '_blank'); break;
     case 'open_feet':      window.open('https://posthog.com/feet-pics', '_blank'); break;
     default: break;

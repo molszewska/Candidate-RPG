@@ -15,6 +15,10 @@ export type NPC = {
 };
 
 export const NPCS_BY_AREA: Record<Area, NPC[]> = {
+  lobby: [
+    { id: 'james', name: 'JAMES HAWKINS', x: 7,  y: 6, dir: 2, dlg: 'james_lobby', drawFn: drawJames },
+    { id: 'tim',   name: 'TIM GLASER',   x: 11, y: 6, dir: 2, dlg: 'tim_lobby',   drawFn: drawTim   },
+  ],
   hogpatch: [
     { id: 'james',   name: 'JAMES HAWKINS', x: 8,  y: 3,  dir: 2, dlg: 'james_root',   drawFn: drawJames   },
     { id: 'tim',     name: 'TIM GLASER',    x: 10, y: 6,  dir: 2, dlg: 'tim_root',     drawFn: drawTim     },

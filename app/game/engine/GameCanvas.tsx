@@ -4,7 +4,7 @@ import { currentMap } from '../data/maps';
 import { isSolid, getTileAct } from '../data/areas';
 import { NPCS_BY_AREA } from '../data/npcs';
 import { DLG } from '../data/dialogue';
-import { drawMap } from '../rendering/tileRenderer';
+import { drawMap, drawLobbyLabels } from '../rendering/tileRenderer';
 import { drawPlayerSprite } from '../rendering/spriteRenderer';
 import { createBus, updateBus, drawBus } from '../rendering/busRenderer';
 import { px } from '../rendering/utils';
@@ -130,6 +130,7 @@ export function GameCanvas() {
 
       ctx.clearRect(0, 0, 640, 480);
       drawMap(ctx, fresh.area, currentMap(fresh.area));
+      if (fresh.area === 'lobby') drawLobbyLabels(ctx);
       NPCS_BY_AREA[fresh.area].forEach((n) => drawNPC(ctx, n));
       renderPlayer(ctx, fresh.player);
       if (fresh.area === 'hogpatch') {
