@@ -314,6 +314,19 @@ const LOBBY_LABELS = [
   { tx: 6,  ty: 12, text: 'THE STREET',  color: '#F9BD2B' },
 ] as const;
 
+export function drawHogpatchLabels(ctx: CanvasRenderingContext2D) {
+  ctx.font = '6px "Press Start 2P"';
+  ctx.textAlign = 'center';
+  const cx = 10 * TILE; // center between door tiles at cols 9 and 10
+  const cy = TILE + 12; // just below the doors, at top of row 1
+  const text = 'POSTHOG HQ';
+  const tw = ctx.measureText(text).width;
+  px(ctx, Math.round(cx - tw / 2 - 4), cy - 10, Math.round(tw + 8), 12, 'rgba(14,14,14,0.85)');
+  ctx.fillStyle = '#F9BD2B';
+  ctx.fillText(text, cx, cy);
+  ctx.textAlign = 'left';
+}
+
 export function drawLobbyLabels(ctx: CanvasRenderingContext2D) {
   ctx.font = '6px "Press Start 2P"';
   ctx.textAlign = 'center';
@@ -342,5 +355,5 @@ export function drawMap(ctx: CanvasRenderingContext2D, area: Area, map: MapGrid)
     }
   }
   if (area === 'trash') return;
-  if (area === 'hogpatch') drawBillboard(ctx);
+  if (area === 'hogpatch') { drawBillboard(ctx); drawHogpatchLabels(ctx); }
 }
