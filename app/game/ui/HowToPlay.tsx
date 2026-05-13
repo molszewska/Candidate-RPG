@@ -32,7 +32,7 @@ export function HowToPlay({ onStart }: { onStart: () => void }) {
         Learn more about what life here is about.<br />
         Walk around, explore, have fun!
       </div>
-      <button className="btn-primary" onClick={onStart}>
+      <button className="btn-primary" onClick={onStart} autoFocus>
         VISIT HOGPATCH →
       </button>
     </div>
