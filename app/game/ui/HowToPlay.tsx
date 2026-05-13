@@ -1,4 +1,8 @@
-export function HowToPlay({ onNext }: { onNext: () => void }) {
+import { useGameStore } from '../state/gameStore.client';
+
+export function HowToPlay() {
+  const setScreen = useGameStore((s) => s.setScreen);
+
   return (
     <div className="screen-wrap" style={{ position: 'absolute', inset: 0, background: '#1a1a1a' }}>
       <div className="screen-header">
@@ -31,7 +35,7 @@ export function HowToPlay({ onNext }: { onNext: () => void }) {
         There&apos;s no wrong answer.<br />
         Except pulling a Post-it by the corner."
       </div>
-      <button className="btn-primary" onClick={onNext}>
+      <button className="btn-primary" onClick={() => setScreen('game')}>
         VISIT HOGPATCH →
       </button>
     </div>

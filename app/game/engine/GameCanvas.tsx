@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import { useGameStore } from '../state/gameStore.client';
 import type { Screen } from '../state/gameStore.client';
 import { currentMap } from '../data/maps';
@@ -89,12 +89,7 @@ function drawChecker(ctx: CanvasRenderingContext2D) {
 }
 
 export function GameCanvas() {
-  const [screen, setLocalScreen] = useState<Screen>('howToPlay');
-
-  const handleSetScreen = (s: Screen) => {
-    setLocalScreen(s);
-    useGameStore.getState().setScreen(s);
-  };
+  const screen = useGameStore((s) => s.screen);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const keysRef = useRef<Record<string, boolean>>({});
   const moveTimerRef = useRef(0);
@@ -223,8 +218,8 @@ export function GameCanvas() {
         height={480}
         style={{ display: 'block', imageRendering: 'pixelated' }}
       />
-      {screen === 'howToPlay' && <HowToPlay onNext={() => handleSetScreen('game')} />}
-      {screen === 'charCreator' && <CharacterCreator onNext={() => handleSetScreen('game')} />}
+      {screen === 'howToPlay' && <HowToPlay />}
+      {screen === 'charCreator' && <CharacterCreator />}
       {screen === 'game' && <HUD />}
       {screen === 'game' && <DialogueBox />}
       {screen === 'game' && <TrashOverlay />}
