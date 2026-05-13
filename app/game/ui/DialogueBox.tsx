@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import type { Area } from '../data/maps';
 import { useGameStore } from '../state/gameStore.client';
 import { DLG } from '../data/dialogue';
@@ -20,11 +21,20 @@ export function DialogueBox() {
   const setDialogue = useGameStore((s) => s.setDialogue);
   const setArea = useGameStore((s) => s.setArea);
 
+  const close = () => setDialogue(null);
+
+  useEffect(() => {
+    if (!dialogue) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.code === 'Escape') { e.preventDefault(); close(); }
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [dialogue]);
+
   if (!dialogue) return null;
   const def = DLG[dialogue];
   if (!def) return null;
-
-  const close = () => setDialogue(null);
   const hasOpts = def.opts && def.opts.length > 0;
 
   return (
