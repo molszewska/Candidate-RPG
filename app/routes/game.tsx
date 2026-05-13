@@ -1,19 +1,11 @@
-import { lazy, Suspense, useEffect, useState } from 'react';
-import { useSearchParams } from 'react-router';
+import { useState } from 'react';
 import type { Route } from './+types/game';
-import { parseRole } from '../game/constants/playerRoles';
+import { GameCanvas } from '../game/engine/GameCanvas';
 import { HowToPlay } from '../game/ui/HowToPlay';
 
 export function meta(_: Route.MetaArgs) {
-  return [
-    { title: 'HogPatch — A PostHog Experience' },
-    { name: 'description', content: 'A pixel-art world built by the PostHog team.' },
-  ];
+  return [{ title: 'HogPatch — A PostHog Experience' }];
 }
-
-const GameCanvas = lazy(() =>
-  import('../game/engine/GameCanvas').then((m) => ({ default: m.GameCanvas }))
-);
 
 const WRAP: React.CSSProperties = {
   width: '100vw', height: '100vh',
@@ -26,27 +18,8 @@ const FRAME: React.CSSProperties = {
   boxShadow: '0 0 0 3px #F9BD2B, 0 0 0 6px #1a1a1a, 0 0 40px rgba(249,189,43,0.25)',
 };
 
-function Loading() {
-  return (
-    <div style={{ ...WRAP, fontFamily: '"Press Start 2P", monospace', fontSize: 12, color: '#F9BD2B' }}>
-      Loading...
-    </div>
-  );
-}
-
 export default function GameRoute() {
   const [started, setStarted] = useState(false);
-  const [searchParams] = useSearchParams();
-
-  useEffect(() => {
-    import('../game/state/persistentStore.client').then(({ usePersistentStore }) => {
-      const role = parseRole(searchParams.get('role'));
-      const name = searchParams.get('name');
-      const store = usePersistentStore.getState();
-      store.setPlayerRole(role);
-      if (name) store.setPlayerName(name.slice(0, 20));
-    });
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   if (!started) {
     return (
@@ -60,9 +33,7 @@ export default function GameRoute() {
 
   return (
     <div style={WRAP}>
-      <Suspense fallback={<Loading />}>
-        <GameCanvas />
-      </Suspense>
+      <GameCanvas />
     </div>
   );
 }
