@@ -1,5 +1,6 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useGameStore } from '../state/gameStore.client';
+import type { Screen } from '../state/gameStore.client';
 import { currentMap } from '../data/maps';
 import { isSolid, getTileAct } from '../data/areas';
 import { NPCS_BY_AREA } from '../data/npcs';
@@ -88,7 +89,12 @@ function drawChecker(ctx: CanvasRenderingContext2D) {
 }
 
 export function GameCanvas() {
-  const screen = useGameStore((s) => s.screen);
+  const [screen, setLocalScreen] = useState<Screen>('howToPlay');
+
+  const handleSetScreen = (s: Screen) => {
+    setLocalScreen(s);
+    useGameStore.getState().setScreen(s);
+  };
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const keysRef = useRef<Record<string, boolean>>({});
   const moveTimerRef = useRef(0);
@@ -217,8 +223,8 @@ export function GameCanvas() {
         height={480}
         style={{ display: 'block', imageRendering: 'pixelated' }}
       />
-      {screen === 'howToPlay' && <HowToPlay />}
-      {screen === 'charCreator' && <CharacterCreator />}
+      {screen === 'howToPlay' && <HowToPlay onNext={() => handleSetScreen('charCreator')} />}
+      {screen === 'charCreator' && <CharacterCreator onNext={() => handleSetScreen('game')} />}
       {screen === 'game' && <HUD />}
       {screen === 'game' && <DialogueBox />}
       {screen === 'game' && <TrashOverlay />}

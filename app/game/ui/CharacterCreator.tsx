@@ -5,9 +5,9 @@ import type { PlayerSpec } from '../rendering/spriteRenderer';
 
 const COLORS = ['#E8B88A', '#C68642', '#8D5524', '#F9BD2B', '#9B59B6', '#3498DB', '#E74C3C', '#2ECC71'];
 
-export function CharacterCreator() {
-  const { player, updatePlayer, setScreen } = useGameStore((s) => ({
-    player: s.player, updatePlayer: s.updatePlayer, setScreen: s.setScreen,
+export function CharacterCreator({ onNext }: { onNext: () => void }) {
+  const { player, updatePlayer } = useGameStore((s) => ({
+    player: s.player, updatePlayer: s.updatePlayer,
   }));
   const [nameInput, setNameInput] = useState('');
   const previewRef = useRef<HTMLCanvasElement>(null);
@@ -26,7 +26,7 @@ export function CharacterCreator() {
   const begin = () => {
     const name = nameInput.toUpperCase().trim() || 'APPLICANT';
     updatePlayer({ name });
-    setScreen('game');
+    onNext();
   };
 
   return (
