@@ -223,7 +223,7 @@ export function GameCanvas() {
         height={480}
         style={{ display: 'block', imageRendering: 'pixelated' }}
       />
-      {screen === 'howToPlay' && <HowToPlay onNext={() => handleSetScreen('charCreator')} />}
+      {screen === 'howToPlay' && <HowToPlay onNext={() => handleSetScreen('game')} />}
       {screen === 'charCreator' && <CharacterCreator onNext={() => handleSetScreen('game')} />}
       {screen === 'game' && <HUD />}
       {screen === 'game' && <DialogueBox />}

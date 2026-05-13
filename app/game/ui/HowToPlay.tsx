@@ -32,7 +32,7 @@ export function HowToPlay({ onNext }: { onNext: () => void }) {
         Except pulling a Post-it by the corner."
       </div>
       <button className="btn-primary" onClick={onNext}>
-        CREATE YOUR CHARACTER →
+        VISIT HOGPATCH →
       </button>
     </div>
   );
