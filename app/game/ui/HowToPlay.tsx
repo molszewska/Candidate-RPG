@@ -26,10 +26,9 @@ export function HowToPlay({ onStart }: { onStart: () => void }) {
         </div>
       </div>
       <div className="htp-lore">
-        "Explore HogPatch. Talk to the team.<br />
-        Find the dumpster. Unlock achievements.<br />
-        There&apos;s no wrong answer.<br />
-        Except pulling a Post-it by the corner."
+        Hey fellow human! Welcome to HogPatch.<br />
+        Learn more about what life here is about.<br />
+        Walk around, explore, have fun!
       </div>
       <button className="btn-primary" onClick={onStart}>
         VISIT HOGPATCH →
