@@ -16,12 +16,10 @@ const ACH_MAP: Record<string, string> = {
 };
 
 export function HUD() {
-  const { player, areaName, achievements, nearHint } = useGameStore((s) => ({
-    player: s.player,
-    areaName: s.areaName,
-    achievements: s.achievements,
-    nearHint: s.nearHint,
-  }));
+  const player = useGameStore((s) => s.player);
+  const areaName = useGameStore((s) => s.areaName);
+  const achievements = useGameStore((s) => s.achievements);
+  const nearHint = useGameStore((s) => s.nearHint);
 
   return (
     <div id="hud" style={{ display: 'block' }}>

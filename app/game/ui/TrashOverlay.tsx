@@ -4,12 +4,10 @@ import { TRASH_FILES, TRASH_ARCHIVE } from '../data/areas';
 
 export function TrashOverlay() {
   const area = useGameStore((s) => s.area);
-  const { setDialogue, setArea, trackTrashFile, unlockAchievement } = useGameStore((s) => ({
-    setDialogue: s.setDialogue,
-    setArea: s.setArea,
-    trackTrashFile: s.trackTrashFile,
-    unlockAchievement: s.unlockAchievement,
-  }));
+  const setDialogue = useGameStore((s) => s.setDialogue);
+  const setArea = useGameStore((s) => s.setArea);
+  const trackTrashFile = useGameStore((s) => s.trackTrashFile);
+  const unlockAchievement = useGameStore((s) => s.unlockAchievement);
 
   const openFile = (dlg: string) => {
     if (DLG[dlg]) {
