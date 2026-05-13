@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import type { Area } from '../data/maps';
 import { useGameStore } from '../state/gameStore.client';
 import { DLG } from '../data/dialogue';
@@ -20,13 +20,26 @@ export function DialogueBox() {
   const dialogue = useGameStore((s) => s.dialogue);
   const setDialogue = useGameStore((s) => s.setDialogue);
   const setArea = useGameStore((s) => s.setArea);
+  const optsRef = useRef<HTMLDivElement>(null);
 
   const close = () => setDialogue(null);
 
   useEffect(() => {
     if (!dialogue) return;
+    const def = DLG[dialogue];
+    const hasOpts = !!(def?.opts?.length);
     const onKey = (e: KeyboardEvent) => {
-      if (e.code === 'Escape') { e.preventDefault(); close(); }
+      if (e.code === 'Escape') { e.preventDefault(); close(); return; }
+      if (!hasOpts && (e.code === 'Enter' || e.code === 'Space')) { e.preventDefault(); close(); return; }
+      if (hasOpts && (e.code === 'ArrowDown' || e.code === 'ArrowUp')) {
+        e.preventDefault();
+        const btns = Array.from(optsRef.current?.querySelectorAll('button') ?? []) as HTMLElement[];
+        const idx = btns.indexOf(document.activeElement as HTMLElement);
+        const next = e.code === 'ArrowDown'
+          ? (idx + 1) % btns.length
+          : (idx - 1 + btns.length) % btns.length;
+        btns[next]?.focus();
+      }
     };
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
@@ -42,11 +55,12 @@ export function DialogueBox() {
       <div className="dlg-sp">{def.sp}</div>
       <div className="dlg-tx">{def.tx}</div>
       {hasOpts && (
-        <div className="dlg-opts">
+        <div className="dlg-opts" ref={optsRef}>
           {def.opts!.map((opt, i) => (
             <button
               key={i}
               className="dlg-opt"
+              autoFocus={i === 0}
               onClick={(e) => {
                 e.stopPropagation();
                 if (opt.fn) executeFn(opt.fn, setArea);
@@ -59,7 +73,7 @@ export function DialogueBox() {
           ))}
         </div>
       )}
-      {!hasOpts && <div className="dlg-cont">▼ SPACE</div>}
+      {!hasOpts && <div className="dlg-cont">▼ SPACE / ENTER</div>}
     </div>
   );
 }
