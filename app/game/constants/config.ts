@@ -1,0 +1,12 @@
+export const TILE_SIZE        = 16;  // source pixels
+export const DISPLAY_SCALE    = 2;   // rendered at 2×
+export const TILE_DISPLAY     = TILE_SIZE * DISPLAY_SCALE; // 32px on canvas
+export const VIEWPORT_W       = 640; // canvas CSS pixels (20 tiles)
+export const VIEWPORT_H       = 480; // canvas CSS pixels (15 tiles)
+export const VIEWPORT_TILES_X = VIEWPORT_W / TILE_DISPLAY; // 20
+export const VIEWPORT_TILES_Y = VIEWPORT_H / TILE_DISPLAY; // 15
+export const UPDATE_HZ        = 60;
+export const UPDATE_MS        = 1000 / UPDATE_HZ;
+export const CAMERA_LERP      = 0.12;
+export const DIALOGUE_DEBOUNCE_MS = 200;
+export const TILESET_COLS     = 8; // tiles per row in sprite sheet
