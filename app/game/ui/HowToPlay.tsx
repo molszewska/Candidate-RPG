@@ -1,10 +1,12 @@
 export function HowToPlay({ onStart }: { onStart: () => void }) {
   return (
     <div className="screen-wrap" style={{ position: 'absolute', inset: 0, background: '#1a1a1a' }}>
-      <div className="screen-header">
-        <span className="screen-hog">🦔</span>
-        <div className="screen-title">HOGPATCH</div>
-        <div className="screen-sub">— a posthog RPG</div>
+      <div className="screen-header" style={{ flexDirection: 'column', gap: 8 }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+          <span className="screen-hog">🦔</span>
+          <div className="screen-title">HOGPATCH</div>
+        </div>
+        <div className="screen-sub" style={{ opacity: 1, fontSize: 20, marginLeft: 0 }}>a PostHog RPG</div>
       </div>
       <div className="panel htp-panel">
         <div className="inst-row">
