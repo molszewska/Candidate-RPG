@@ -1,84 +1,109 @@
 import { create } from 'zustand';
-import type { SceneId } from '../constants/sceneIds';
-import { SCENE_IDS } from '../constants/sceneIds';
+import type { Area } from '../data/maps';
 
-export type DialogueState = {
-  isOpen: boolean;
-  npcId: string;
-  nodeId: string;
-  lineIndex: number;
+export type Screen = 'howToPlay' | 'charCreator' | 'game';
+
+export type PlayerState = {
+  species: 'human' | 'hog';
+  color: string;
+  outfit: 'hoodie' | 'tshirt' | 'suit';
+  name: string;
+  x: number;
+  y: number;
+  dir: number;
 };
 
-export type ToastItem = {
-  id: string;
-  text: string;
+const AREA_SPAWNS: Record<Area, { x: number; y: number }> = {
+  hogpatch: { x: 10, y: 7 },
+  burrow:   { x: 8,  y: 10 },
+  den:      { x: 8,  y: 10 },
+  vault:    { x: 8,  y: 10 },
+  trash:    { x: 8,  y: 10 },
 };
 
-export type GameState = {
-  sceneId: SceneId;
-  playerX: number;        // source pixels
-  playerY: number;
-  playerFacing: 'up' | 'down' | 'left' | 'right';
-  isMoving: boolean;
-  cameraX: number;
-  cameraY: number;
-  dialogue: DialogueState | null;
-  toastQueue: ToastItem[];
-  isTransitioning: boolean;
-  transitionAlpha: number; // 0=transparent, 1=black
-  animTick: number;        // global animation counter, incremented each frame
+const AREA_NAMES: Record<Area, string> = {
+  hogpatch: 'HOGPATCH',
+  burrow:   'THE BURROW',
+  den:      'THE DEN',
+  vault:    'THE MERCH VAULT',
+  trash:    'THE TRASH FOLDER',
+};
+
+const getInitialAchievements = (): Set<string> => {
+  try {
+    return new Set<string>(JSON.parse(localStorage.getItem('hp_ach') || '[]'));
+  } catch {
+    return new Set<string>();
+  }
+};
+
+type GameState = {
+  screen: Screen;
+  area: Area;
+  areaName: string;
+  player: PlayerState;
+  dialogue: string | null;
+  achievementToast: { id: string; name: string } | null;
+  achievements: Set<string>;
+  trashOpened: Set<string>;
+  nearHint: boolean;
 };
 
 type GameActions = {
-  setScene: (id: SceneId) => void;
-  setPlayerPos: (x: number, y: number) => void;
-  setPlayerFacing: (dir: GameState['playerFacing']) => void;
-  setIsMoving: (val: boolean) => void;
-  setCameraPos: (x: number, y: number) => void;
-  openDialogue: (npcId: string, nodeId: string) => void;
-  closeDialogue: () => void;
-  advanceDialogueLine: (nextNodeId: string | null, lineIndex: number) => void;
-  enqueueToast: (toast: ToastItem) => void;
-  dequeueToast: (id: string) => void;
-  setTransitioning: (val: boolean, alpha?: number) => void;
-  tickAnim: () => void;
+  setScreen: (s: Screen) => void;
+  setArea: (a: Area) => void;
+  updatePlayer: (patch: Partial<PlayerState>) => void;
+  setDialogue: (key: string | null) => void;
+  unlockAchievement: (id: string, name: string) => void;
+  trackTrashFile: (dlg: string) => void;
+  setNearHint: (v: boolean) => void;
 };
 
-export const useGameStore = create<GameState & GameActions>((set) => ({
-  sceneId: SCENE_IDS.CLEARING,
-  playerX: 10 * 16,
-  playerY: 10 * 16,
-  playerFacing: 'down',
-  isMoving: false,
-  cameraX: 0,
-  cameraY: 0,
-  dialogue: null,
-  toastQueue: [],
-  isTransitioning: false,
-  transitionAlpha: 0,
-  animTick: 0,
+const TRASH_RECENT_DLGS = [
+  'trash_whitepaper', 'trash_quickcalls', 'trash_feetpics', 'trash_spicy', 'trash_contract',
+];
 
-  setScene: (id) => set({ sceneId: id }),
-  setPlayerPos: (x, y) => set({ playerX: x, playerY: y }),
-  setPlayerFacing: (dir) => set({ playerFacing: dir }),
-  setIsMoving: (val) => set({ isMoving: val }),
-  setCameraPos: (x, y) => set({ cameraX: x, cameraY: y }),
-  openDialogue: (npcId, nodeId) =>
-    set({ dialogue: { isOpen: true, npcId, nodeId, lineIndex: 0 } }),
-  closeDialogue: () => set({ dialogue: null }),
-  advanceDialogueLine: (nextNodeId, lineIndex) =>
-    set((s) => s.dialogue
-      ? { dialogue: nextNodeId
-            ? { ...s.dialogue, nodeId: nextNodeId, lineIndex: 0 }
-            : { ...s.dialogue, lineIndex }
-        }
-      : {}
-    ),
-  enqueueToast: (toast) =>
-    set((s) => ({ toastQueue: [...s.toastQueue, toast] })),
-  dequeueToast: (id) =>
-    set((s) => ({ toastQueue: s.toastQueue.filter((t) => t.id !== id) })),
-  setTransitioning: (val, alpha = 0) =>
-    set({ isTransitioning: val, transitionAlpha: alpha }),
-  tickAnim: () => set((s) => ({ animTick: s.animTick + 1 })),
+export const useGameStore = create<GameState & GameActions>((set, get) => ({
+  screen: 'howToPlay',
+  area: 'hogpatch',
+  areaName: 'HOGPATCH',
+  player: { species: 'human', color: '#E8B88A', outfit: 'hoodie', name: 'APPLICANT', x: 10, y: 7, dir: 2 },
+  dialogue: null,
+  achievementToast: null,
+  achievements: getInitialAchievements(),
+  trashOpened: new Set(),
+  nearHint: false,
+
+  setScreen: (s) => set({ screen: s }),
+  setArea: (a) => {
+    const sp = AREA_SPAWNS[a];
+    set((s) => ({
+      area: a,
+      areaName: AREA_NAMES[a],
+      player: { ...s.player, x: sp.x, y: sp.y, dir: 2 },
+    }));
+  },
+  updatePlayer: (patch) => set((s) => ({ player: { ...s.player, ...patch } })),
+  setDialogue: (key) => set({ dialogue: key }),
+
+  unlockAchievement: (id, name) => {
+    const { achievements } = get();
+    if (achievements.has(id)) return;
+    const next = new Set([...achievements, id]);
+    try { localStorage.setItem('hp_ach', JSON.stringify([...next])); } catch { /* noop */ }
+    set({ achievements: next, achievementToast: { id, name } });
+    setTimeout(() => {
+      set((s) => s.achievementToast?.id === id ? { achievementToast: null } : {});
+    }, 3500);
+  },
+
+  trackTrashFile: (dlg) => {
+    const nextSet = new Set([...get().trashOpened, dlg]);
+    set({ trashOpened: nextSet });
+    if (TRASH_RECENT_DLGS.every((d) => nextSet.has(d))) {
+      get().unlockAchievement('trash_panda', '📁 TRASH PANDA');
+    }
+  },
+
+  setNearHint: (v) => set({ nearHint: v }),
 }));

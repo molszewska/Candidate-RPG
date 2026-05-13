@@ -51,8 +51,10 @@ export default function GameRoute() {
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
-    <Suspense fallback={<HydrateFallback />}>
-      <GameCanvas />
-    </Suspense>
+    <div style={{ width: '100vw', height: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#1a1a1a' }}>
+      <Suspense fallback={<HydrateFallback />}>
+        <GameCanvas />
+      </Suspense>
+    </div>
   );
 }

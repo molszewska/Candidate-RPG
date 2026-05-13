@@ -118,6 +118,86 @@ body {
   transition: width 80ms linear;
 }
 
+/* ── Game UI from HTML source ───────────────────────────────────────── */
+
+.btn-primary {
+  font-family: 'Press Start 2P', monospace; font-size: 10px; letter-spacing: 2px;
+  padding: 13px 24px; background: #F9BD2B; color: #1a1a1a; border: 2px solid #8B6914; cursor: pointer;
+  outline: none; position: relative;
+}
+.btn-primary:hover { background: #E5E7E0; border-color: #555; }
+.btn-primary:focus { outline: 2px solid #fff; outline-offset: 2px; }
+
+.screen-wrap {
+  width: 100%; height: 100%; background: #1a1a1a;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 20px;
+}
+.screen-header { display: flex; align-items: center; gap: 10px; }
+.screen-hog    { font-size: 24px; animation: hobble 0.9s ease-in-out infinite alternate; }
+@keyframes hobble { from { transform: translateY(0); } to { transform: translateY(-6px); } }
+.screen-title  { font-size: 15px; color: #F9BD2B; letter-spacing: 3px; font-family: 'Press Start 2P', monospace; }
+.screen-sub    { font-family: 'VT323', monospace; font-size: 15px; color: #E5E7E0; opacity: 0.4; margin-left: 2px; }
+.panel { background: #111; border: 2px solid #222; padding: 20px 24px; }
+
+.htp-panel { width: 440px; }
+.inst-row  { display: flex; align-items: center; gap: 16px; padding: 8px 0; border-bottom: 1px solid #1c1c1c; }
+.inst-row:last-child { border-bottom: none; }
+.inst-keys { display: flex; gap: 4px; flex-wrap: wrap; min-width: 100px; }
+.key { font-family: 'Press Start 2P', monospace; font-size: 6px; padding: 4px 6px; background: #1a1a1a; border: 1px solid #3a3a3a; color: #bbb; }
+.inst-desc { font-family: 'VT323', monospace; font-size: 18px; color: #999; }
+.htp-lore  { font-family: 'VT323', monospace; font-size: 17px; color: #F9BD2B; opacity: 0.5; text-align: center; line-height: 1.7; max-width: 380px; }
+
+.cc-panel { width: 520px; display: flex; gap: 20px; }
+.cc-preview { width: 88px; display: flex; flex-direction: column; align-items: center; gap: 8px; }
+#previewCanvas { border: 2px solid #222; background: #5a8a3c; image-rendering: pixelated; }
+.cc-pname { font-family: 'VT323', monospace; font-size: 16px; color: #E5E7E0; text-align: center; }
+.cc-options { flex: 1; display: flex; flex-direction: column; gap: 11px; }
+.cc-row { display: flex; flex-direction: column; gap: 5px; }
+.cc-label { font-size: 6px; color: #F9BD2B; letter-spacing: 1px; font-family: 'Press Start 2P', monospace; }
+.cc-btns { display: flex; gap: 5px; flex-wrap: wrap; }
+.cc-btn { font-family: 'Press Start 2P', monospace; font-size: 6px; padding: 5px 8px; border: 1px solid #2a2a2a; background: #111; color: #666; cursor: pointer; }
+.cc-btn:hover { border-color: #F9BD2B; color: #F9BD2B; }
+.cc-btn.active { border-color: #F9BD2B; background: #F9BD2B; color: #1a1a1a; }
+.cc-swatch { width: 22px; height: 22px; border: 2px solid #2a2a2a; cursor: pointer; }
+.cc-swatch.active { border-color: #F9BD2B; border-width: 3px; }
+.cc-input { font-family: 'Press Start 2P', monospace; font-size: 8px; padding: 7px 8px; background: #111; border: 1px solid #2a2a2a; color: #E5E7E0; width: 100%; }
+.cc-input:focus { outline: none; border-color: #F9BD2B; }
+
+#howToPlay, #charCreator, #hud {
+  position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+  pointer-events: none;
+}
+#howToPlay  { pointer-events: all; }
+#charCreator{ pointer-events: all; display: flex; }
+#hud        { display: block; }
+
+#playerTag { position: absolute; top: 8px; left: 10px; font-size: 6px; color: #E5E7E0; opacity: 0.65; font-family: 'Press Start 2P', monospace; }
+#areaTag   { position: absolute; top: 8px; right: 10px; font-size: 6px; color: #F9BD2B; font-family: 'Press Start 2P', monospace; }
+#achList   { position: absolute; top: 24px; right: 10px; display: flex; flex-direction: column; gap: 2px; align-items: flex-end; }
+.ach-pip   { font-family: 'VT323', monospace; font-size: 13px; color: #F9BD2B; background: rgba(17,17,17,0.85); padding: 1px 5px; }
+#nearHint  { position: absolute; bottom: 0; left: 50%; transform: translateX(-50%);
+             font-family: 'VT323', monospace; font-size: 16px; color: #F9BD2B;
+             background: rgba(17,17,17,0.9); padding: 3px 12px; pointer-events: none; }
+
+#dialogueBox {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  background: #0e0e0e; border-top: 3px solid #F9BD2B;
+  padding: 14px 18px 10px; flex-direction: column; gap: 7px;
+  pointer-events: all; min-height: 128px; z-index: 5;
+}
+.dlg-sp { font-size: 7px; color: #F9BD2B; letter-spacing: 1px; font-family: 'Press Start 2P', monospace; }
+.dlg-tx { font-family: 'VT323', monospace; font-size: 19px; color: #E5E7E0; line-height: 1.45; max-width: 590px; white-space: pre-wrap; }
+.dlg-opts { display: flex; flex-direction: column; gap: 3px; margin-top: 2px; }
+.dlg-opt  { font-family: 'Press Start 2P', monospace; font-size: 6px; color: #777; padding: 5px 8px; border: 1px solid #1e1e1e; background: transparent; cursor: pointer; text-align: left; }
+.dlg-opt:hover { border-color: #F9BD2B; color: #F9BD2B; }
+.dlg-cont { font-family: 'VT323', monospace; font-size: 15px; color: #F9BD2B; opacity: 0.6; text-align: right; animation: blink 1s step-end infinite; }
+@keyframes blink { 50% { opacity: 0; } }
+
+#achievementPopup { position: absolute; bottom: 16px; right: 16px; background: #111; border: 2px solid #F9BD2B;
+  padding: 10px 14px; flex-direction: column; gap: 3px; pointer-events: none; z-index: 10; }
+.ap-label { font-size: 6px; color: #F9BD2B; font-family: 'Press Start 2P', monospace; }
+.ap-name  { font-family: 'VT323', monospace; font-size: 20px; color: #E5E7E0; }
+
 /* Mobile D-pad overlay */
 .mobile-controls {
   position: fixed;
