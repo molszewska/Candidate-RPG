@@ -1,6 +1,5 @@
 import { useEffect, useRef } from 'react';
 import { useGameStore } from '../state/gameStore.client';
-import type { Screen } from '../state/gameStore.client';
 import { currentMap } from '../data/maps';
 import { isSolid, getTileAct } from '../data/areas';
 import { NPCS_BY_AREA } from '../data/npcs';
@@ -9,8 +8,6 @@ import { drawMap } from '../rendering/tileRenderer';
 import { drawPlayerSprite } from '../rendering/spriteRenderer';
 import { createBus, updateBus, drawBus } from '../rendering/busRenderer';
 import { px } from '../rendering/utils';
-import { HowToPlay } from '../ui/HowToPlay';
-import { CharacterCreator } from '../ui/CharacterCreator';
 import { HUD } from '../ui/HUD';
 import { DialogueBox } from '../ui/DialogueBox';
 import { TrashOverlay } from '../ui/TrashOverlay';
@@ -78,18 +75,7 @@ function renderPlayer(ctx: CanvasRenderingContext2D, player: PlayerState) {
   ctx.textAlign = 'left';
 }
 
-function drawChecker(ctx: CanvasRenderingContext2D) {
-  ctx.fillStyle = '#1a1a1a'; ctx.fillRect(0, 0, 640, 480);
-  for (let ty = 0; ty < 15; ty++) {
-    for (let tx = 0; tx < 20; tx++) {
-      ctx.fillStyle = (tx + ty) % 2 === 0 ? '#1d3a10' : '#162e0c';
-      ctx.fillRect(tx * TILE, ty * TILE, TILE, TILE);
-    }
-  }
-}
-
 export function GameCanvas() {
-  const screen = useGameStore((s) => s.screen);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const keysRef = useRef<Record<string, boolean>>({});
   const moveTimerRef = useRef(0);
@@ -97,16 +83,6 @@ export function GameCanvas() {
   const lastRef = useRef(0);
   const rafRef = useRef(0);
 
-  // Draw initial checkerboard
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const ctx = canvas.getContext('2d')!;
-    ctx.imageSmoothingEnabled = false;
-    drawChecker(ctx);
-  }, []);
-
-  // Game loop — stable RAF, reads fresh state each frame via getState()
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -118,55 +94,47 @@ export function GameCanvas() {
       lastRef.current = ts;
       const store = useGameStore.getState();
 
-      if (store.screen === 'game') {
-        // Movement update
-        if (!store.dialogue) {
-          moveTimerRef.current -= dt;
-          if (moveTimerRef.current <= 0) {
-            const { player, area } = store;
-            const map = currentMap(area);
-            const npcs = NPCS_BY_AREA[area];
-            for (const dir of DIRS) {
-              if (dir.keys.some((k) => keysRef.current[k])) {
-                const nx = player.x + dir.dx, ny = player.y + dir.dy;
-                if (!isSolid(map, nx, ny) && !npcs.some((n) => n.x === nx && n.y === ny)) {
-                  store.updatePlayer({ dir: dir.d, x: nx, y: ny });
-                } else {
-                  store.updatePlayer({ dir: dir.d });
-                }
-                moveTimerRef.current = 160;
-                break;
+      if (!store.dialogue) {
+        moveTimerRef.current -= dt;
+        if (moveTimerRef.current <= 0) {
+          const { player, area } = store;
+          const map = currentMap(area);
+          const npcs = NPCS_BY_AREA[area];
+          for (const dir of DIRS) {
+            if (dir.keys.some((k) => keysRef.current[k])) {
+              const nx = player.x + dir.dx, ny = player.y + dir.dy;
+              if (!isSolid(map, nx, ny) && !npcs.some((n) => n.x === nx && n.y === ny)) {
+                store.updatePlayer({ dir: dir.d, x: nx, y: ny });
+              } else {
+                store.updatePlayer({ dir: dir.d });
               }
+              moveTimerRef.current = 160;
+              break;
             }
           }
         }
+      }
 
-        // Near hint
-        {
-          const fresh = useGameStore.getState();
-          if (fresh.dialogue) {
-            store.setNearHint(false);
-          } else {
-            const { tx, ty } = getFacing(fresh.player);
-            const npcs = NPCS_BY_AREA[fresh.area];
-            const hint =
-              npcs.some((n) => n.x === tx && n.y === ty) ||
-              !!getTileAct(fresh.area, tx, ty) ||
-              !!getTileAct(fresh.area, fresh.player.x, fresh.player.y);
-            store.setNearHint(hint);
-          }
-        }
+      const fresh = useGameStore.getState();
+      if (fresh.dialogue) {
+        store.setNearHint(false);
+      } else {
+        const { tx, ty } = getFacing(fresh.player);
+        const npcs = NPCS_BY_AREA[fresh.area];
+        const hint =
+          npcs.some((n) => n.x === tx && n.y === ty) ||
+          !!getTileAct(fresh.area, tx, ty) ||
+          !!getTileAct(fresh.area, fresh.player.x, fresh.player.y);
+        store.setNearHint(hint);
+      }
 
-        // Render
-        const fresh = useGameStore.getState();
-        ctx.clearRect(0, 0, 640, 480);
-        drawMap(ctx, fresh.area, currentMap(fresh.area));
-        NPCS_BY_AREA[fresh.area].forEach((n) => drawNPC(ctx, n));
-        renderPlayer(ctx, fresh.player);
-        if (fresh.area === 'hogpatch') {
-          updateBus(busRef.current);
-          drawBus(ctx, busRef.current, busRef.current.x, 13 * TILE);
-        }
+      ctx.clearRect(0, 0, 640, 480);
+      drawMap(ctx, fresh.area, currentMap(fresh.area));
+      NPCS_BY_AREA[fresh.area].forEach((n) => drawNPC(ctx, n));
+      renderPlayer(ctx, fresh.player);
+      if (fresh.area === 'hogpatch') {
+        updateBus(busRef.current);
+        drawBus(ctx, busRef.current, busRef.current.x, 13 * TILE);
       }
 
       rafRef.current = requestAnimationFrame(loop);
@@ -176,12 +144,10 @@ export function GameCanvas() {
     return () => cancelAnimationFrame(rafRef.current);
   }, []);
 
-  // Keyboard input
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       keysRef.current[e.key] = true;
       const store = useGameStore.getState();
-      if (store.screen !== 'game') return;
       if ((e.key === ' ' || e.key === 'Enter') && !store.dialogue) {
         e.preventDefault();
         tryInteract();
@@ -218,11 +184,9 @@ export function GameCanvas() {
         height={480}
         style={{ display: 'block', imageRendering: 'pixelated' }}
       />
-      {screen === 'howToPlay' && <HowToPlay />}
-      {screen === 'charCreator' && <CharacterCreator />}
-      {screen === 'game' && <HUD />}
-      {screen === 'game' && <DialogueBox />}
-      {screen === 'game' && <TrashOverlay />}
+      <HUD />
+      <DialogueBox />
+      <TrashOverlay />
       <AchievementPopup />
     </div>
   );

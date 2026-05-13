@@ -1,7 +1,8 @@
-import { lazy, Suspense, useEffect } from 'react';
+import { lazy, Suspense, useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router';
 import type { Route } from './+types/game';
 import { parseRole } from '../game/constants/playerRoles';
+import { HowToPlay } from '../game/ui/HowToPlay';
 
 export function meta(_: Route.MetaArgs) {
   return [
@@ -10,25 +11,17 @@ export function meta(_: Route.MetaArgs) {
   ];
 }
 
-// Lazy-load the canvas component so it never runs during SSR
 const GameCanvas = lazy(() =>
   import('../game/engine/GameCanvas').then((m) => ({ default: m.GameCanvas }))
 );
 
-// Shown by React Router during SSR and initial hydration
 export function HydrateFallback() {
   return (
     <div
       style={{
-        width: '100vw',
-        height: '100vh',
-        background: '#1a1a1a',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        fontFamily: '"Press Start 2P", monospace',
-        fontSize: '12px',
-        color: '#F9BD2B',
+        width: '100vw', height: '100vh', background: '#1a1a1a',
+        display: 'flex', alignItems: 'center', justifyContent: 'center',
+        fontFamily: '"Press Start 2P", monospace', fontSize: '12px', color: '#F9BD2B',
       }}
     >
       HogPatch
@@ -36,10 +29,21 @@ export function HydrateFallback() {
   );
 }
 
+const FRAME = {
+  position: 'relative' as const, width: 640, height: 480,
+  boxShadow: '0 0 0 3px #F9BD2B, 0 0 0 6px #1a1a1a, 0 0 40px rgba(249,189,43,0.25)',
+};
+
+const WRAP = {
+  width: '100vw', height: '100vh',
+  display: 'flex', alignItems: 'center', justifyContent: 'center',
+  background: '#1a1a1a',
+};
+
 export default function GameRoute() {
+  const [started, setStarted] = useState(false);
   const [searchParams] = useSearchParams();
 
-  // Read URL params on client mount, store in persistent state
   useEffect(() => {
     import('../game/state/persistentStore.client').then(({ usePersistentStore }) => {
       const role = parseRole(searchParams.get('role'));
@@ -50,8 +54,18 @@ export default function GameRoute() {
     });
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
+  if (!started) {
+    return (
+      <div style={WRAP}>
+        <div style={FRAME}>
+          <HowToPlay onStart={() => setStarted(true)} />
+        </div>
+      </div>
+    );
+  }
+
   return (
-    <div style={{ width: '100vw', height: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#1a1a1a' }}>
+    <div style={WRAP}>
       <Suspense fallback={<HydrateFallback />}>
         <GameCanvas />
       </Suspense>
