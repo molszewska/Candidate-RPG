@@ -99,11 +99,20 @@ export const useGameStore = create<GameState & GameActions>((set, get) => ({
 
   setScreen: (s) => set({ screen: s }),
   setArea: (a) => {
-    const sp = AREA_SPAWNS[a];
+    const prevArea = get().area;
+    const LOBBY_RETURN_SPAWNS: Partial<Record<Area, { x: number; y: number; dir: number }>> = {
+      burrow:   { x: 5,  y: 1,  dir: 2 },
+      den:      { x: 14, y: 1,  dir: 2 },
+      vault:    { x: 1,  y: 7,  dir: 1 },
+      trash:    { x: 18, y: 4,  dir: 3 },
+      hogpatch: { x: 5,  y: 13, dir: 0 },
+    };
+    const returnSpawn = a === 'lobby' ? LOBBY_RETURN_SPAWNS[prevArea] : undefined;
+    const sp = returnSpawn ?? AREA_SPAWNS[a];
     set((s) => ({
       area: a,
       areaName: AREA_NAMES[a],
-      player: { ...s.player, x: sp.x, y: sp.y, dir: 2 },
+      player: { ...s.player, x: sp.x, y: sp.y, dir: returnSpawn?.dir ?? 2 },
     }));
     window.history.pushState(null, '', AREA_PATHS[a]);
   },
