@@ -42,7 +42,7 @@ export const DLG: Record<string, DlgNode> = {
   angry_twitter_guy: { sp: 'ANGRY TWITTER GUY', tx: "*He won't even look up at you. He's just tweeting something on his phone and muttering angrily.*",
     opts: [{ l: "...", n: null }] },
 
-  creators_root: { sp: 'GAME CREATORS', imgs: ['/pixel_eli.png', '/pixel_rune.png', '/pixel_zbynek.png'], tx: "Hi! We built this game for you\nwith ♥ and good vibes only\nduring our hackathon,\nBarbados offsite 2026.",
+  creators_root: { sp: 'GAME CREATORS', imgs: ['/pixel_eli.png', '/pixel_rune.png', '/pixel_zbynek.png'], tx: "Hi! We built this game for you\nwith ♥ and good vibes only\nduring our Barbados Hackathon Offsite 2026.",
     opts: [
       { l: "Eli's profile ↗",    n: null, fn: 'open_eli_profile'    },
       { l: "Rune's profile ↗",   n: null, fn: 'open_rune_profile'   },
