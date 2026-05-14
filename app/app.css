@@ -188,7 +188,7 @@ body {
 .dlg-sp { font-size: 7px; color: #F9BD2B; letter-spacing: 1px; font-family: 'Press Start 2P', monospace; }
 .dlg-tx { font-family: 'VT323', monospace; font-size: 19px; color: #E5E7E0; line-height: 1.45; max-width: 590px; white-space: pre-wrap; }
 .dlg-opts { display: flex; flex-direction: column; gap: 3px; margin-top: 2px; }
-.dlg-opt  { font-family: 'Press Start 2P', monospace; font-size: 6px; color: #777; padding: 5px 8px; border: 1px solid #1e1e1e; background: transparent; cursor: pointer; text-align: left; }
+.dlg-opt  { font-family: 'Press Start 2P', monospace; font-size: 8px; color: #999; padding: 5px 8px; border: 1px solid #1e1e1e; background: transparent; cursor: pointer; text-align: left; }
 .dlg-opt:hover { border-color: #F9BD2B; color: #F9BD2B; }
 .dlg-cont { font-family: 'VT323', monospace; font-size: 15px; color: #F9BD2B; opacity: 0.6; text-align: right; animation: blink 1s step-end infinite; }
 .dlg-bigimg {
