@@ -52,27 +52,47 @@ export const DLG: Record<string, DlgNode> = {
       { l: "[ nice work! ]",     n: null },
     ] },
 
-  eli_root: { sp: 'ELI', img: '/pixel_eli.png', tx: "Hey! I'm Eli — I find great people\nfor PostHog.\nPsychology, Philosophy, Data Science.\nAlso deeply invested in Pokémon.",
+  eli_root: { sp: 'ELI', img: '/pixel_eli.png', tx: "Hey! I'm Eli — I find great people\nfor PostHog. What's up?",
     opts: [
-      { l: "Community profile ↗", n: null, fn: 'open_eli_profile' },
+      { l: "Tell me about yourself", n: 'eli_about' },
+      { l: "[ nice to meet you ]", n: null },
+    ] },
+  eli_about: { sp: 'ELI', img: '/pixel_eli.png', tx: "Psychology, Philosophy, Data Science.\nI ended up in talent sourcing and\nhonestly it makes sense — I just\nlike figuring out what makes people tick.\nAlso: Pokémon and Skyrim. Priorities.",
+    opts: [
+      { l: "Check their community profile ↗", n: null, fn: 'open_eli_profile' },
       { l: "[ nice to meet you ]", n: null },
     ] },
 
-  rune_root: { sp: 'RUNE', img: '/pixel_rune.png', tx: "Hey — I'm Rune.\nDenmark born, now living in the Algarve.\n8+ years in recruitment.\nSci-fi nerd. Observer by nature.",
+  rune_root: { sp: 'RUNE', img: '/pixel_rune.png', tx: "Hey — I'm Rune. What's up?",
     opts: [
-      { l: "Community profile ↗", n: null, fn: 'open_rune_profile' },
+      { l: "Tell me about yourself", n: 'rune_about' },
+      { l: "[ nice to meet you ]", n: null },
+    ] },
+  rune_about: { sp: 'RUNE', img: '/pixel_rune.png', tx: "Denmark born, now living in the Algarve.\n8+ years in recruitment — I love\nmatching the right people to the right place.\nSci-fi nerd. Big Asimov and Dune fan.\nI mostly observe and listen.",
+    opts: [
+      { l: "Check their community profile ↗", n: null, fn: 'open_rune_profile' },
       { l: "[ nice to meet you ]", n: null },
     ] },
 
-  zbynek_root: { sp: 'ZBYNEK', img: '/pixel_zbynek.png', tx: "Hi! I'm Zbynek — from Prague.\nI work in People & Talent.\nBasketball fan. Big believer in therapy.\nAlso: my dog Yvon is exceptional.",
+  zbynek_root: { sp: 'ZBYNEK', img: '/pixel_zbynek.png', tx: "Hi! I'm Zbynek. What's up?",
     opts: [
-      { l: "Community profile ↗", n: null, fn: 'open_zbynek_profile' },
+      { l: "Tell me about yourself", n: 'zbynek_about' },
+      { l: "[ nice to meet you ]", n: null },
+    ] },
+  zbynek_about: { sp: 'ZBYNEK', img: '/pixel_zbynek.png', tx: "From Prague. I work in People & Talent.\nBig basketball fan.\nI believe in therapy — for real.\nAlso my dog Yvon is exceptional.\nThat last part was non-negotiable.",
+    opts: [
+      { l: "Check their community profile ↗", n: null, fn: 'open_zbynek_profile' },
       { l: "[ nice to meet you ]", n: null },
     ] },
 
-  magda_creator: { sp: 'MAGDA', tx: "Hola! I'm Magda — Poland born,\nnow based in south of Spain.\nI lead Onboarding at PostHog.\nObsessive travel planner. Cat hostage.",
+  magda_creator: { sp: 'MAGDA', tx: "Hola! I'm Magda. What's up?",
     opts: [
-      { l: "Community profile ↗", n: null, fn: 'open_magda_profile' },
+      { l: "Tell me about yourself", n: 'magda_creator_about' },
+      { l: "[ nice to meet you ]", n: null },
+    ] },
+  magda_creator_about: { sp: 'MAGDA', tx: "Poland born, now based in south Spain.\nI lead Onboarding at PostHog.\nObsessive travel planner — I research\nevery coffee shop before I land.\nAlso a full-time cat hostage.",
+    opts: [
+      { l: "Check their community profile ↗", n: null, fn: 'open_magda_profile' },
       { l: "[ nice to meet you ]", n: null },
     ] },
 
