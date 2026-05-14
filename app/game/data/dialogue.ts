@@ -129,7 +129,7 @@ export const DLG: Record<string, DlgNode> = {
     opts: [{ l: "Read more ↗", n: null, fn: 'open_eng_techscreen' }, { l: "← Back", n: 'michael_root' }] },
 
   charles_root: { sp: 'CHARLES COOK', tx: "*adjusts tie*\nHello. Can I help you?",
-    opts: [{ l: "Why are you wearing a suit?", n: 'charles_suit' }, { l: "What does Ops actually do?", n: 'charles_ops' }, { l: "Weirdest thing you've done?", n: 'charles_weird' }] },
+    opts: [{ l: "Why are you wearing a suit?", n: 'charles_suit' }, { l: "What do you oversee?", n: 'charles_ops' }, { l: "Weirdest thing you've done?", n: 'charles_weird' }] },
   charles_suit: { sp: 'CHARLES COOK', tx: "I wore a suit to my performance review.",
     opts: [{ l: "And? →", n: 'charles_suit2' }, { l: "← Back", n: 'charles_root' }] },
   charles_suit2: { sp: 'CHARLES COOK', tx: "PostHog no longer does\nperformance reviews.",
@@ -137,7 +137,7 @@ export const DLG: Record<string, DlgNode> = {
   charles_suit3: { sp: 'CHARLES COOK', tx: "I cannot confirm or deny.",
     ach: { id: 'suit', name: '🕴 THE SUIT INCIDENT' },
     opts: [{ l: "Fair enough.", n: null }] },
-  charles_ops: { sp: 'CHARLES COOK', tx: "Everything nobody else wants to own.\nCompliance. Hiring. Merch process.\nAnything that falls through the cracks\n— we pick it up.",
+  charles_ops: { sp: 'CHARLES COOK', tx: "Go to Market.\nSales. Customer Success. Onboarding.\nMarketing. If it touches a customer,\nit comes through my side of the house.",
     opts: [{ l: "← Back", n: 'charles_root' }] },
   charles_weird: { sp: 'CHARLES COOK', tx: "Managed the lawnmower merch drop.\n\nDon't ask.",
     opts: [{ l: "← Back", n: 'charles_root' }] },
