@@ -12,7 +12,7 @@ export const AREA_SPAWNS: Record<Area, { x: number; y: number }> = {
   vault:    { x: 8, y: 10 },
   trash:    { x: 8, y: 10 },
   hogpatch: { x: 10, y: 7 },
-  lobby:    { x: 10, y: 12 },
+  lobby:    { x: 10, y: 7 },
 };
 
 export const AREA_NAMES: Record<Area, string> = {
@@ -28,6 +28,7 @@ const SOLID_TILES: Set<number> = new Set([
   T.WALL, T.ROOF, T.BILL, T.DUMP, T.LAMP, T.STOREFRONT, T.DOOR,
   TI.SHELF, TI.DESK, TI.CHEST, TI.GLASS, TI.BOOK, TI.COUCH, TI.MERCH,
   TI.WORKBENCH, TI.PAINTING, TI.BUST, TI.SERVER, TI.POSTIT, TI.COMPUTER, TI.BIGTV,
+  TI.PLANT, TI.SOFA, TI.STATUE, TI.ART, TI.OPENBOOK, TI.PENCIL,
 ]);
 
 export function isSolid(map: MapGrid, tx: number, ty: number): boolean {
@@ -89,12 +90,14 @@ export function getTileAct(area: Area, tx: number, ty: number): string | null {
 
   if (area === 'lobby') {
     if (t === T.DOOR) {
-      if (tx === 4  && ty <= 5)  return 'enter_engineering';
-      if (tx === 14 && ty <= 5)  return 'enter_gtm';
-      if (tx === 4  && ty >= 8)  return 'enter_company';
-      if (tx === 14 && ty >= 8)  return 'enter_secret';
-      if (tx === 6)              return 'enter_hogpatch';
+      if (ty === 0  && tx === 5)  return 'enter_engineering';
+      if (ty === 0  && tx === 14) return 'enter_gtm';
+      if (tx === 0  && ty === 7)  return 'enter_company';
+      if (tx === 19 && ty === 4)  return 'enter_secret';
+      if (ty === 14 && tx === 5)  return 'enter_hogpatch';
     }
+    if (t === TI.OPENBOOK)  return 'appcorner_book';
+    if (t === TI.COMPUTER)  return 'appcorner_pencil';
     return null;
   }
 

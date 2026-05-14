@@ -340,6 +340,95 @@ export function drawInteriorTile(ctx: CanvasRenderingContext2D, tx: number, ty: 
     px(ctx, bx + 12, by + 6, 8, 4, '#b03a2e');
     px(ctx, bx + 13, by + 8, 6, 8, '#e8603a');
   }
+  if (t === TI.PLANT) {
+    px(ctx, bx + 8, by + 19, 16, 3, '#5a2a0a');
+    px(ctx, bx + 9, by + 20, 14, 8, '#b5631a');
+    px(ctx, bx + 8, by + 22, 16, 6, '#9a4a10');
+    px(ctx, bx + 7, by + 28, 18, 2, '#7a3a0a');
+    px(ctx, bx + 15, by + 12, 2, 9, '#2d5a1b');
+    px(ctx, bx + 11, by + 15, 2, 7, '#2d5a1b');
+    px(ctx, bx + 19, by + 14, 2, 8, '#2d5a1b');
+    px(ctx, bx + 8,  by + 6,  10, 8, '#3a8a2a');
+    px(ctx, bx + 16, by + 8,  8, 7, '#2d7a1e');
+    px(ctx, bx + 12, by + 4,  8, 7, '#45a030');
+    px(ctx, bx + 6,  by + 12, 7, 5, '#3a8a2a');
+    px(ctx, bx + 19, by + 11, 7, 5, '#4a9a3a');
+  }
+  if (t === TI.SOFA) {
+    px(ctx, bx + 2, by + 6,  TILE - 4, 10, '#5a3a8a');
+    px(ctx, bx + 3, by + 7,  TILE - 6, 8, '#6a4a9a');
+    px(ctx, bx + 4, by + 16, TILE - 8, 10, '#6a4a9a');
+    px(ctx, bx + 2, by + 6,  4, 18, '#4a2a7a');
+    px(ctx, bx + TILE - 6, by + 6, 4, 18, '#4a2a7a');
+    px(ctx, bx + 14, by + 16, 2, 8, '#4a2a7a');
+    px(ctx, bx + 5,  by + 26, 3, 3, '#333');
+    px(ctx, bx + TILE - 8, by + 26, 3, 3, '#333');
+  }
+  if (t === TI.STATUE) {
+    px(ctx, bx + 7, by + 22, 18, 8, '#888');
+    px(ctx, bx + 8, by + 23, 16, 6, '#aaa');
+    px(ctx, bx + 5, by + 28, 22, 4, '#999');
+    px(ctx, bx + 9, by + 12, 14, 10, '#d4a820');
+    px(ctx, bx + 10, by + 10, 12, 12, '#F9BD2B');
+    px(ctx, bx + 10, by + 9,  2, 6, '#8B6914');
+    px(ctx, bx + 14, by + 8,  2, 8, '#8B6914');
+    px(ctx, bx + 18, by + 9,  2, 6, '#8B6914');
+    px(ctx, bx + 20, by + 14, 4, 4, '#e8c070');
+    px(ctx, bx + 22, by + 15, 3, 2, '#222');
+  }
+  if (t === TI.ART) {
+    px(ctx, bx + 3, by + 5,  TILE - 6, TILE - 8, '#8B6914');
+    px(ctx, bx + 5, by + 7,  TILE - 10, TILE - 12, '#e8d8b0');
+    px(ctx, bx + 7, by + 9,  7, 5, '#c94040');
+    px(ctx, bx + 16, by + 8, 5, 7, '#3498DB');
+    px(ctx, bx + 9, by + 15, 8, 4, '#2ECC71');
+    px(ctx, bx + 14, by + 13, 5, 5, '#F9BD2B');
+    px(ctx, bx + 13, by + 3,  2, 3, '#777');
+    px(ctx, bx + 9,  by + 3,  4, 1, '#555');
+    px(ctx, bx + 17, by + 3,  4, 1, '#555');
+  }
+  if (t === TI.OPENBOOK) {
+    // Cover
+    px(ctx, bx + 3, by + 4, 26, 24, '#8B6914');
+    // Left page
+    px(ctx, bx + 4,  by + 5, 11, 22, '#f5f0e0');
+    // Right page
+    px(ctx, bx + 17, by + 5, 11, 22, '#f5f0e0');
+    // Spine
+    px(ctx, bx + 15, by + 4, 2, 24, '#5a3a08');
+    // Text lines — left page
+    px(ctx, bx + 6,  by + 8,  7, 1, '#bbb');
+    px(ctx, bx + 6,  by + 11, 7, 1, '#ccc');
+    px(ctx, bx + 6,  by + 14, 7, 1, '#ccc');
+    px(ctx, bx + 6,  by + 17, 5, 1, '#ccc');
+    px(ctx, bx + 6,  by + 20, 7, 1, '#ccc');
+    px(ctx, bx + 6,  by + 23, 4, 1, '#ccc');
+    // Text lines — right page
+    px(ctx, bx + 19, by + 8,  7, 1, '#bbb');
+    px(ctx, bx + 19, by + 11, 7, 1, '#ccc');
+    px(ctx, bx + 19, by + 14, 7, 1, '#ccc');
+    px(ctx, bx + 19, by + 17, 5, 1, '#ccc');
+    px(ctx, bx + 19, by + 20, 7, 1, '#ccc');
+    px(ctx, bx + 19, by + 23, 4, 1, '#ccc');
+    // Golden glow (it's a special book)
+    ctx.fillStyle = 'rgba(249,189,43,0.12)';
+    ctx.fillRect(bx + 3, by + 4, 26, 24);
+  }
+  if (t === TI.PENCIL) {
+    // Eraser (left end)
+    px(ctx, bx + 2,  by + 13, 3, 6, '#e8a0a0');
+    px(ctx, bx + 5,  by + 12, 2, 8, '#bbb');
+    // Body (yellow)
+    px(ctx, bx + 7,  by + 11, 16, 10, '#F9BD2B');
+    px(ctx, bx + 7,  by + 12, 16,  2, '#FFD060');
+    px(ctx, bx + 7,  by + 20, 16,  1, '#d4a000');
+    // Wood tip
+    px(ctx, bx + 23, by + 12,  5,  8, '#e8c878');
+    px(ctx, bx + 26, by + 13,  4,  6, '#f0d890');
+    // Graphite point
+    px(ctx, bx + 29, by + 14,  2,  4, '#444');
+    px(ctx, bx + 30, by + 15,  1,  2, '#222');
+  }
   if (t === TI.BOOK) {
     // Dark mahogany table surface
     px(ctx, bx, by, TILE, TILE, '#1a0d04');
@@ -535,13 +624,14 @@ export function drawBillboard(ctx: CanvasRenderingContext2D) {
   ctx.fillRect(bx + W / 2 + 4,  by + H - 8, 6, 10);
 }
 
-const LOBBY_LABELS = [
-  { tx: 4,  ty: 3,  text: 'ENGINEERING', color: '#4a9de0' },
-  { tx: 14, ty: 3,  text: 'GTM',         color: '#2ECC71' },
-  { tx: 4,  ty: 8,  text: 'COMPANY',     color: '#F9BD2B' },
-  { tx: 14, ty: 8,  text: 'TOP SECRET',  color: '#c94040' },
-  { tx: 6,  ty: 12, text: 'THE STREET',  color: '#F9BD2B' },
-] as const;
+const LOBBY_LABELS: { tx: number; ty: number; dx?: number; text: string; color: string }[] = [
+  { tx: 5,  ty: 1,              text: 'ENGINEERING',      color: '#4a9de0' },
+  { tx: 14, ty: 1,              text: 'GTM',              color: '#2ECC71' },
+  { tx: 2,  ty: 7,  dx: -10,   text: 'COMPANY',          color: '#F9BD2B' },
+  { tx: 17, ty: 4,              text: 'TOP SECRET',       color: '#c94040' },
+  { tx: 5,  ty: 13,             text: 'THE STREET',       color: '#F9BD2B' },
+  { tx: 16, ty: 10,             text: 'APPLICATION CORNER', color: '#F9BD2B' },
+];
 
 export function drawHogpatchLabels(ctx: CanvasRenderingContext2D) {
   ctx.font = '6px "Press Start 2P"';
@@ -559,11 +649,11 @@ export function drawHogpatchLabels(ctx: CanvasRenderingContext2D) {
 export function drawLobbyLabels(ctx: CanvasRenderingContext2D) {
   ctx.font = '6px "Press Start 2P"';
   ctx.textAlign = 'center';
-  for (const { tx, ty, text, color } of LOBBY_LABELS) {
-    const cx = tx * TILE + TILE / 2;
-    const cy = ty * TILE - 4;
+  for (const { tx, ty, text, color, dx } of LOBBY_LABELS) {
+    const cx = tx * TILE + TILE / 2 + (dx ?? 0);
+    const cy = ty * TILE + TILE / 2;
     const tw = ctx.measureText(text).width;
-    px(ctx, Math.round(cx - tw / 2 - 4), cy - 10, Math.round(tw + 8), 12, 'rgba(14,14,14,0.85)');
+    px(ctx, Math.round(cx - tw / 2 - 4), Math.round(cy - 6), Math.round(tw + 8), 12, 'rgba(14,14,14,0.85)');
     ctx.fillStyle = color;
     ctx.fillText(text, cx, cy);
   }
@@ -740,4 +830,5 @@ export function drawMap(ctx: CanvasRenderingContext2D, area: Area, map: MapGrid)
     return;
   }
   if (area === 'hogpatch') drawHogpatchLabels(ctx);
+  if (area === 'lobby') drawLobbyLabels(ctx);
 }
