@@ -76,6 +76,7 @@ export function CharacterCreator() {
               ))}
             </div>
           </div>
+          {player.species !== 'hog' && (
           <div className="cc-row">
             <div className="cc-label">OUTFIT</div>
             <div className="cc-btns">
@@ -90,6 +91,7 @@ export function CharacterCreator() {
               ))}
             </div>
           </div>
+          )}
           <div className="cc-row">
             <div className="cc-label">NAME</div>
             <input
