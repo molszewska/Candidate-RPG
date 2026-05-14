@@ -196,8 +196,10 @@ export function GameCanvas() {
         updateBus(busRef.current);
         drawBus(ctx, busRef.current, busRef.current.x, 13 * TILE);
         const { x: plx, y: ply } = fresh.player;
-        const nearCreators = Math.abs(plx - 16) <= 3 && Math.abs(ply - 2) <= 2;
-        if (nearCreators) drawThoughtBubble(ctx, plx * TILE, ply * TILE, 'NICE, these are the coolest people');
+        const nearCreators     = Math.abs(plx - 16) <= 3 && Math.abs(ply - 2) <= 2;
+        const nearAngryTwitter = Math.abs(plx - 3)  <= 2 && Math.abs(ply - 7) <= 2;
+        if (nearCreators)     drawThoughtBubble(ctx, plx * TILE, ply * TILE, 'NICE, these are the coolest people');
+        else if (nearAngryTwitter) drawThoughtBubble(ctx, plx * TILE, ply * TILE, 'ick');
       }
 
       rafRef.current = requestAnimationFrame(loop);
