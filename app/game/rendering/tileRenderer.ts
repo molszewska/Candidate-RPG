@@ -203,13 +203,28 @@ export function drawTile(ctx: CanvasRenderingContext2D, tx: number, ty: number, 
     for (let i = 0; i < 4; i++) ctx.fillRect(bx, by + i * 8 + 4, TILE, 1);
   }
   if (t === T.BILL) {
-    px(ctx, bx, by, TILE, TILE, '#222');
-    px(ctx, bx + 2, by + 2, TILE - 4, TILE - 4, '#F9BD2B');
-    px(ctx, bx + 5, by + 5, TILE - 10, TILE - 10, '#D4A882');
-    px(ctx, bx + 5, by + 5, TILE - 10, 5, '#1a1820');
-    px(ctx, bx + 8, by + 14, 3, 2, '#111'); px(ctx, bx + 19, by + 14, 3, 2, '#111');
-    px(ctx, bx + 11, by + 19, 10, 2, '#111');
-    px(ctx, bx + 11, by + 21, 2, 2, '#111'); px(ctx, bx + 19, by + 21, 2, 2, '#111');
+    // Sidewalk base
+    px(ctx, bx, by, TILE, TILE, '#7a7a72');
+    ctx.fillStyle = '#6e6e66'; ctx.fillRect(bx, by, TILE, 1); ctx.fillRect(bx, by, 1, TILE);
+    // Support poles
+    px(ctx, bx + 10, by + 18, 3, 14, '#555');
+    px(ctx, bx + 19, by + 18, 3, 14, '#555');
+    px(ctx, bx + 8,  by + 28, 16, 2,  '#444');
+    // Sign board — blue background
+    px(ctx, bx + 2,  by + 1,  28, 18, '#1a3060');
+    px(ctx, bx + 3,  by + 2,  26, 16, '#4a88cc');
+    // Face on the left
+    px(ctx, bx + 5,  by + 4,  9,  11, '#D4A882');
+    px(ctx, bx + 5,  by + 4,  9,  3,  '#7a3a10');
+    px(ctx, bx + 6,  by + 8,  2,  1,  '#111');
+    px(ctx, bx + 9,  by + 8,  2,  1,  '#111');
+    px(ctx, bx + 7,  by + 11, 4,  1,  '#a03030');
+    // Text lines on right
+    px(ctx, bx + 17, by + 4,  11, 2,  '#fff');
+    px(ctx, bx + 17, by + 8,  9,  1,  '#ddd');
+    px(ctx, bx + 17, by + 10, 9,  1,  '#ddd');
+    px(ctx, bx + 17, by + 12, 7,  1,  '#ddd');
+    px(ctx, bx + 17, by + 15, 5,  2,  '#F9BD2B');
   }
   if (t === T.DUMP) {
     px(ctx, bx + 2, by + 4, TILE - 4, TILE - 6, '#2a4a10');

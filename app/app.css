@@ -191,6 +191,19 @@ body {
 .dlg-opt  { font-family: 'Press Start 2P', monospace; font-size: 6px; color: #777; padding: 5px 8px; border: 1px solid #1e1e1e; background: transparent; cursor: pointer; text-align: left; }
 .dlg-opt:hover { border-color: #F9BD2B; color: #F9BD2B; }
 .dlg-cont { font-family: 'VT323', monospace; font-size: 15px; color: #F9BD2B; opacity: 0.6; text-align: right; animation: blink 1s step-end infinite; }
+.dlg-bigimg {
+  position: absolute;
+  left: 30px;
+  right: 30px;
+  bottom: 155px;
+  max-height: 260px;
+  object-fit: contain;
+  border: 3px solid #F9BD2B;
+  outline: 3px solid #0e0e0e;
+  box-shadow: 0 0 0 6px #F9BD2B;
+  z-index: 6;
+  background: #0e0e0e;
+}
 .dlg-portrait {
   position: absolute; right: 18px; top: -136px;
   width: 128px; height: 128px;

@@ -60,6 +60,8 @@ export function DialogueBox() {
   const hasOpts = def.opts && def.opts.length > 0;
 
   return (
+    <>
+    {def.bigImg && <img className="dlg-bigimg" src={def.bigImg} alt={def.sp} />}
     <div id="dialogueBox" style={{ display: 'flex' }} onClick={hasOpts ? undefined : close}>
       {def.img && <img className="dlg-portrait" src={def.img} alt={def.sp} />}
       <div className="dlg-sp">{def.sp}</div>
@@ -85,5 +87,6 @@ export function DialogueBox() {
       )}
       {!hasOpts && <div className="dlg-cont">▼ SPACE / ENTER</div>}
     </div>
+    </>
   );
 }

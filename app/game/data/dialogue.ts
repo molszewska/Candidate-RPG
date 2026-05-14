@@ -10,6 +10,7 @@ export type DlgNode = {
   opts?: DlgOpt[];
   ach?: { id: string; name: string };
   img?: string;
+  bigImg?: string;
 };
 
 // fn values are action keys dispatched by DialogueBox
@@ -75,7 +76,8 @@ export const DLG: Record<string, DlgNode> = {
 
   sign: { sp: 'NOTICEBOARD', tx: "★ WELCOME TO HOGPATCH ★\n\nThe SF office hub. Explore. Talk to\nthe team. Find the dumpster.\n\nWe're serious.\n\n— The PostHog Team",
     opts: [{ l: "[ OK ]", n: null }] },
-  billboard: { sp: 'BILLBOARD', tx: "[ A HUGE PIXEL FACE STARES BACK ]\n\n\"James had this put up in a city.\n No regrets.\"\n\n  — definitely not James",
+  billboard: { sp: 'BILLBOARD', bigImg: '/billboard.png',
+    tx: "Can you believe this guy put a billboard of his own face up in the city?",
     opts: [{ l: "[ stare back ]", n: null }] },
   stage: { sp: 'ALL-HANDS STAGE', tx: "[ You step onto the stage. ]\n\nA PA crackle echoes...\n\n*James appears*\n\"Quick question for new starters —\nDo you moisturize?\"",
     opts: [{ l: "Yes", n: 'stage2' }, { l: "No", n: 'stage2' }, { l: "What", n: 'stage2' }] },
