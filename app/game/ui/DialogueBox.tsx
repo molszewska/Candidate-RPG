@@ -22,8 +22,12 @@ function executeFn(fn: string, setArea: (a: Area) => void) {
     case 'open_hogflix':      window.open('https://www.youtube.com/watch?v=xxBqKIBBxQw', '_blank'); break;
     case 'open_startup_jobs':   window.open('https://posthog.com/newsletter/how-to-get-job-startup', '_blank'); break;
     case 'open_hiring_process':  window.open('https://posthog.com/handbook/people/hiring-process', '_blank'); break;
-    case 'open_eng_techscreen':  window.open('https://posthog.com/handbook/people/hiring-process/engineering-tech-screen', '_blank'); break;
-    case 'open_eng_superday':    window.open('https://posthog.com/handbook/people/hiring-process/engineering-superday', '_blank'); break;
+    case 'open_eng_techscreen':    window.open('https://posthog.com/handbook/people/hiring-process/engineering-tech-screen', '_blank'); break;
+    case 'open_eng_superday':      window.open('https://posthog.com/handbook/people/hiring-process/engineering-superday', '_blank'); break;
+    case 'open_sales_techscreen':  window.open('https://posthog.com/handbook/people/hiring-process/sales-cs-hiring#technical-interview-and-demo', '_blank'); break;
+    case 'open_sales_superday':    window.open('https://posthog.com/handbook/people/hiring-process/sales-cs-hiring#sales-superday', '_blank'); break;
+    case 'open_cs_superday':       window.open('https://posthog.com/handbook/people/hiring-process/sales-cs-hiring#cs-and-onboarding-superday', '_blank'); break;
+    case 'open_small_team_interview': window.open('https://posthog.com/handbook/people/hiring-process/sales-cs-hiring#small-team-interview', '_blank'); break;
     default: break;
   }
 }

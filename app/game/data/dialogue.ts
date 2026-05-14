@@ -151,7 +151,7 @@ export const DLG: Record<string, DlgNode> = {
   landon_culture: { sp: 'LANDON', tx: "No hand-holding. Full cycle.\nYou own it from hello to closed.\nIf that scares you, that's fine.\nIf it excites you, you might be our kinda person.",
     opts: [{ l: "← Back", n: 'landon_root' }] },
   landon_tips: { sp: 'LANDON', tx: "Actually use PostHog. Break something.\nCome back with a real question.\nCuriosity about the product\nmatters more than pitch skills.",
-    opts: [{ l: "Read more ↗", n: null, fn: 'open_hiring_process' }, { l: "← Back", n: 'landon_root' }] },
+    opts: [{ l: "Read more ↗", n: null, fn: 'open_sales_superday' }, { l: "← Back", n: 'landon_root' }] },
 
   tyler_root: { sp: 'TYLER', tx: "*doesn't look up from the terminal*\nMy dad built me a Linux PC in 2001.\nBeen tinkering ever since.\nWhat do you want.",
     opts: [{ l: "What do you do here?", n: 'tyler_job' }, { l: "What do you look for?", n: 'tyler_traits' }, { l: "Any tips?", n: 'tyler_tips' }, { l: "[ leave ]", n: null }] },
@@ -162,7 +162,7 @@ export const DLG: Record<string, DlgNode> = {
   tyler_tips: { sp: 'TYLER', tx: "Roleplay scenario. Don't panic.\nListen first. Find the actual problem.\nThen show how PostHog solves it.\nOr don't. I'm not your coach.",
     opts: [{ l: "More →", n: 'tyler_tips2' }, { l: "← Back", n: 'tyler_root' }] },
   tyler_tips2: { sp: 'TYLER', tx: "Know what frustrates developers.\nKnow what they love.\nIf you have to fake caring about devs,\nthis is the wrong job. Really.",
-    opts: [{ l: "Read more ↗", n: null, fn: 'open_hiring_process' }, { l: "← Back", n: 'tyler_root' }] },
+    opts: [{ l: "Read more ↗", n: null, fn: 'open_sales_techscreen' }, { l: "← Back", n: 'tyler_root' }] },
 
   simon_root: { sp: 'SIMON', tx: "*adjusts glasses*\nHey! Simon — I lead Customer Success.\nCS degree, Sheffield. Realised I preferred\npresenting to humans over writing my own code.",
     opts: [{ l: "Your background?", n: 'simon_bg' }, { l: "Non-salesy how?", n: 'simon_philosophy' }, { l: "SuperDay tips?", n: 'simon_superday' }, { l: "[ leave ]", n: null }] },
@@ -173,7 +173,7 @@ export const DLG: Record<string, DlgNode> = {
   simon_philosophy: { sp: 'SIMON', tx: "I meet customers where they actually are.\nNot where my quota needs them to be.\nIf you're just exploring — genuinely fine.\nNo pressure. Ever.",
     opts: [{ l: "← Back", n: 'simon_root' }] },
   simon_superday: { sp: 'SIMON', tx: "Collaborative. A real scenario.\nTreat it like the job, not an audition.\nGrill us back — we like it when you do.",
-    opts: [{ l: "Read more ↗", n: null, fn: 'open_hiring_process' }, { l: "← Back", n: 'simon_root' }] },
+    opts: [{ l: "CS/Onboarding ↗", n: null, fn: 'open_cs_superday' }, { l: "Sales ↗", n: null, fn: 'open_sales_superday' }, { l: "← Back", n: 'simon_root' }] },
 
   magda_root: { sp: 'MAGDA', tx: "*sipping what is definitely specialty coffee*\nHola! I'm Magda — I lead Onboarding.\nPoland born, south of Spain based.\nWe're the newest team here. Ask me anything.",
     opts: [{ l: "What is the Onboarding role?", n: 'magda_job' }, { l: "What's a typical day?", n: 'magda_day' }, { l: "What do you look for?", n: 'magda_candidate' }, { l: "Life outside PostHog?", n: 'magda_life' }, { l: "[ leave ]", n: null }] },
@@ -201,7 +201,7 @@ export const DLG: Record<string, DlgNode> = {
   dana_tips: { sp: 'DANA', tx: "Be actually helpful in the interview.\nNot strategically helpful — actually helpful.\nListen to what the customer needs.\nThat's literally the whole job.",
     opts: [{ l: "More →", n: 'dana_tips2' }, { l: "← Back", n: 'dana_root' }] },
   dana_tips2: { sp: 'DANA', tx: "Sign up for PostHog. Free tier.\nUse it. Form a real opinion.\nCome back with something that confused you.\nThat separates you from most applicants.",
-    opts: [{ l: "Read more ↗", n: null, fn: 'open_hiring_process' }, { l: "← Back", n: 'dana_root' }] },
+    opts: [{ l: "Read more ↗", n: null, fn: 'open_small_team_interview' }, { l: "← Back", n: 'dana_root' }] },
   dana_culture: { sp: 'DANA', tx: "CS here isn't a ticket queue.\nCustomers trust us with real problems.\nWhen I'm not solving them I'm climbing,\nskiing, or playing fetch with my cat Binu.",
     opts: [{ l: "← Back", n: 'dana_root' }] },
 
