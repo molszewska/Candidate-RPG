@@ -105,7 +105,7 @@ export const DLG: Record<string, DlgNode> = {
     opts: [{ l: "← Back", n: 'michael_root' }] },
   michael_advice: { sp: 'MICHAEL M.', tx: "Ship something. Anything.\nIf it has users, even better.\nDon't wait until you're 'ready'.\nI wasn't ready. Nobody is.",
     opts: [{ l: "← Back", n: 'michael_root' }] },
-  michael_superday: { sp: 'MICHAEL M.', tx: "It's a paid trial. You do real work\nfor a day and we see how it goes.\nNo trick questions.\nNo whiteboard algorithms.\nJust actual work.",
+  michael_superday: { sp: 'MICHAEL M.', tx: "It's a paid work day with PostHog.\nIt's your opportunity to shine and\nshow us what you've got!\nGet creative and ship something\nreally cool!",
     opts: [{ l: "← Back", n: 'michael_root' }] },
 
   charles_root: { sp: 'CHARLES COOK', tx: "*adjusts tie*\nHello. Can I help you?",
