@@ -227,6 +227,52 @@ export function drawInteriorTile(ctx: CanvasRenderingContext2D, tx: number, ty: 
     px(ctx, bx + 14, by + 24, 4, 4, '#444');
     px(ctx, bx + 10, by + 28, 12, 2, '#333');
   }
+  if (t === TI.BIGBAG) {
+    px(ctx, bx, by, TILE, TILE, floorC);
+    const isLeft = (tx % 2) === 0;
+    const isTop  = (ty % 2) === 0;
+    const ox = isLeft ? bx : bx - TILE;
+    const oy = isTop  ? by : by - TILE;
+    ctx.save();
+    ctx.beginPath(); ctx.rect(bx, by, TILE, TILE); ctx.clip();
+    // Floor shadow
+    ctx.fillStyle = 'rgba(0,0,0,0.28)';
+    ctx.beginPath(); ctx.ellipse(ox+33, oy+54, 25, 7, 0, 0, Math.PI*2); ctx.fill();
+    // Dark outer rim
+    ctx.fillStyle = '#7a1818';
+    ctx.beginPath(); ctx.ellipse(ox+32, oy+37, 27, 20, 0, 0, Math.PI*2); ctx.fill();
+    // Main body
+    ctx.fillStyle = '#c94040';
+    ctx.beginPath(); ctx.ellipse(ox+32, oy+35, 25, 18, 0, 0, Math.PI*2); ctx.fill();
+    // Upper dome (lighter — the top surface)
+    ctx.fillStyle = '#d95050';
+    ctx.beginPath(); ctx.ellipse(ox+32, oy+29, 19, 13, 0, 0, Math.PI*2); ctx.fill();
+    // Specular highlight
+    ctx.fillStyle = '#e86868';
+    ctx.beginPath(); ctx.ellipse(ox+28, oy+24, 9, 6, 0, 0, Math.PI*2); ctx.fill();
+    // Panel seams — cross pattern wrapping over sphere
+    ctx.strokeStyle = '#881818'; ctx.lineWidth = 1.5;
+    // Vertical seam
+    ctx.beginPath();
+    ctx.moveTo(ox+32, oy+17);
+    ctx.bezierCurveTo(ox+30, oy+28, ox+30, oy+43, ox+32, oy+54);
+    ctx.stroke();
+    // Horizontal seam
+    ctx.beginPath();
+    ctx.moveTo(ox+7, oy+35);
+    ctx.bezierCurveTo(ox+16, oy+32, ox+48, oy+32, ox+57, oy+35);
+    ctx.stroke();
+    // Diagonal seam NW→SE
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    ctx.moveTo(ox+14, oy+20); ctx.bezierCurveTo(ox+24, oy+30, ox+40, oy+42, ox+50, oy+52);
+    ctx.stroke();
+    // Diagonal seam NE→SW
+    ctx.beginPath();
+    ctx.moveTo(ox+50, oy+20); ctx.bezierCurveTo(ox+40, oy+30, ox+24, oy+42, ox+14, oy+52);
+    ctx.stroke();
+    ctx.restore();
+  }
   if (t === TI.BEANBAG) {
     px(ctx, bx, by, TILE, TILE, floorC);
     px(ctx, bx + 4, by + 8, 24, 18, '#c94040');
