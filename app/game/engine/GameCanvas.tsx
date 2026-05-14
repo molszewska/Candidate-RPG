@@ -221,8 +221,10 @@ export function GameCanvas() {
         const { x: plx, y: ply } = fresh.player;
         const nearCreators     = Math.abs(plx - 16) <= 3 && Math.abs(ply - 2) <= 2;
         const nearAngryTwitter = Math.abs(plx - 3)  <= 2 && Math.abs(ply - 7) <= 2;
+        const nearDumpster     = Math.abs(plx - 14) <= 2 && Math.abs(ply - 11) <= 2;
         if (nearCreators)     drawThoughtBubble(ctx, plx * TILE, ply * TILE, 'NICE, these are the coolest people');
         else if (nearAngryTwitter) drawThoughtBubble(ctx, plx * TILE, ply * TILE, 'ick');
+        else if (nearDumpster) drawThoughtBubble(ctx, plx * TILE, ply * TILE, ['ugh, stinks!', 'lemme check this out...']);
       }
       if (fresh.area === 'burrow') {
         const { x: plx, y: ply } = fresh.player;
