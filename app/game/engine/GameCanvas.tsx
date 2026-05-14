@@ -158,6 +158,9 @@ export function GameCanvas() {
         const def = DLG[store.dialogue];
         if (!def?.opts?.length) store.setDialogue(null);
       }
+      if (e.key === 'Escape' && !store.dialogue && store.area !== 'lobby') {
+        store.setArea('lobby');
+      }
       if (e.key === ' ' && store.dialogue) {
         const def = DLG[store.dialogue];
         if (!def?.opts?.length) store.setDialogue(null);
