@@ -29,6 +29,9 @@ export const DLG: Record<string, DlgNode> = {
     opts: [{ l: "Enter →", n: null, fn: 'enter_vault' }, { l: "Not now", n: null }] },
   enter_secret: { sp: 'DOOR', tx: "[ TOP SECRET ]\n\n⚠ RESTRICTED ACCESS ⚠\n\nYou didn't see this door.\nAnd you definitely don't know the password.",
     opts: [{ l: "I know the password.", n: null, fn: 'enter_trash' }, { l: "[ back away ]", n: null }] },
+  bus_warning: { sp: 'NARRATOR', tx: "When life gives you lemons,\ndon't walk in front of buses.",
+    opts: [{ l: "True, I guess", n: null }] },
+
   enter_hogpatch: { sp: 'DOOR', tx: "[ THE STREET ]\n\nHogPatch, San Francisco.\nThe whole team hangs out here.\nAlso, there's a bus.",
     opts: [{ l: "Head outside →", n: null, fn: 'enter_hogpatch' }, { l: "Not now", n: null }] },
   enter_lobby_from_street: { sp: 'ENTRANCE', tx: "[ POSTHOG HQ ]\n\nYou head back inside.",

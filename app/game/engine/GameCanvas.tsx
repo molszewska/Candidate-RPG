@@ -103,7 +103,10 @@ export function GameCanvas() {
           for (const dir of DIRS) {
             if (dir.keys.some((k) => keysRef.current[k])) {
               const nx = player.x + dir.dx, ny = player.y + dir.dy;
-              if (!isSolid(map, nx, ny) && !npcs.some((n) => n.x === nx && n.y === ny)) {
+              if (area === 'hogpatch' && ny === 13) {
+                store.updatePlayer({ dir: dir.d });
+                openDlg('bus_warning');
+              } else if (!isSolid(map, nx, ny) && !npcs.some((n) => n.x === nx && n.y === ny)) {
                 store.updatePlayer({ dir: dir.d, x: nx, y: ny });
               } else {
                 store.updatePlayer({ dir: dir.d });
