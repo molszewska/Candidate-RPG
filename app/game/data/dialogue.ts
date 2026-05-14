@@ -262,13 +262,13 @@ export const DLG: Record<string, DlgNode> = {
     opts: [{ l: "[ I think I need help. ]", n: null }] },
 
   vault_handbook: { sp: 'THE HANDBOOK', tx: "[ A golden book rests open\non the table. ]\n\nOur source of truth lies within.\nHow we work. Why we work that way.\nAll of it.",
-    opts: [{ l: "Our source of truth lies within →", n: null, fn: 'open_handbook' }, { l: "← Leave", n: null }] },
+    opts: [{ l: "Show me →", n: null, fn: 'open_handbook' }, { l: "← Leave", n: null }] },
 
-  vault_values: { sp: 'BOOKSHELF', tx: "[ OUR VALUES ]\n\nParsimony. Transparency.\nBias for action. Iteration.\nExceptional over average.\n\nThese aren't a poster.\nThey're how we actually work.",
+  vault_values: { sp: 'BOOKSHELF', tx: "[ OUR VALUES ]\n\nOur values dictate how we work\nand we take them seriously.",
     opts: [{ l: "Read more →", n: null, fn: 'open_values' }, { l: "← Leave", n: null }] },
   vault_culture: { sp: 'BOOKSHELF', tx: "[ CULTURE ]\n\nRemote-first. Transparent by default.\nSmall teams, high trust.\nNo performance reviews.\nNo middle management.\n\nA little weird. On purpose.",
     opts: [{ l: "Read more →", n: null, fn: 'open_culture' }, { l: "← Leave", n: null }] },
-  vault_lore: { sp: 'BOOKSHELF', tx: "[ LORE ]\n\nFive pivots in YC.\nA Hacker News post that changed everything.\nTwo founders who really didn't want\nto raise money.\n\nThe origin story.",
+  vault_lore: { sp: 'BOOKSHELF', tx: "[ LORE ]\n\nThe origin story\nand our inside jokes.",
     opts: [{ l: "Read more →", n: null, fn: 'open_lore' }, { l: "← Leave", n: null }] },
 
   action_figure: { sp: 'DISPLAY CASE', tx: "★ JAMES HAWKINS ULTRA-ACTION FIGURE ★\n\n$996 — OUT OF STOCK\n\nComes with:\n1x quick call script\n1x pizza margherita\n1x cycling jersey (retired)",
