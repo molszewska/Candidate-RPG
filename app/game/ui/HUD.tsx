@@ -9,7 +9,6 @@ const ACH_MAP: Record<string, string> = {
   gelato: '🍦 GELATO PROTOCOL',
   thanks_dylan: '🙏 THANKS DYLAN',
   max_loose: '🦔 MAX IS LOOSE',
-  figure: '🏆 THE FIGURE',
   meta_egg: '🥚 META EGG',
   three_finger: '🖐 THREE FINGER RULE',
   trash_panda: '📁 TRASH PANDA',

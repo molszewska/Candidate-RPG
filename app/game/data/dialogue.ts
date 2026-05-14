@@ -258,7 +258,6 @@ export const DLG: Record<string, DlgNode> = {
     opts: [{ l: "Read more →", n: null, fn: 'open_lore' }, { l: "← Leave", n: null }] },
 
   action_figure: { sp: 'DISPLAY CASE', tx: "★ JAMES HAWKINS ULTRA-ACTION FIGURE ★\n\n$996 — OUT OF STOCK\n\nComes with:\n1x quick call script\n1x pizza margherita\n1x cycling jersey (retired)",
-    ach: { id: 'figure', name: '🏆 THE FIGURE' },
     opts: [{ l: "[ want ]", n: null }] },
   merch_shelf: { sp: 'MERCH SHELF', tx: "[ Hoodies. Stickers. The tracksuit.\nThe hallucinating hog sticker.\nThe lawnmower (don't ask Charles).\n\nAll of this could be yours. ]",
     opts: [{ l: "[ eyes emoji ]", n: null }] },
