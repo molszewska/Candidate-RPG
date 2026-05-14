@@ -167,6 +167,21 @@ export function drawMrHog(ctx: CanvasRenderingContext2D, bx: number, by: number)
   px(ctx, bx+7*S, by+7*S, 2*S, S, '#999');
 }
 
+// ── Ghost sprite (ghostly hedgehog) ──────────────────────────────────────────
+export function drawGhost(ctx: CanvasRenderingContext2D, gx: number, gy: number, t: number) {
+  ctx.save();
+  ctx.globalAlpha = 0.72;
+  const bob = Math.round(Math.sin(t * 0.0025) * 3);
+  const bx = Math.floor(gx);
+  const by = Math.floor(gy) + bob;
+  // Draw the hog in ghostly pale-blue colours
+  drawHog(ctx, bx, by, '#c8d8ff', '#8899cc', S);
+  // Overwrite eyes with glowing blue
+  px(ctx, bx + 4*S, by + 7*S, 2*S, 2*S, '#aabbff');
+  px(ctx, bx + 10*S, by + 7*S, 2*S, 2*S, '#aabbff');
+  ctx.restore();
+}
+
 // ── Player sprite ─────────────────────────────────────────────────────────────
 export type PlayerSpec = {
   species: 'human' | 'hog';

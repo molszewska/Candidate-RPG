@@ -5,7 +5,7 @@ import { isSolid, getTileAct } from '../data/areas';
 import { NPCS_BY_AREA } from '../data/npcs';
 import { DLG } from '../data/dialogue';
 import { drawMap, drawLobbyLabels } from '../rendering/tileRenderer';
-import { drawPlayerSprite } from '../rendering/spriteRenderer';
+import { drawPlayerSprite, drawGhost } from '../rendering/spriteRenderer';
 import { createBus, updateBus, drawBus } from '../rendering/busRenderer';
 import { px } from '../rendering/utils';
 import { HUD } from '../ui/HUD';
@@ -81,6 +81,8 @@ export function GameCanvas() {
   const busRef = useRef(createBus());
   const lastRef = useRef(0);
   const rafRef = useRef(0);
+  const ghostRef = useRef({ x: 0, y: 0, init: false });
+  const ghostAreaRef = useRef<string>('');
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -130,10 +132,21 @@ export function GameCanvas() {
         store.setNearHint(hint);
       }
 
+      // Snap ghost to player on first frame or area change
+      const playerPx = fresh.player.x * TILE, playerPy = fresh.player.y * TILE;
+      if (!ghostRef.current.init || fresh.area !== ghostAreaRef.current) {
+        ghostRef.current = { x: playerPx, y: playerPy, init: true };
+        ghostAreaRef.current = fresh.area;
+      } else {
+        ghostRef.current.x += (playerPx - ghostRef.current.x) * 0.03;
+        ghostRef.current.y += (playerPy - ghostRef.current.y) * 0.03;
+      }
+
       ctx.clearRect(0, 0, 640, 480);
       drawMap(ctx, fresh.area, currentMap(fresh.area));
       if (fresh.area === 'lobby') drawLobbyLabels(ctx);
       NPCS_BY_AREA[fresh.area].forEach((n) => drawNPC(ctx, n));
+      if (fresh.area === 'trash') drawGhost(ctx, ghostRef.current.x, ghostRef.current.y, ts);
       renderPlayer(ctx, fresh.player);
       if (fresh.area === 'hogpatch') {
         updateBus(busRef.current);
