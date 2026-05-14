@@ -55,7 +55,7 @@ function drawNPC(ctx: CanvasRenderingContext2D, npc: NPC) {
   npc.drawFn(ctx, npc.x * TILE, npc.y * TILE);
   if (!npc.name) return;
   ctx.font = '6px "Press Start 2P"'; ctx.textAlign = 'center';
-  const label = npc.name.length > 12 ? npc.name.slice(0, 12) + '…' : npc.name;
+  const label = npc.name;
   const tw = ctx.measureText(label).width;
   px(ctx, npc.x * TILE + 16 - tw / 2 - 3, npc.y * TILE - 14, tw + 6, 11, 'rgba(14,14,14,0.8)');
   ctx.fillStyle = '#F9BD2B'; ctx.fillText(label, npc.x * TILE + 16, npc.y * TILE - 5);
