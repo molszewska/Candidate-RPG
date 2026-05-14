@@ -200,6 +200,15 @@ export const DLG: Record<string, DlgNode> = {
   charles_weird: { sp: 'CHARLES COOK', tx: "Managed the lawnmower merch drop.\n\nDon't ask.",
     opts: [{ l: "← Back", n: 'charles_root' }] },
 
+  lawnmower: { sp: 'POSTHOG LAWNMOWER', tx: "[ A PostHog-branded lawnmower. ]\n\nStill has the price tag on it.\n$179 + free shipping.\n\nCharles is standing very close to it.\nSuspiciously close.",
+    opts: [
+      { l: "Ask Charles about it", n: 'lawnmower_charles' },
+      { l: "[ back away ]", n: null },
+    ] },
+  lawnmower_charles: { sp: 'CHARLES COOK', tx: "*straightens tie*\n\nThe lawnmower merch drop was a\nstrategic commercial decision.\n\nI stand by it.\n\nDon't.",
+    ach: { id: 'lawnmower', name: '🌿 THE LAWNMOWER DROP' },
+    opts: [{ l: "[ understood ]", n: null }] },
+
   landon_root: { sp: 'LANDON', tx: "*pockets his phone, grinning*\nHey! I'm Landon. Five kids at home.\nThe office feels calm by comparison.\nWhat do you want to know?",
     opts: [{ l: "Your background?", n: 'landon_bg' }, { l: "What's the role like?", n: 'landon_culture' }, { l: "SuperDay tips?", n: 'landon_tips' }, { l: "[ leave ]", n: null }] },
   landon_bg: { sp: 'LANDON', tx: "Support. Comms. Strategy. Agency world.\nWorked with clients on tech strategy.\nCame back to software at PostHog.\nThe through-line: how tech helps people flourish.",

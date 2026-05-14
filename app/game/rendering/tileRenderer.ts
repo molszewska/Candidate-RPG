@@ -557,6 +557,28 @@ export function drawInteriorTile(ctx: CanvasRenderingContext2D, tx: number, ty: 
     // Dust at bottom (it's been empty a while)
     px(ctx, bx+10, by+24, 12,  1, '#9ab0c8');
   }
+  if (t === TI.LAWNMOWER) {
+    px(ctx, bx, by, TILE, TILE, floorC);
+    // Handle bars (extends above tile)
+    px(ctx, bx+13, by-8,  2, 18, '#444');
+    px(ctx, bx+17, by-8,  2, 18, '#444');
+    px(ctx, bx+12, by-9,  8,  3, '#555');
+    // Deck
+    px(ctx, bx+3,  by+8,  26, 16, '#2d7a1e');
+    px(ctx, bx+4,  by+9,  24, 14, '#3a9a28');
+    // Engine hood
+    px(ctx, bx+8,  by+9,  16,  8, '#2a6a18');
+    px(ctx, bx+10, by+10, 12,  5, '#1d4d10');
+    // PostHog gold badge
+    px(ctx, bx+12, by+11,  8,  3, '#F9BD2B');
+    // Wheels
+    px(ctx, bx+3,  by+8,  4, 4, '#222');
+    px(ctx, bx+25, by+8,  4, 4, '#222');
+    px(ctx, bx+3,  by+20, 4, 4, '#222');
+    px(ctx, bx+25, by+20, 4, 4, '#222');
+    // Discharge chute (right side)
+    px(ctx, bx+27, by+13, 5, 4, '#F9BD2B');
+  }
   if (t === TI.BOOK) {
     // Dark mahogany table surface
     px(ctx, bx, by, TILE, TILE, '#1a0d04');

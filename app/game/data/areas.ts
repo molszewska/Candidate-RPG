@@ -29,6 +29,7 @@ const SOLID_TILES: Set<number> = new Set([
   TI.SHELF, TI.DESK, TI.CHEST, TI.GLASS, TI.BOOK, TI.COUCH, TI.MERCH,
   TI.WORKBENCH, TI.PAINTING, TI.BUST, TI.SERVER, TI.POSTIT, TI.COMPUTER, TI.BIGTV, TI.FOOSBALL, TI.LEADJAR, TI.TV,
   TI.PLANT, TI.SOFA, TI.STATUE, TI.ART, TI.OPENBOOK, TI.PENCIL,
+  TI.LAWNMOWER,
 ]);
 
 export function isSolid(map: MapGrid, tx: number, ty: number): boolean {
@@ -68,6 +69,7 @@ export function getTileAct(area: Area, tx: number, ty: number): string | null {
     if (t === TI.FOOSBALL)     return 'foosball';
     if (t === TI.SHELF)        return 'gtm_podium';
     if (t === TI.LEADJAR)      return 'leads_jar';
+    if (t === TI.LAWNMOWER)    return 'lawnmower';
     return null;
   }
 
