@@ -38,11 +38,15 @@ export function HowToPlay({ onStart }: { onStart: () => void }) {
       <div className="htp-lore">
         Hey fellow human! Welcome to HogPatch.<br />
         Learn more about what life here is about.<br />
-        Walk around, explore, have fun!
+        Walk around, explore, have fun and apply!
       </div>
       <button className="btn-primary" onClick={onStart} autoFocus>
         VISIT HOGPATCH →
       </button>
+      <div style={{ marginTop: 12, textAlign: 'center', fontFamily: '"Press Start 2P"', fontSize: 7, color: '#555', lineHeight: 1.8 }}>
+        Built with ♥ and good vibes only<br />
+        at the Barbados Offsite Hackathon 2026.
+      </div>
     </div>
   );
 }
