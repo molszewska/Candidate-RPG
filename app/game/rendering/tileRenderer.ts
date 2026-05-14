@@ -173,6 +173,20 @@ export function drawInteriorTile(ctx: CanvasRenderingContext2D, tx: number, ty: 
     px(ctx, bx + 4, by + 5, 6, 1, '#8B6914'); px(ctx, bx + 4, by + 7, 4, 1, '#8B6914');
     px(ctx, bx + 16, by + 5, 6, 1, '#8B6914'); px(ctx, bx + 10, by + 15, 6, 1, '#8B6914');
   }
+  if (t === TI.SHELF) {
+    // Podium / lectern
+    px(ctx, bx+4,  by+6,  24, 10, '#5a3a1a');
+    px(ctx, bx+5,  by+7,  22,  8, '#7a5535');
+    px(ctx, bx+5,  by+7,  22,  2, '#8B6040');
+    px(ctx, bx+12, by+16,  8, 10, '#5a3a1a');
+    px(ctx, bx+6,  by+26, 20,  4, '#5a3a1a');
+    px(ctx, bx+7,  by+27, 18,  2, '#7a5535');
+    // Microphone stand + head
+    px(ctx, bx+15, by+1,   2,  6, '#555');
+    px(ctx, bx+12, by+0,   8,  3, '#333');
+    px(ctx, bx+13, by+0,   6,  4, '#444');
+    px(ctx, bx+14, by+0,   4,  2, '#888');
+  }
   if (t === TI.COMPUTER) {
     px(ctx, bx, by, TILE, TILE, floorC);
     px(ctx, bx + 4, by + 4, 24, 20, '#1a1a1a');
