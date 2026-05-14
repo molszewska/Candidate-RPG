@@ -28,6 +28,9 @@ function executeFn(fn: string, setArea: (a: Area) => void) {
     case 'open_sales_superday':    window.open('https://posthog.com/handbook/people/hiring-process/sales-cs-hiring#sales-superday', '_blank'); break;
     case 'open_cs_superday':       window.open('https://posthog.com/handbook/people/hiring-process/sales-cs-hiring#cs-and-onboarding-superday', '_blank'); break;
     case 'open_small_team_interview': window.open('https://posthog.com/handbook/people/hiring-process/sales-cs-hiring#small-team-interview', '_blank'); break;
+    case 'open_eli_profile':     window.open('https://posthog.com/community/profiles/43103', '_blank'); break;
+    case 'open_rune_profile':    window.open('https://posthog.com/community/profiles/34692', '_blank'); break;
+    case 'open_zbynek_profile':  window.open('https://posthog.com/community/profiles/35811', '_blank'); break;
     default: break;
   }
 }
@@ -70,7 +73,12 @@ export function DialogueBox() {
     <>
     {def.bigImg && <img className="dlg-bigimg" src={def.bigImg} alt={def.sp} />}
     <div id="dialogueBox" style={{ display: 'flex' }} onClick={hasOpts ? undefined : close}>
-      {def.img && <img className="dlg-portrait" src={def.img} alt={def.sp} />}
+      {def.imgs && def.imgs.length > 0 && (
+        <div className="dlg-portraits">
+          {def.imgs.map((src, i) => <img key={i} className="dlg-portrait-multi" src={src} alt={def.sp} />)}
+        </div>
+      )}
+      {!def.imgs && def.img && <img className="dlg-portrait" src={def.img} alt={def.sp} />}
       <div className="dlg-sp">{def.sp}</div>
       <div className="dlg-tx">{def.tx}</div>
       {hasOpts && (

@@ -3,7 +3,7 @@ import {
   drawJames, drawTim, drawMarius, drawMichael,
   drawCharles, drawDylan, drawDanilo, drawPaul, drawMrHog,
   drawLandon, drawTyler, drawSimon, drawMagda, drawDana,
-  drawAngryTwitterGuy,
+  drawAngryTwitterGuy, drawEli, drawRune, drawZbynek,
 } from '../rendering/spriteRenderer';
 
 export type NPC = {
@@ -22,7 +22,10 @@ export const NPCS_BY_AREA: Record<Area, NPC[]> = {
     { id: 'tim',   name: 'TIM GLASER',   x: 11, y: 6, dir: 2, dlg: 'tim_lobby',   drawFn: drawTim   },
   ],
   hogpatch: [
-    { id: 'angry_twitter_guy', name: 'ANGRY TWITTER GUY', x: 3, y: 7, dir: 2, dlg: 'angry_twitter_guy', drawFn: drawAngryTwitterGuy },
+    { id: 'angry_twitter_guy', name: 'ANGRY TWITTER GUY', x: 3,  y: 7, dir: 2, dlg: 'angry_twitter_guy', drawFn: drawAngryTwitterGuy },
+    { id: 'eli',               name: 'GAME CREATORS', x: 15, y: 2, dir: 2, dlg: 'creators_root',     drawFn: drawEli   },
+    { id: 'rune',              name: 'GAME CREATORS', x: 16, y: 2, dir: 2, dlg: 'creators_root',     drawFn: drawRune  },
+    { id: 'zbynek',            name: 'GAME CREATORS', x: 17, y: 2, dir: 2, dlg: 'creators_root',     drawFn: drawZbynek },
   ],
   burrow: [
     { id: 'marius',  name: 'MARIUS ANDRA',  x: 15, y: 6,  dir: 2, dlg: 'marius_root',  drawFn: drawMarius  },

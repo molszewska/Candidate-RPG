@@ -213,6 +213,18 @@ body {
   box-shadow: 0 0 0 6px #F9BD2B;
   background: #0e0e0e;
 }
+.dlg-portraits {
+  position: absolute; right: 18px; top: -108px;
+  display: flex; flex-direction: row; gap: 8px;
+}
+.dlg-portrait-multi {
+  width: 96px; height: 96px;
+  image-rendering: pixelated; object-fit: contain;
+  border: 3px solid #F9BD2B;
+  outline: 3px solid #0e0e0e;
+  box-shadow: 0 0 0 6px #F9BD2B;
+  background: #0e0e0e;
+}
 @keyframes blink { 50% { opacity: 0; } }
 
 #achievementPopup { position: absolute; bottom: 16px; right: 16px; background: #111; border: 2px solid #F9BD2B;

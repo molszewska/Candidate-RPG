@@ -208,6 +208,18 @@ export function drawDana(ctx: CanvasRenderingContext2D, bx: number, by: number) 
   drawHuman(ctx, bx, by, '#D4B080', '#1a1a1a', '#335588', 'tshirt', 2, false, false);
 }
 
+export function drawEli(ctx: CanvasRenderingContext2D, bx: number, by: number) {
+  drawHuman(ctx, bx, by, '#F5CBA7', '#c8a040', '#5b2d8e', 'tshirt', 2, false, false);
+}
+
+export function drawRune(ctx: CanvasRenderingContext2D, bx: number, by: number) {
+  drawHuman(ctx, bx, by, '#FDDBB4', '#1a1a1a', '#c94040', 'tshirt', 2, false, false);
+}
+
+export function drawZbynek(ctx: CanvasRenderingContext2D, bx: number, by: number) {
+  drawHuman(ctx, bx, by, '#D4A882', '#5a3010', '#2e7d32', 'tshirt', 2, false, false);
+}
+
 export function drawAngryTwitterGuy(ctx: CanvasRenderingContext2D, bx: number, by: number) {
   drawHuman(ctx, bx, by+2*S, '#D4A882', '#e06010', '#444', 'tshirt', 2, false, false);
   // Phone held in both hands, looking down at it
