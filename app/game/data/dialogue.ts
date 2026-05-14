@@ -257,8 +257,9 @@ export const DLG: Record<string, DlgNode> = {
   paul_in: { sp: "PAUL D'AMBRA", tx: "Good choice.\n\nEvery offsite. Without fail.\nIt's not a choice, it's a value.\n\nHead on in.",
     opts: [{ l: "[ enter vault ]", n: null }] },
 
-  mr_hog: { sp: 'MR. HOG', tx: "Sup.", img: '/therapist_hoggie.png',
-    opts: [{ l: "sup, bro", n: null }] },
+  mr_hog: { sp: 'MR. HOG', img: '/therapist_hoggie.png',
+    tx: "*adjusts glasses* Sit down. I'm sensing some unresolved drop-off at step three of your funnel. We'll get through this together.",
+    opts: [{ l: "[ I think I need help. ]", n: null }] },
 
   vault_handbook: { sp: 'THE HANDBOOK', tx: "[ A golden book rests open\non the table. ]\n\nOur source of truth lies within.\nHow we work. Why we work that way.\nAll of it.",
     opts: [{ l: "Our source of truth lies within →", n: null, fn: 'open_handbook' }, { l: "← Leave", n: null }] },
