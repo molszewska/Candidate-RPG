@@ -79,7 +79,7 @@ export const DLG: Record<string, DlgNode> = {
       { l: "Tell me about yourself", n: 'zbynek_about' },
       { l: "[ nice to meet you ]", n: null },
     ] },
-  zbynek_about: { sp: 'ZBYNEK', img: '/pixel_zbynek.png', tx: "I live in Prague and work in Talent.\nBig basketball fan. Strong believer\nin psychotherapy.\n\nAlways up for a hike with my wife\nand our dog.\nMost importantly: my dog Yvon\noccasionally joins interviews and\nfully believes he works here too.",
+  zbynek_about: { sp: 'ZBYNEK', img: '/pixel_zbynek.png', tx: "I live in Prague and work in Talent.\nBig basketball fan. Strong believer\nin psychotherapy.\n\nAlways up for a hike with my wife\nand our dog.",
     opts: [
       { l: "Check their community profile ↗", n: null, fn: 'open_zbynek_profile' },
       { l: "[ nice to meet you ]", n: null },
