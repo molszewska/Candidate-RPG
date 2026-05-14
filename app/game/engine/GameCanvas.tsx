@@ -5,7 +5,7 @@ import { isSolid, getTileAct } from '../data/areas';
 import { NPCS_BY_AREA } from '../data/npcs';
 import { DLG } from '../data/dialogue';
 import { drawMap, drawLobbyLabels } from '../rendering/tileRenderer';
-import { drawPlayerSprite, drawGhost } from '../rendering/spriteRenderer';
+import { drawPlayerSprite, drawGhost, drawThoughtBubble } from '../rendering/spriteRenderer';
 import { createBus, updateBus, drawBus } from '../rendering/busRenderer';
 import { px } from '../rendering/utils';
 import { HUD } from '../ui/HUD';
@@ -160,6 +160,16 @@ export function GameCanvas() {
       if (fresh.area === 'lobby') drawLobbyLabels(ctx);
       NPCS_BY_AREA[fresh.area].forEach((n) => drawNPC(ctx, n));
       if (fresh.area === 'trash') drawGhost(ctx, ghostRef.current.x, ghostRef.current.y, ts);
+      if (fresh.area === 'trash') {
+        const { x: plx, y: ply } = fresh.player;
+        const plBx = plx * TILE, plBy = ply * TILE;
+        const nearPainting = ply <= 4 && plx >= 6 && plx <= 13;
+        const nearBust = Math.abs(plx - 3) <= 2 && Math.abs(ply - 6) <= 2;
+        const nearTV = Math.abs(plx - 16) <= 2 && Math.abs(ply - 6) <= 2;
+        if (nearPainting) drawThoughtBubble(ctx, plBx, plBy, 'Sexy');
+        else if (nearBust) drawThoughtBubble(ctx, plBx, plBy, "who's dis guy?");
+        else if (nearTV) drawThoughtBubble(ctx, plBx, plBy, 'Barbie movie?');
+      }
       renderPlayer(ctx, fresh.player);
       if (fresh.area === 'hogpatch') {
         updateBus(busRef.current);

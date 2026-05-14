@@ -214,6 +214,46 @@ export function drawAngryTwitterGuy(ctx: CanvasRenderingContext2D, bx: number, b
   px(ctx, bx+6*S,  by+12*S, 4*S, 3*S, '#3af');
 }
 
+// ── Thought bubble ───────────────────────────────────────────────────────────
+export function drawThoughtBubble(ctx: CanvasRenderingContext2D, bx: number, by: number, text: string) {
+  ctx.save();
+  ctx.font = '6px "Press Start 2P"';
+  ctx.textAlign = 'left';
+  const tw = Math.ceil(ctx.measureText(text).width);
+  const pad = 6;
+  const bw = tw + pad * 2;
+  const bh = 14;
+  const bubX = bx + 16 - Math.floor(bw / 2);
+  const bubY = by - 48;
+
+  // Ascending dots
+  const dots = [
+    { x: bx + 18, y: by - 5, s: 3 },
+    { x: bx + 21, y: by - 15, s: 4 },
+    { x: bx + 23, y: by - 27, s: 5 },
+  ];
+  for (const d of dots) {
+    px(ctx, d.x, d.y, d.s, d.s, '#E5E7E0');
+    ctx.fillStyle = '#1a1a1a';
+    ctx.fillRect(d.x, d.y, d.s, 1);
+    ctx.fillRect(d.x, d.y + d.s - 1, d.s, 1);
+    ctx.fillRect(d.x, d.y, 1, d.s);
+    ctx.fillRect(d.x + d.s - 1, d.y, 1, d.s);
+  }
+
+  // Bubble fill + border
+  px(ctx, bubX, bubY, bw, bh, '#E5E7E0');
+  ctx.fillStyle = '#1a1a1a';
+  ctx.fillRect(bubX, bubY, bw, 1);
+  ctx.fillRect(bubX, bubY + bh - 1, bw, 1);
+  ctx.fillRect(bubX, bubY, 1, bh);
+  ctx.fillRect(bubX + bw - 1, bubY, 1, bh);
+
+  ctx.fillStyle = '#1a1a1a';
+  ctx.fillText(text, bubX + pad, bubY + bh - 4);
+  ctx.restore();
+}
+
 // ── Ghost sprite (ghostly hedgehog) ──────────────────────────────────────────
 export function drawGhost(ctx: CanvasRenderingContext2D, gx: number, gy: number, t: number) {
   ctx.save();
