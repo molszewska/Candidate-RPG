@@ -194,7 +194,7 @@ export function GameCanvas() {
           'dis guys to increase',
           'the shareholder value',
         ]);
-        else if (nearAppCorner)  drawThoughtBubble(ctx, plBx, plBy, ['PostHog is SLAY,', "I'm gonna apply!"]);
+        else if (nearAppCorner)  drawThoughtBubble(ctx, plBx, plBy, ['There are application', 'tips here?! How SLAY!']);
         else if (nearTopSecret)  drawThoughtBubble(ctx, plBx, plBy, 'interesting...');
         else if (nearCompany)    drawThoughtBubble(ctx, plBx, plBy, 'curious how is working here?');
         else if (nearStreet)     drawThoughtBubble(ctx, plBx, plBy, 'hot dog time!');
