@@ -13,6 +13,10 @@ function executeFn(fn: string, setArea: (a: Area) => void) {
     case 'enter_lobby':    setArea('lobby');    break;
     case 'open_ga_site':   window.open('https://isgoogleanalyticsillegal.com', '_blank'); break;
     case 'open_feet':      window.open('https://posthog.com/feet-pics', '_blank'); break;
+    case 'open_handbook':  window.open('https://posthog.com/handbook', '_blank'); break;
+    case 'open_values':    window.open('https://posthog.com/handbook/values', '_blank'); break;
+    case 'open_culture':   window.open('https://posthog.com/handbook/company/culture', '_blank'); break;
+    case 'open_lore':      window.open('https://posthog.com/handbook/company/lore', '_blank'); break;
     default: break;
   }
 }

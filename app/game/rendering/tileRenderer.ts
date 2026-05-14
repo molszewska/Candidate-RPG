@@ -243,6 +243,40 @@ export function drawInteriorTile(ctx: CanvasRenderingContext2D, tx: number, ty: 
     px(ctx, bx + 12, by + 6, 8, 4, '#b03a2e');
     px(ctx, bx + 13, by + 8, 6, 8, '#e8603a');
   }
+  if (t === TI.BOOK) {
+    // Dark mahogany table surface
+    px(ctx, bx, by, TILE, TILE, '#1a0d04');
+    px(ctx, bx + 1, by + 1, TILE - 2, TILE - 2, '#221208');
+    ctx.fillStyle = '#1c0e06';
+    ctx.fillRect(bx + 2, by + 10, TILE - 4, 1);
+    ctx.fillRect(bx + 2, by + 22, TILE - 4, 1);
+    // Golden glow radiating from center of the 2×2 table
+    const isLeft = (tx % 2) === 0;
+    const isTop  = (ty % 2) === 1;
+    const gx = isLeft ? bx + TILE : bx;
+    const gy = isTop  ? by + TILE : by;
+    const grd = ctx.createRadialGradient(gx, gy, 0, gx, gy, 34);
+    grd.addColorStop(0, 'rgba(255,220,60,0.65)');
+    grd.addColorStop(0.5, 'rgba(249,189,43,0.25)');
+    grd.addColorStop(1, 'rgba(249,189,43,0)');
+    ctx.fillStyle = grd;
+    ctx.fillRect(bx, by, TILE, TILE);
+    // Open book — each tile shows one quadrant of a 40×28 book centered on the 2×2 group
+    const pageW = 20, pageH = 14;
+    const px1 = isLeft ? bx + TILE - pageW : bx;
+    const py1 = isTop  ? by + TILE - pageH : by;
+    px(ctx, px1, py1, pageW, pageH, '#F9BD2B');
+    px(ctx, px1, py1, pageW, 2, '#FFE870');
+    px(ctx, px1 + 2, py1 + 4, pageW - 4, 1, '#7a5010');
+    px(ctx, px1 + 2, py1 + 7, pageW - 4, 1, '#7a5010');
+    px(ctx, px1 + 2, py1 + 10, pageW - 4, 1, '#7a5010');
+    // Spine at the shared seam between left/right tiles
+    if (isLeft) px(ctx, bx + TILE - 3, py1, 3, pageH, '#5a3a08');
+    else         px(ctx, bx,             py1, 3, pageH, '#5a3a08');
+    // Binding crease at the shared seam between top/bottom tiles
+    if (isTop) px(ctx, px1, by + TILE - 2, pageW, 2, '#5a3a08');
+    else        px(ctx, px1, by,             pageW, 2, '#5a3a08');
+  }
 }
 
 export function drawBillboard(ctx: CanvasRenderingContext2D) {

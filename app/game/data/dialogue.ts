@@ -25,7 +25,7 @@ export const DLG: Record<string, DlgNode> = {
     opts: [{ l: "Enter →", n: null, fn: 'enter_burrow' }, { l: "Not now", n: null }] },
   enter_gtm: { sp: 'DOOR', tx: "[ GTM ]\n\nMarketing. Content. Growth.\nThey made isgoogleanalyticsillegal.com\ntrend on Hacker News.",
     opts: [{ l: "Enter →", n: null, fn: 'enter_den' }, { l: "Not now", n: null }] },
-  enter_company: { sp: 'DOOR', tx: "[ COMPANY ]\n\nOps. Hiring. Merch. Paul.\nSomeone wore a suit once.\nPerformance reviews stopped shortly after.",
+  enter_company: { sp: 'DOOR', tx: "[ COMPANY ]\n\nEnter to learn more about\nPostHog as a company.",
     opts: [{ l: "Enter →", n: null, fn: 'enter_vault' }, { l: "Not now", n: null }] },
   enter_secret: { sp: 'DOOR', tx: "[ TOP SECRET ]\n\n⚠ RESTRICTED ACCESS ⚠\n\nYou didn't see this door.\nAnd you definitely don't know the password.",
     opts: [{ l: "I know the password.", n: null, fn: 'enter_trash' }, { l: "[ back away ]", n: null }] },
@@ -144,6 +144,16 @@ export const DLG: Record<string, DlgNode> = {
     opts: [{ l: "...fine. Pistachio.", n: 'paul_in' }] },
   paul_in: { sp: "PAUL D'AMBRA", tx: "Good choice.\n\nEvery offsite. Without fail.\nIt's not a choice, it's a value.\n\nHead on in.",
     opts: [{ l: "[ enter vault ]", n: null }] },
+
+  vault_handbook: { sp: 'THE HANDBOOK', tx: "[ A golden book rests open\non the table. ]\n\nOur source of truth lies within.\nHow we work. Why we work that way.\nAll of it.",
+    opts: [{ l: "Our source of truth lies within →", n: null, fn: 'open_handbook' }, { l: "← Leave", n: null }] },
+
+  vault_values: { sp: 'BOOKSHELF', tx: "[ OUR VALUES ]\n\nParsimony. Transparency.\nBias for action. Iteration.\nExceptional over average.\n\nThese aren't a poster.\nThey're how we actually work.",
+    opts: [{ l: "Read more →", n: null, fn: 'open_values' }, { l: "← Leave", n: null }] },
+  vault_culture: { sp: 'BOOKSHELF', tx: "[ CULTURE ]\n\nRemote-first. Transparent by default.\nSmall teams, high trust.\nNo performance reviews.\nNo middle management.\n\nA little weird. On purpose.",
+    opts: [{ l: "Read more →", n: null, fn: 'open_culture' }, { l: "← Leave", n: null }] },
+  vault_lore: { sp: 'BOOKSHELF', tx: "[ LORE ]\n\nFive pivots in YC.\nA Hacker News post that changed everything.\nTwo founders who really didn't want\nto raise money.\n\nThe origin story.",
+    opts: [{ l: "Read more →", n: null, fn: 'open_lore' }, { l: "← Leave", n: null }] },
 
   action_figure: { sp: 'DISPLAY CASE', tx: "★ JAMES HAWKINS ULTRA-ACTION FIGURE ★\n\n$996 — OUT OF STOCK\n\nComes with:\n1x quick call script\n1x pizza margherita\n1x cycling jersey (retired)",
     ach: { id: 'figure', name: '🏆 THE FIGURE' },
