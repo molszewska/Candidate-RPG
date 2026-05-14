@@ -86,6 +86,46 @@ export function drawTile(ctx: CanvasRenderingContext2D, tx: number, ty: number, 
     return;
   }
 
+  if (t === T.HOTDOG) {
+    // Sidewalk base
+    px(ctx, bx, by, TILE, TILE, '#7a7a72');
+    ctx.fillStyle = '#6e6e66'; ctx.fillRect(bx, by, TILE, 1); ctx.fillRect(bx, by, 1, TILE);
+    // Umbrella pole (extends above tile)
+    px(ctx, bx + 15, by - 14, 2, 26, '#5a3a10');
+    // Umbrella canopy — red semicircle
+    ctx.save();
+    ctx.fillStyle = '#c94040';
+    ctx.beginPath(); ctx.arc(bx + 16, by - 12, 15, Math.PI, 0); ctx.closePath(); ctx.fill();
+    // Lighter alternating segments
+    ctx.fillStyle = '#e05050';
+    for (let i = 0; i < 3; i++) {
+      ctx.beginPath();
+      ctx.moveTo(bx + 16, by - 12);
+      ctx.arc(bx + 16, by - 12, 15, Math.PI + i * (Math.PI / 3), Math.PI + (i + 0.5) * (Math.PI / 3));
+      ctx.closePath();
+      ctx.fill();
+    }
+    ctx.restore();
+    // Gold fringe along umbrella bottom edge
+    for (let i = 0; i < 5; i++) px(ctx, bx + 2 + i * 6, by - 13, 3, 2, '#F9BD2B');
+    // Cart body
+    px(ctx, bx + 3,  by + 8,  TILE - 6, 18, '#b83030');
+    px(ctx, bx + 4,  by + 9,  TILE - 8,  3,  '#d84040');
+    // PostHog gold top stripe
+    px(ctx, bx + 3,  by + 8,  TILE - 6,  3,  '#F9BD2B');
+    // Orange front panel
+    px(ctx, bx + 7,  by + 12, TILE - 14, 8,  '#e06030');
+    // Tiny hotdog on panel
+    px(ctx, bx + 9,  by + 15, 14, 2, '#8B4513');
+    px(ctx, bx + 10, by + 15, 12, 1, '#cc5500');
+    // Wheel
+    ctx.fillStyle = '#333';
+    ctx.beginPath(); ctx.arc(bx + 16, by + 27, 4, 0, Math.PI * 2); ctx.fill();
+    ctx.fillStyle = '#666';
+    ctx.beginPath(); ctx.arc(bx + 16, by + 27, 2, 0, Math.PI * 2); ctx.fill();
+    return;
+  }
+
   const bases: Record<number, string> = {
     [T.PATH]: '#c8a96e', [T.WALL]: '#8B7355', [T.ROOF]: '#c94040',
     [T.DOOR]: '#b8996e', [T.SIGN]: '#c8a96e', [T.STAGE]: '#9B8060',

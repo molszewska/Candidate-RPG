@@ -25,7 +25,7 @@ export const AREA_NAMES: Record<Area, string> = {
 };
 
 const SOLID_TILES: Set<number> = new Set([
-  T.WALL, T.ROOF, T.BILL, T.DUMP, T.LAMP, T.STOREFRONT, T.DOOR,
+  T.WALL, T.ROOF, T.BILL, T.DUMP, T.LAMP, T.STOREFRONT, T.DOOR, T.HOTDOG,
   TI.SHELF, TI.DESK, TI.CHEST, TI.GLASS, TI.BOOK, TI.COUCH, TI.MERCH,
   TI.WORKBENCH, TI.PAINTING, TI.BUST, TI.SERVER, TI.POSTIT, TI.COMPUTER, TI.BIGTV,
   TI.PLANT, TI.SOFA, TI.STATUE, TI.ART, TI.OPENBOOK, TI.PENCIL,
@@ -48,6 +48,7 @@ export function getTileAct(area: Area, tx: number, ty: number): string | null {
     if (t === T.SIGN)   return 'sign';
     if (t === T.BILL)   return 'billboard';
     if (t === T.DOOR) return 'enter_lobby_from_street';
+    if (t === T.HOTDOG) return 'hotdog_stand';
     return null;
   }
 
