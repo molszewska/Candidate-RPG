@@ -399,7 +399,7 @@ export const DLG: Record<string, DlgNode> = {
     tx: "PostHog looks for people who:\n– Take extreme ownership\n– Stay optimistic under pressure\n– Energize the people around them\n– Ship and care deeply about craft\n\nAsk smart questions. Show curiosity\nabout PMF, runway, what's hard.\nBe available soon. Warm referrals win.",
     opts: [{ l: "Full article ↗", n: null, fn: 'open_startup_jobs' }, { l: "← Back", n: 'appcorner_book2' }] },
 
-  appcorner_pencil: { sp: '✏ COVER LETTERS',
+  appcorner_pencil: { sp: '✏ COVER LETTER TIPS',
     tx: "Yes — a real human reads yours.\n\nSomeone from the talent team\nreads every cover letter.\nEvery. Single. One.\n\nIt matters more than most candidates\nassume. A bad one gets you cut fast.\nA great one can get you in.",
     opts: [{ l: "What makes it great? →", n: 'appcorner_pencil2' }, { l: "Close", n: null }] },
   appcorner_pencil2: { sp: '✏ WRITE LIKE A HUMAN',
