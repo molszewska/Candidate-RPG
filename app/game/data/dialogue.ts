@@ -9,6 +9,7 @@ export type DlgNode = {
   tx: string;
   opts?: DlgOpt[];
   ach?: { id: string; name: string };
+  img?: string;
 };
 
 // fn values are action keys dispatched by DialogueBox
@@ -173,6 +174,9 @@ export const DLG: Record<string, DlgNode> = {
     opts: [{ l: "...fine. Pistachio.", n: 'paul_in' }] },
   paul_in: { sp: "PAUL D'AMBRA", tx: "Good choice.\n\nEvery offsite. Without fail.\nIt's not a choice, it's a value.\n\nHead on in.",
     opts: [{ l: "[ enter vault ]", n: null }] },
+
+  mr_hog: { sp: 'MR. HOG', tx: "Sup.", img: '/therapist_hoggie.png',
+    opts: [{ l: "sup, bro", n: null }] },
 
   vault_handbook: { sp: 'THE HANDBOOK', tx: "[ A golden book rests open\non the table. ]\n\nOur source of truth lies within.\nHow we work. Why we work that way.\nAll of it.",
     opts: [{ l: "Our source of truth lies within →", n: null, fn: 'open_handbook' }, { l: "← Leave", n: null }] },

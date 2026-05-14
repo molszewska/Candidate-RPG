@@ -59,6 +59,7 @@ export function DialogueBox() {
 
   return (
     <div id="dialogueBox" style={{ display: 'flex' }} onClick={hasOpts ? undefined : close}>
+      {def.img && <img className="dlg-portrait" src={def.img} alt={def.sp} />}
       <div className="dlg-sp">{def.sp}</div>
       <div className="dlg-tx">{def.tx}</div>
       {hasOpts && (

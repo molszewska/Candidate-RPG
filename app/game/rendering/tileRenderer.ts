@@ -311,20 +311,20 @@ export function drawInteriorTile(ctx: CanvasRenderingContext2D, tx: number, ty: 
     // Extends 12px above the tile so the bust is ~44px tall (bigger than 32px character)
     // Head
     px(ctx, bx + 9,  by - 12, 14, 16, '#c8c8c8');
-    px(ctx, bx + 10, by - 13, 12, 2,  '#c8c8c8'); // crown
+    px(ctx, bx + 10, by - 13, 12, 2,  '#c8c8c8');
     // Hair (short, receding)
     px(ctx, bx + 10, by - 13, 12, 3,  '#8a8a8a');
-    px(ctx, bx + 9,  by - 11, 2,  5,  '#8a8a8a'); // left temple
-    px(ctx, bx + 21, by - 11, 2,  5,  '#8a8a8a'); // right temple
+    px(ctx, bx + 9,  by - 11, 2,  5,  '#8a8a8a');
+    px(ctx, bx + 21, by - 11, 2,  5,  '#8a8a8a');
     // Cheeks / jaw shaping
     px(ctx, bx + 8,  by - 8,  2,  6,  '#bbb');
     px(ctx, bx + 22, by - 8,  2,  6,  '#bbb');
     // Round glasses (iconic — two square lenses)
     px(ctx, bx + 9,  by - 6,  6,  5,  '#444');
     px(ctx, bx + 17, by - 6,  6,  5,  '#444');
-    px(ctx, bx + 10, by - 5,  4,  3,  '#c0c0c0'); // left lens
-    px(ctx, bx + 18, by - 5,  4,  3,  '#c0c0c0'); // right lens
-    px(ctx, bx + 15, by - 5,  2,  1,  '#444');    // bridge
+    px(ctx, bx + 10, by - 5,  4,  3,  '#c0c0c0');
+    px(ctx, bx + 18, by - 5,  4,  3,  '#c0c0c0');
+    px(ctx, bx + 15, by - 5,  2,  1,  '#444');
     // Nose
     px(ctx, bx + 14, by - 1,  4,  4,  '#b0b0b0');
     // Neck
@@ -345,6 +345,20 @@ export function drawInteriorTile(ctx: CanvasRenderingContext2D, tx: number, ty: 
     ctx.fillStyle = '#F9BD2B';
     ctx.fillText('SJ', bx + 16, by + 22);
     ctx.restore();
+  }
+  if (t === TI.COUCH) {
+    // Green sectional couch, top-down view
+    px(ctx, bx, by, TILE, TILE, '#0e2010');
+    // Back cushion (top strip — player faces from below)
+    px(ctx, bx + 1, by + 1, TILE - 2, 10, '#1a4820');
+    px(ctx, bx + 2, by + 2, TILE - 4,  8, '#1f5526');
+    // Seat cushion
+    px(ctx, bx + 1, by + 11, TILE - 2, TILE - 13, '#2d7a32');
+    px(ctx, bx + 2, by + 12, TILE - 4, TILE - 16, '#38963c');
+    // Seat highlight
+    px(ctx, bx + 3, by + 13, TILE - 8, 2, '#48b04c');
+    // Cushion seam
+    px(ctx, bx + TILE / 2, by + 11, 1, TILE - 14, '#1f5526');
   }
 }
 

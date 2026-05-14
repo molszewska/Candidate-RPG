@@ -26,7 +26,8 @@ export const AREA_NAMES: Record<Area, string> = {
 
 const SOLID_TILES: Set<number> = new Set([
   T.WALL, T.ROOF, T.BILL, T.DUMP, T.LAMP, T.STOREFRONT, T.DOOR,
-  TI.SHELF, TI.DESK, TI.CHEST, TI.GLASS, TI.BOOK, TI.WORKBENCH, TI.PAINTING, TI.BUST,
+  TI.SHELF, TI.DESK, TI.CHEST, TI.GLASS, TI.BOOK, TI.COUCH,
+  TI.WORKBENCH, TI.PAINTING, TI.BUST,
 ]);
 
 export function isSolid(map: MapGrid, tx: number, ty: number): boolean {

@@ -150,6 +150,23 @@ export function drawPaul(ctx: CanvasRenderingContext2D, bx: number, by: number) 
   px(ctx, bx+13*S, by+4*S, 5*S, 2*S, '#c8e8c8');
 }
 
+export function drawMrHog(ctx: CanvasRenderingContext2D, bx: number, by: number) {
+  drawHog(ctx, bx, by, '#e8d060', '#4a2a10', S);
+  // White lab coat over lower body
+  px(ctx, bx+4*S, by+9*S, 8*S, 4*S, '#e8e8e8');
+  px(ctx, bx+3*S, by+10*S, 10*S, 2*S, '#e8e8e8');
+  // Glasses frames
+  px(ctx, bx+3*S, by+6*S, 4*S, S, '#999');
+  px(ctx, bx+3*S, by+8*S, 4*S, S, '#999');
+  px(ctx, bx+3*S, by+6*S, S, 3*S, '#999');
+  px(ctx, bx+6*S, by+6*S, S, 3*S, '#999');
+  px(ctx, bx+9*S, by+6*S, 4*S, S, '#999');
+  px(ctx, bx+9*S, by+8*S, 4*S, S, '#999');
+  px(ctx, bx+9*S, by+6*S, S, 3*S, '#999');
+  px(ctx, bx+12*S, by+6*S, S, 3*S, '#999');
+  px(ctx, bx+7*S, by+7*S, 2*S, S, '#999');
+}
+
 // ── Player sprite ─────────────────────────────────────────────────────────────
 export type PlayerSpec = {
   species: 'human' | 'hog';
