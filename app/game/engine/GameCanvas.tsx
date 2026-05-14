@@ -51,6 +51,7 @@ type NPC = (typeof NPCS_BY_AREA)[keyof typeof NPCS_BY_AREA][number];
 
 function drawNPC(ctx: CanvasRenderingContext2D, npc: NPC) {
   npc.drawFn(ctx, npc.x * TILE, npc.y * TILE);
+  if (!npc.name) return;
   ctx.font = '6px "Press Start 2P"'; ctx.textAlign = 'center';
   const label = npc.name.length > 12 ? npc.name.slice(0, 12) + '…' : npc.name;
   const tw = ctx.measureText(label).width;
