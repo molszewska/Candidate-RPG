@@ -33,6 +33,9 @@ export const DLG: Record<string, DlgNode> = {
   bus_warning: { sp: 'NARRATOR', tx: "When life gives you lemons,\ndon't walk in front of buses.",
     opts: [{ l: "True, I guess", n: null }] },
 
+  angry_twitter_guy: { sp: 'ANGRY TWITTER GUY', tx: "*He won't even look up at you. He's just tweeting something on his phone and muttering angrily.*",
+    opts: [{ l: "...", n: null }] },
+
   enter_hogpatch: { sp: 'DOOR', tx: "[ THE STREET ]\n\nHogPatch, San Francisco.\nThe whole team hangs out here.\nAlso, there's a bus.",
     opts: [{ l: "Head outside →", n: null, fn: 'enter_hogpatch' }, { l: "Not now", n: null }] },
   enter_lobby_from_street: { sp: 'ENTRANCE', tx: "[ POSTHOG HQ ]\n\nYou head back inside.",

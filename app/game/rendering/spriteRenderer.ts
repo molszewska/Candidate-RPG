@@ -206,6 +206,14 @@ export function drawDana(ctx: CanvasRenderingContext2D, bx: number, by: number) 
   px(ctx, bx+4*S, by-2*S, 8*S, S, '#1a0800');
 }
 
+export function drawAngryTwitterGuy(ctx: CanvasRenderingContext2D, bx: number, by: number) {
+  drawHuman(ctx, bx, by+2*S, '#D4A882', '#e06010', '#444', 'tshirt', 2, false, false);
+  // Phone held in both hands, looking down at it
+  px(ctx, bx+5*S,  by+11*S, 6*S, S,   '#111');
+  px(ctx, bx+5*S,  by+12*S, 6*S, 4*S, '#111');
+  px(ctx, bx+6*S,  by+12*S, 4*S, 3*S, '#3af');
+}
+
 // ── Ghost sprite (ghostly hedgehog) ──────────────────────────────────────────
 export function drawGhost(ctx: CanvasRenderingContext2D, gx: number, gy: number, t: number) {
   ctx.save();
