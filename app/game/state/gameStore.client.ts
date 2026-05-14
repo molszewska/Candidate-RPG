@@ -1,6 +1,24 @@
 import { create } from 'zustand';
 import type { Area } from '../data/maps';
 
+export const AREA_PATHS: Record<Area, string> = {
+  hogpatch: '/game/street',
+  lobby:    '/game/lobby',
+  burrow:   '/game/engineering',
+  den:      '/game/gtm',
+  vault:    '/game/company',
+  trash:    '/game/top-secret',
+};
+
+export const PATH_TO_AREA: Record<string, Area> = {
+  '/game/street':      'hogpatch',
+  '/game/lobby':       'lobby',
+  '/game/engineering': 'burrow',
+  '/game/gtm':         'den',
+  '/game/company':     'vault',
+  '/game/top-secret':  'trash',
+};
+
 export type Screen = 'howToPlay' | 'charCreator' | 'game';
 
 export type PlayerState = {
@@ -84,6 +102,7 @@ export const useGameStore = create<GameState & GameActions>((set, get) => ({
       areaName: AREA_NAMES[a],
       player: { ...s.player, x: sp.x, y: sp.y, dir: 2 },
     }));
+    window.history.pushState(null, '', AREA_PATHS[a]);
   },
   updatePlayer: (patch) => set((s) => ({ player: { ...s.player, ...patch } })),
   setDialogue: (key) => set({ dialogue: key }),

@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import { useGameStore } from '../state/gameStore.client';
+import { useGameStore, PATH_TO_AREA, AREA_PATHS } from '../state/gameStore.client';
 import { currentMap } from '../data/maps';
 import { isSolid, getTileAct } from '../data/areas';
 import { NPCS_BY_AREA } from '../data/npcs';
@@ -83,6 +83,19 @@ export function GameCanvas() {
   const rafRef = useRef(0);
   const ghostRef = useRef({ x: 0, y: 0, init: false });
   const ghostAreaRef = useRef<string>('');
+
+  // Sync area from URL on mount and on browser back/forward
+  useEffect(() => {
+    const applyPath = (path: string) => {
+      const area = PATH_TO_AREA[path];
+      if (area) useGameStore.getState().setArea(area);
+      else window.history.replaceState(null, '', AREA_PATHS[useGameStore.getState().area]);
+    };
+    applyPath(window.location.pathname);
+    const onPop = () => applyPath(window.location.pathname);
+    window.addEventListener('popstate', onPop);
+    return () => window.removeEventListener('popstate', onPop);
+  }, []);
 
   useEffect(() => {
     const canvas = canvasRef.current;
