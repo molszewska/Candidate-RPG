@@ -29,7 +29,7 @@ export function HUD() {
           ACH_MAP[id] ? <div key={id} className="ach-pip">{ACH_MAP[id]}</div> : null
         )}
       </div>
-      {nearHint && <div id="nearHint" style={{ display: 'block' }}>[ SPACE ] INTERACT</div>}
+      {nearHint && <div id="nearHint" style={{ display: 'block' }}>[ SPACE ] {nearHint}</div>}
     </div>
   );
 }

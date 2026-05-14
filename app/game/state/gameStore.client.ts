@@ -67,7 +67,7 @@ type GameState = {
   achievementToast: { id: string; name: string } | null;
   achievements: Set<string>;
   trashOpened: Set<string>;
-  nearHint: boolean;
+  nearHint: string | false;
 };
 
 type GameActions = {
@@ -78,7 +78,7 @@ type GameActions = {
   setVideoUrl: (url: string | null) => void;
   unlockAchievement: (id: string, name: string) => void;
   trackTrashFile: (dlg: string) => void;
-  setNearHint: (v: boolean) => void;
+  setNearHint: (v: string | false) => void;
 };
 
 const TRASH_RECENT_DLGS = [

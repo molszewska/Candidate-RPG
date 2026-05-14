@@ -142,11 +142,14 @@ export function GameCanvas() {
       } else {
         const { tx, ty } = getFacing(fresh.player);
         const npcs = NPCS_BY_AREA[fresh.area];
-        const hint =
-          npcs.some((n) => n.x === tx && n.y === ty) ||
-          !!getTileAct(fresh.area, tx, ty) ||
-          !!getTileAct(fresh.area, fresh.player.x, fresh.player.y);
-        store.setNearHint(hint);
+        const npc = npcs.find((n) => n.x === tx && n.y === ty);
+        const facingAct = getTileAct(fresh.area, tx, ty);
+        const standAct = getTileAct(fresh.area, fresh.player.x, fresh.player.y);
+        let hintLabel: string | false = false;
+        if (npc) hintLabel = npc.name || 'TALK';
+        else if (facingAct) hintLabel = DLG[facingAct]?.sp || 'INTERACT';
+        else if (standAct) hintLabel = DLG[standAct]?.sp || 'INTERACT';
+        store.setNearHint(hintLabel);
       }
 
       // Snap ghost to player on first frame or area change
