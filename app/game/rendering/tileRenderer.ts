@@ -150,12 +150,15 @@ export function drawTile(ctx: CanvasRenderingContext2D, tx: number, ty: number, 
 
 export function drawInteriorTile(ctx: CanvasRenderingContext2D, tx: number, ty: number, t: number, floorColor?: string) {
   const bx = tx * TILE, by = ty * TILE;
+  const isCarpet = floorColor === '#c94040';
   const floorC = floorColor ?? '#2a2a2a';
-  const groutC = floorColor ? '#c0bdb4' : '#222';
+  const groutC = floorColor && !isCarpet ? '#c0bdb4' : '#222';
   px(ctx, bx, by, TILE, TILE, floorC);
-  ctx.fillStyle = groutC;
-  ctx.fillRect(bx, by, TILE, 1); ctx.fillRect(bx, by, 1, TILE);
-  if (floorColor) {
+  if (!isCarpet) {
+    ctx.fillStyle = groutC;
+    ctx.fillRect(bx, by, TILE, 1); ctx.fillRect(bx, by, 1, TILE);
+  }
+  if (floorColor && !isCarpet) {
     // Subtle marble veining
     const vc = '#c8c4bc';
     if ((tx + ty * 3) % 7 === 0) px(ctx, bx + 5, by + 9,  16, 1, vc);
@@ -240,15 +243,29 @@ export function drawInteriorTile(ctx: CanvasRenderingContext2D, tx: number, ty: 
   }
   if (t === TI.TV) {
     px(ctx, bx, by, TILE, TILE, floorC);
-    px(ctx, bx + 2, by + 2, TILE - 4, TILE - 8, '#1a1a1a');
-    px(ctx, bx + 3, by + 3, TILE - 6, TILE - 10, '#111');
-    px(ctx, bx + 4, by + 4, TILE - 8, TILE - 12, '#0a0a2a');
-    px(ctx, bx + 5, by + 6, 6, 1, '#aaaaff'); px(ctx, bx + 5, by + 9, 10, 1, '#aaaaff');
-    px(ctx, bx + 5, by + 12, 8, 1, '#aaaaff'); px(ctx, bx + 5, by + 15, 12, 1, '#aaaaff');
-    px(ctx, bx + 4, by + TILE - 10, TILE - 8, 6, '#F9BD2B');
-    px(ctx, bx + 6, by + TILE - 8, TILE - 12, 2, '#1a1a1a');
-    px(ctx, bx + 13, by + TILE - 6, 6, 4, '#333');
-    px(ctx, bx + 10, by + TILE - 4, 12, 2, '#444');
+    // Wall-mount arm (extends 12px above tile like bust)
+    px(ctx, bx + 13, by - 12, 6, 14, '#555');
+    px(ctx, bx + 10, by - 3,  10, 3, '#666');
+    // Outer bezel — 30px tall (by-11 to by+19)
+    px(ctx, bx + 1,  by - 11, TILE - 2, 30, '#1a1a1a');
+    px(ctx, bx + 2,  by - 10, TILE - 4, 28, '#111');
+    // Screen
+    px(ctx, bx + 3,  by - 8,  TILE - 6, 22, '#0a0a2a');
+    // Show content lines
+    px(ctx, bx + 5,  by - 6,  7,  1, '#aaaaff');
+    px(ctx, bx + 5,  by - 3,  12, 1, '#aaaaff');
+    px(ctx, bx + 5,  by,      9,  1, '#aaaaff');
+    px(ctx, bx + 5,  by + 3,  14, 1, '#aaaaff');
+    px(ctx, bx + 5,  by + 6,  6,  1, '#aaaaff');
+    px(ctx, bx + 5,  by + 9,  11, 1, '#aaaaff');
+    // Brand strip
+    px(ctx, bx + 3,  by + 14, TILE - 6, 4, '#F9BD2B');
+    px(ctx, bx + 5,  by + 15, TILE - 10, 2, '#1a1a1a');
+    // Stand + base
+    px(ctx, bx + 13, by + 19, 6, 4, '#333');
+    px(ctx, bx + 10, by + 22, 12, 2, '#444');
+    px(ctx, bx + 7,  by + 24, 18, 5, '#2a2a2a');
+    px(ctx, bx + 5,  by + 28, 22, 3, '#333');
   }
   if (t === TI.MERCH) {
     px(ctx, bx, by, TILE, TILE, floorC);
@@ -598,6 +615,16 @@ function drawMuseumDetails(ctx: CanvasRenderingContext2D) {
   ctx.fillRect(bustCx - 56, bustCy - 56, 112, 112);
   ctx.restore();
 
+  // Spotlight glow on TV (symmetric to bust)
+  ctx.save();
+  const tvCx = 16 * TILE + 16, tvCy = 6 * TILE;
+  const tvGrad = ctx.createRadialGradient(tvCx, tvCy, 4, tvCx, tvCy, 56);
+  tvGrad.addColorStop(0, 'rgba(255,240,160,0.20)');
+  tvGrad.addColorStop(1, 'rgba(255,240,160,0)');
+  ctx.fillStyle = tvGrad;
+  ctx.fillRect(tvCx - 56, tvCy - 56, 112, 112);
+  ctx.restore();
+
   // Rope barrier in front of bust
   const postY = 8 * TILE + 10;
   drawStanchion(ctx, 1 * TILE + 16, postY);
@@ -614,6 +641,22 @@ function drawMuseumDetails(ctx: CanvasRenderingContext2D) {
   );
   ctx.stroke();
   ctx.restore();
+
+  // Rope barrier in front of TV (symmetric)
+  drawStanchion(ctx, 14 * TILE + 16, postY);
+  drawStanchion(ctx, 18 * TILE + 16, postY);
+  ctx.save();
+  ctx.strokeStyle = '#c49a14';
+  ctx.lineWidth = 2;
+  ctx.beginPath();
+  ctx.moveTo(14 * TILE + 16, postY + 10);
+  ctx.bezierCurveTo(
+    15 * TILE + 16, postY + 16,
+    17 * TILE + 16, postY + 16,
+    18 * TILE + 16, postY + 10
+  );
+  ctx.stroke();
+  ctx.restore();
 }
 
 export function drawMap(ctx: CanvasRenderingContext2D, area: Area, map: MapGrid) {
@@ -625,10 +668,23 @@ export function drawMap(ctx: CanvasRenderingContext2D, area: Area, map: MapGrid)
       } else if (t === T.WALL || t === T.ROOF || t === T.DOOR) {
         drawTile(ctx, tx, ty, t);
       } else {
-        drawInteriorTile(ctx, tx, ty, t, area === 'trash' ? '#d8d4cc' : undefined);
+        let floorC: string | undefined;
+        if (area === 'trash') {
+          const onCarpet = tx >= 9 && tx <= 10 && ty >= 3 && ty <= 12;
+          floorC = onCarpet ? '#c94040' : '#d8d4cc';
+        }
+        drawInteriorTile(ctx, tx, ty, t, floorC);
       }
     }
   }
-  if (area === 'trash') { drawTopSecretPainting(ctx); drawMuseumDetails(ctx); return; }
+  if (area === 'trash') {
+    // Gold carpet trim on both edges (cols 9 and 10)
+    ctx.fillStyle = '#8B6914';
+    ctx.fillRect(9 * TILE,      3 * TILE, 3, 10 * TILE);
+    ctx.fillRect(11 * TILE - 3, 3 * TILE, 3, 10 * TILE);
+    drawTopSecretPainting(ctx);
+    drawMuseumDetails(ctx);
+    return;
+  }
   if (area === 'hogpatch') drawHogpatchLabels(ctx);
 }
