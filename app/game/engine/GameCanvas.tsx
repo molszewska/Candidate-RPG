@@ -232,6 +232,12 @@ export function GameCanvas() {
         if (nearPostIt)   drawThoughtBubble(ctx, plBx, plBy, ['post-it? no idea', 'how to do it right']);
         else if (nearDylan) drawThoughtBubble(ctx, plBx, plBy, 'thx Dylan!');
       }
+      if (fresh.area === 'den') {
+        const { x: plx, y: ply } = fresh.player;
+        const plBx = plx * TILE, plBy = ply * TILE;
+        const nearLandon = Math.abs(plx - 6) <= 2 && Math.abs(ply - 7) <= 2;
+        if (nearLandon) drawThoughtBubble(ctx, plBx, plBy, "you're not my real dad!!");
+      }
 
       rafRef.current = requestAnimationFrame(loop);
     };
