@@ -204,9 +204,11 @@ export function GameCanvas() {
         const nearBook    = Math.abs(plx - 8)  <= 2 && Math.abs(ply - 7)  <= 2;
         const nearMrHog   = Math.abs(plx - 17) <= 2 && Math.abs(ply - 12) <= 2;
         const nearShelves = plx <= 5 && ply >= 1 && ply <= 10;
-        if (nearBook)        drawThoughtBubble(ctx, plBx, plBy, ['source of truth', 'or open source?']);
-        else if (nearMrHog)  drawThoughtBubble(ctx, plBx, plBy, ['time to stop running', 'away from my feelings']);
+        const nearFigures = plx >= 12 && plx <= 18 && ply <= 4;
+        if (nearBook)         drawThoughtBubble(ctx, plBx, plBy, ['source of truth', 'or open source?']);
+        else if (nearMrHog)   drawThoughtBubble(ctx, plBx, plBy, ['time to stop running', 'away from my feelings']);
         else if (nearShelves) drawThoughtBubble(ctx, plBx, plBy, "let's nerd more");
+        else if (nearFigures) drawThoughtBubble(ctx, plBx, plBy, ['gonna get my own', 'James ♥']);
       }
       if (fresh.area === 'hogpatch') {
         updateBlimp(blimpRef.current);
