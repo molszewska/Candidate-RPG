@@ -930,6 +930,19 @@ function drawMuseumDetails(ctx: CanvasRenderingContext2D) {
   ctx.restore();
 }
 
+export function drawVaultLabels(ctx: CanvasRenderingContext2D) {
+  ctx.font = '6px "Press Start 2P"';
+  ctx.textAlign = 'center';
+  const cx = 8 * TILE + 16;
+  const cy = 13 * TILE - 5;
+  const text = 'LOBBY';
+  const tw = ctx.measureText(text).width;
+  px(ctx, Math.round(cx - tw / 2 - 4), cy - 10, Math.round(tw + 8), 12, 'rgba(14,14,14,0.85)');
+  ctx.fillStyle = '#F9BD2B';
+  ctx.fillText(text, cx, cy);
+  ctx.textAlign = 'left';
+}
+
 export function drawMap(ctx: CanvasRenderingContext2D, area: Area, map: MapGrid) {
   for (let ty = 0; ty < ROWS; ty++) {
     for (let tx = 0; tx < COLS; tx++) {
@@ -959,4 +972,5 @@ export function drawMap(ctx: CanvasRenderingContext2D, area: Area, map: MapGrid)
   }
   if (area === 'hogpatch') drawHogpatchLabels(ctx);
   if (area === 'lobby') drawLobbyLabels(ctx);
+  if (area === 'vault') drawVaultLabels(ctx);
 }

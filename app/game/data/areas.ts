@@ -75,6 +75,7 @@ export function getTileAct(area: Area, tx: number, ty: number): string | null {
     if (t === T.DOOR)   return 'exit_area';
     if (t === TI.BOOK)  return 'vault_handbook';
     if (t === TI.GLASS) return 'action_figure';
+    if (t === TI.TV)    return 'vault_demo_tv';
     if (t === TI.MERCH) {
       if (ty <= 2) return 'vault_values';
       if (ty <= 6) return 'vault_culture';

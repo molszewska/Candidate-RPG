@@ -105,6 +105,9 @@ export const DLG: Record<string, DlgNode> = {
   exit_area: { sp: 'EXIT', tx: "[ You head back to the lobby. ]",
     opts: [{ l: "← Leave", n: null, fn: 'enter_lobby' }] },
 
+  vault_demo_tv: { sp: 'FLAT SCREEN', tx: "[ A large TV mounted on the wall. ]\n\nThe PostHog product demo is\nqueued up.\n\n[ The screen is on. ]",
+    opts: [{ l: "[ watch demo ▶ ]", n: null, fn: 'open_vault_demo' }, { l: "[ not now ]", n: null }] },
+
   marius_root: { sp: 'MARIUS ANDRA', tx: "*doesn't look up*\n\nOh. Hi. What.",
     opts: [{ l: "What do you do?", n: 'marius_role' }, { l: "Tell me about Post-it notes", n: 'marius_postit' }, { l: "What's the three finger rule?", n: 'marius_3finger' }, { l: "Tips for the SuperDay?", n: 'marius_superday' }] },
   marius_role: { sp: 'MARIUS ANDRA', tx: "I'm working on Data Tools, and I\nteach how to use Post-it notes\nCORRECTLY. Also I built the\noriginal PostHog SDK.",

@@ -31,6 +31,7 @@ function executeFn(fn: string, setArea: (a: Area) => void, setVideoUrl: (url: st
     case 'open_eli_profile':     window.open('https://posthog.com/community/profiles/43103', '_blank'); break;
     case 'open_rune_profile':    window.open('https://posthog.com/community/profiles/34692', '_blank'); break;
     case 'open_zbynek_profile':  window.open('https://posthog.com/community/profiles/35811', '_blank'); break;
+    case 'open_vault_demo':      setVideoUrl('https://www.youtube.com/embed/1FZji2L-LmM?autoplay=1'); break;
     default: break;
   }
 }
