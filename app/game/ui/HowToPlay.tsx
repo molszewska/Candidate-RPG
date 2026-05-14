@@ -1,4 +1,12 @@
+import { useEffect } from 'react';
+
 export function HowToPlay({ onStart }: { onStart: () => void }) {
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => { if (e.key === 'Enter') { e.preventDefault(); onStart(); } };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [onStart]);
+
   return (
     <div className="screen-wrap" style={{ position: 'absolute', inset: 0, background: '#1a1a1a' }}>
       <div className="screen-header" style={{ flexDirection: 'column', gap: 8 }}>

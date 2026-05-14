@@ -29,6 +29,14 @@ export function CharacterCreator() {
     setScreen('game');
   };
 
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Enter' && !(e.target instanceof HTMLInputElement)) { e.preventDefault(); begin(); }
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [nameInput]);
+
   return (
     <div className="screen-wrap" style={{ position: 'absolute', inset: 0, background: '#1a1a1a' }}>
       <div className="screen-header">
