@@ -301,36 +301,42 @@ export function drawInteriorTile(ctx: CanvasRenderingContext2D, tx: number, ty: 
     px(ctx, bx, by, TILE, TILE, '#f0ede0');
   }
   if (t === TI.BUST) {
-    // Stone plinth
-    px(ctx, bx + 10, by + 24, 12, 6, '#6a6a6a');
-    px(ctx, bx + 8,  by + 28, 16, 3, '#555');
-    // Shoulders (turtleneck)
-    px(ctx, bx + 5,  by + 16, 22, 10, '#888');
-    px(ctx, bx + 7,  by + 14, 18, 4,  '#999');
-    px(ctx, bx + 10, by + 13, 12, 3,  '#aaa');
-    // Neck
-    px(ctx, bx + 13, by + 11, 6,  4,  '#b0b0b0');
+    // Extends 12px above the tile so the bust is ~44px tall (bigger than 32px character)
     // Head
-    px(ctx, bx + 10, by + 4,  12, 8,  '#c8c8c8');
-    px(ctx, bx + 9,  by + 5,  14, 7,  '#c8c8c8');
-    px(ctx, bx + 11, by + 3,  10, 3,  '#c8c8c8');
-    // Round glasses (iconic)
-    px(ctx, bx + 9,  by + 8,  5,  4,  '#555');
-    px(ctx, bx + 18, by + 8,  5,  4,  '#555');
-    px(ctx, bx + 10, by + 9,  3,  2,  '#b0b0b0'); // left lens
-    px(ctx, bx + 19, by + 9,  3,  2,  '#b0b0b0'); // right lens
-    px(ctx, bx + 14, by + 9,  4,  1,  '#555');    // bridge
+    px(ctx, bx + 9,  by - 12, 14, 16, '#c8c8c8');
+    px(ctx, bx + 10, by - 13, 12, 2,  '#c8c8c8'); // crown
+    // Hair (short, receding)
+    px(ctx, bx + 10, by - 13, 12, 3,  '#8a8a8a');
+    px(ctx, bx + 9,  by - 11, 2,  5,  '#8a8a8a'); // left temple
+    px(ctx, bx + 21, by - 11, 2,  5,  '#8a8a8a'); // right temple
+    // Cheeks / jaw shaping
+    px(ctx, bx + 8,  by - 8,  2,  6,  '#bbb');
+    px(ctx, bx + 22, by - 8,  2,  6,  '#bbb');
+    // Round glasses (iconic — two square lenses)
+    px(ctx, bx + 9,  by - 6,  6,  5,  '#444');
+    px(ctx, bx + 17, by - 6,  6,  5,  '#444');
+    px(ctx, bx + 10, by - 5,  4,  3,  '#c0c0c0'); // left lens
+    px(ctx, bx + 18, by - 5,  4,  3,  '#c0c0c0'); // right lens
+    px(ctx, bx + 15, by - 5,  2,  1,  '#444');    // bridge
     // Nose
-    px(ctx, bx + 14, by + 11, 2,  2,  '#aaa');
-    // Hair shadow at top
-    px(ctx, bx + 11, by + 3,  10, 2,  '#999');
+    px(ctx, bx + 14, by - 1,  4,  4,  '#b0b0b0');
+    // Neck
+    px(ctx, bx + 12, by + 3,  8,  5,  '#b8b8b8');
+    // Shoulders (wider stone base)
+    px(ctx, bx + 5,  by + 7,  22, 12, '#8a8a8a');
+    px(ctx, bx + 7,  by + 6,  18, 3,  '#9e9e9e'); // shoulder highlight
     // Plaque
-    px(ctx, bx + 9,  by + 22, 14, 3,  '#8B6914');
+    px(ctx, bx + 7,  by + 17, 18, 5,  '#8B6914');
+    px(ctx, bx + 8,  by + 18, 16, 3,  '#a07820'); // plaque face
+    // Plinth
+    px(ctx, bx + 8,  by + 22, 16, 6,  '#6a6a6a');
+    px(ctx, bx + 6,  by + 26, 20, 4,  '#555');
+    px(ctx, bx + 4,  by + 29, 24, 3,  '#444');
     ctx.save();
     ctx.font = '4px "Press Start 2P"';
     ctx.textAlign = 'center';
     ctx.fillStyle = '#F9BD2B';
-    ctx.fillText('SJ', bx + 16, by + 25);
+    ctx.fillText('SJ', bx + 16, by + 22);
     ctx.restore();
   }
 }
@@ -451,41 +457,52 @@ function drawTopSecretPainting(ctx: CanvasRenderingContext2D) {
   const W = 6 * TILE, H = 2 * TILE;
   const cx = ox + W / 2;
 
-  // Frame shadow + gold border
-  px(ctx, ox - 4, oy - 4, W + 8, H + 8, '#2a1a08');
-  px(ctx, ox - 2, oy - 2, W + 4, H + 4, '#8B6914');
-  px(ctx, ox - 1, oy - 1, W + 2, H + 2, '#F9BD2B');
-  // Canvas background — warm off-white
-  px(ctx, ox, oy, W, H, '#f5f0e8');
+  // Drop shadow
+  px(ctx, ox - 8, oy - 8, W + 16, H + 16, '#080503');
+  // Outer dark wood frame
+  px(ctx, ox - 7, oy - 7, W + 14, H + 14, '#1e0e04');
+  px(ctx, ox - 6, oy - 6, W + 12, H + 12, '#2e1608');
+  px(ctx, ox - 5, oy - 5, W + 10, H + 10, '#3e200a');
+  // Gold molding (3 layers — dark to bright)
+  px(ctx, ox - 4, oy - 4, W + 8,  H + 8,  '#5a3c08');
+  px(ctx, ox - 3, oy - 3, W + 6,  H + 6,  '#8B6914');
+  px(ctx, ox - 2, oy - 2, W + 4,  H + 4,  '#c49a14');
+  // Bright inner gold edge
+  px(ctx, ox - 1, oy - 1, W + 2,  H + 2,  '#F9BD2B');
+  // Cream mat (between frame and canvas)
+  px(ctx, ox, oy, W, H, '#ede8dc');
+  // Inner shadow line (mat → canvas)
+  px(ctx, ox + 4, oy + 4, W - 8,  H - 8,  '#1a1008');
+  // Canvas
+  px(ctx, ox + 5, oy + 5, W - 10, H - 10, '#f5f0e8');
 
   // Pixel art foot — top-down view, heel at top, toes pointing down
-  const sk  = '#D4A882'; // skin
-  const skd = '#b87850'; // shadow/edge
-  const nl  = '#f8ece6'; // toenail
+  // All coords relative to canvas top-left (ox+5, oy+5), canvas = 182×54px
+  const fc = oy + 5;
+  const sk  = '#D4A882';
+  const skd = '#b87850';
+  const nl  = '#f8ece6';
 
-  // Heel (rounded rectangle at top)
-  px(ctx, cx - 14, oy + 4,  28, 2,  sk);
-  px(ctx, cx - 16, oy + 6,  32, 14, sk);
-  px(ctx, cx - 14, oy + 20, 28, 2,  skd); // heel bottom shadow
-
-  // Arch (slightly narrower)
-  px(ctx, cx - 12, oy + 22, 24, 8, sk);
-
-  // Ball of foot (wider than arch)
-  px(ctx, cx - 18, oy + 30, 36, 10, sk);
-
-  // Toes (big toe on left, pinky on right)
+  // Heel
+  px(ctx, cx - 13, fc + 2,  26, 2,  sk);
+  px(ctx, cx - 15, fc + 4,  30, 11, sk);
+  px(ctx, cx - 13, fc + 14, 26, 2,  skd);
+  // Arch
+  px(ctx, cx - 11, fc + 16, 22, 7,  sk);
+  // Ball of foot
+  px(ctx, cx - 17, fc + 22, 34, 9,  sk);
+  // Toes
   const toes = [
-    { dx: -18, w: 10, h: 13 },
-    { dx:  -7, w:  8, h: 11 },
-    { dx:   2, w:  7, h: 10 },
-    { dx:  10, w:  6, h:  9 },
-    { dx:  17, w:  5, h:  8 },
+    { dx: -17, w: 9,  h: 12 },
+    { dx:  -7, w: 7,  h: 10 },
+    { dx:   1, w: 6,  h:  9 },
+    { dx:   8, w: 5,  h:  8 },
+    { dx:  14, w: 4,  h:  7 },
   ];
   for (const t of toes) {
-    px(ctx, cx + t.dx, oy + 39, t.w, t.h, sk);
-    px(ctx, cx + t.dx + 1, oy + 38, t.w - 2, 3, nl); // toenail
-    px(ctx, cx + t.dx, oy + 39 + t.h - 2, t.w, 2, skd); // toe shadow
+    px(ctx, cx + t.dx, fc + 30, t.w, t.h, sk);
+    px(ctx, cx + t.dx + 1, fc + 29, t.w - 2, 3, nl);
+    px(ctx, cx + t.dx, fc + 30 + t.h - 2, t.w, 2, skd);
   }
 
   // Caption
@@ -493,7 +510,7 @@ function drawTopSecretPainting(ctx: CanvasRenderingContext2D) {
   ctx.font = '7px "Press Start 2P"';
   ctx.textAlign = 'center';
   ctx.fillStyle = '#4a3020';
-  ctx.fillText('OnlyToes', cx, oy + H - 5);
+  ctx.fillText('OnlyToes', cx, oy + H - 8);
   ctx.restore();
 }
 
