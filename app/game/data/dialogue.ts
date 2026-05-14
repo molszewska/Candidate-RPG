@@ -34,7 +34,8 @@ export const DLG: Record<string, DlgNode> = {
   bus_warning: { sp: 'NARRATOR', tx: "When life gives you lemons,\ndon't walk in front of buses.",
     opts: [{ l: "True, I guess", n: null }] },
 
-  hotdog_stand: { sp: 'HOT HOG STAND', tx: "It's a PostHog hot dog stand.\nThe smell is making you hungry.",
+  hotdog_stand: { sp: 'HOT HOG STAND', bigImg: '/hotdog_image.png',
+    tx: "It's a PostHog hot dog stand.\nThe smell is making you hungry.",
     opts: [{ l: "[take a ketchup packet]", n: null }] },
 
   angry_twitter_guy: { sp: 'ANGRY TWITTER GUY', tx: "*He won't even look up at you. He's just tweeting something on his phone and muttering angrily.*",
