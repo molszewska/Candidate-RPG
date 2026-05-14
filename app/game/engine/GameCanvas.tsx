@@ -223,10 +223,12 @@ export function GameCanvas() {
         const nearAngryTwitter = Math.abs(plx - 3)  <= 2 && Math.abs(ply - 7) <= 2;
         const nearDumpster     = Math.abs(plx - 14) <= 2 && Math.abs(ply - 11) <= 2;
         const nearBillboard    = Math.abs(plx - 8)  <= 2 && Math.abs(ply - 2) <= 2;
+        const nearHotdog       = Math.abs(plx - 2)  <= 2 && Math.abs(ply - 1) <= 2;
         if (nearCreators)     drawThoughtBubble(ctx, plx * TILE, ply * TILE, 'NICE, these are the coolest people');
         else if (nearAngryTwitter) drawThoughtBubble(ctx, plx * TILE, ply * TILE, 'ick');
         else if (nearDumpster) drawThoughtBubble(ctx, plx * TILE, ply * TILE, ['ugh, stinks!', 'lemme check this out...']);
-        else if (nearBillboard) drawThoughtBubble(ctx, plx * TILE, ply * TILE, '💀');
+        else if (nearBillboard) drawThoughtBubble(ctx, plx * TILE, ply * TILE, '💀', true);
+        else if (nearHotdog)   drawThoughtBubble(ctx, plx * TILE, ply * TILE, ['free hot dogs!', 'Free is a fair price']);
       }
       if (fresh.area === 'burrow') {
         const { x: plx, y: ply } = fresh.player;

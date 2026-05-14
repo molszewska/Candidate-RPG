@@ -229,13 +229,13 @@ export function drawAngryTwitterGuy(ctx: CanvasRenderingContext2D, bx: number, b
 }
 
 // ── Thought bubble ───────────────────────────────────────────────────────────
-export function drawThoughtBubble(ctx: CanvasRenderingContext2D, bx: number, by: number, lines: string | string[]) {
+export function drawThoughtBubble(ctx: CanvasRenderingContext2D, bx: number, by: number, lines: string | string[], dark = false) {
   const textLines = Array.isArray(lines) ? lines : [lines];
   ctx.save();
   ctx.font = '8px "Press Start 2P"';
   ctx.textAlign = 'left';
 
-  const maxW = Math.max(...textLines.map(l => Math.ceil(ctx.measureText(l).width)));
+  const maxW = Math.max(20, ...textLines.map(l => Math.ceil(ctx.measureText(l).width)));
   const pad = 7;
   const lineH = 11;
   const bw = maxW + pad * 2;
@@ -260,14 +260,16 @@ export function drawThoughtBubble(ctx: CanvasRenderingContext2D, bx: number, by:
   }
 
   // Bubble fill + border
-  px(ctx, bubX, bubY, bw, bh, '#E5E7E0');
-  ctx.fillStyle = '#1a1a1a';
+  const bgColor = dark ? '#1a1a1a' : '#E5E7E0';
+  const fgColor = dark ? '#E5E7E0' : '#1a1a1a';
+  px(ctx, bubX, bubY, bw, bh, bgColor);
+  ctx.fillStyle = fgColor;
   ctx.fillRect(bubX, bubY, bw, 1);
   ctx.fillRect(bubX, bubY + bh - 1, bw, 1);
   ctx.fillRect(bubX, bubY, 1, bh);
   ctx.fillRect(bubX + bw - 1, bubY, 1, bh);
 
-  ctx.fillStyle = '#1a1a1a';
+  ctx.fillStyle = fgColor;
   textLines.forEach((line, i) => {
     ctx.fillText(line, bubX + pad, bubY + pad + 7 + i * lineH);
   });
