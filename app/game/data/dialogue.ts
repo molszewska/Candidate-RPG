@@ -194,6 +194,9 @@ export const DLG: Record<string, DlgNode> = {
   merch_shelf: { sp: 'MERCH SHELF', tx: "[ Hoodies. Stickers. The tracksuit.\nThe hallucinating hog sticker.\nThe lawnmower (don't ask Charles).\n\nAll of this could be yours. ]",
     opts: [{ l: "[ eyes emoji ]", n: null }] },
 
+  server_rack: { sp: 'SERVER RACK', tx: "[ A wall of humming servers.\nLEDs pulse green and blue.\nIt's warm. Very warm. ]\n\nClickHouse. Running hot.\nOne bad query from a prod incident.\nWe're definitely fine.",
+    opts: [{ l: "[ back away slowly ]", n: null }] },
+
   computer_ga: { sp: 'TERMINAL', tx: "[ A retro terminal glows green ]\n\n$ cd isgoogleanalyticsillegal.com\n\nIn 2022 we made this site.\nPut it on Hacker News.\nIt was our biggest ever signup day.\nThe internet thought we were serious.\nWe were, kind of.",
     opts: [{ l: "[ open site ]", n: null, fn: 'open_ga_site' }, { l: "[ close terminal ]", n: null }] },
   postit: { sp: 'POST-IT WALL', tx: "[ The wall is covered floor to ceiling.\nEach note is a task, an idea,\na rule, a disagreement.\n\nOne note reads:\n'peel, don't pull.'\n\nAnother reads:\n*holds up three fingers* ]",

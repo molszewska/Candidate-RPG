@@ -22,9 +22,9 @@ export const NPCS_BY_AREA: Record<Area, NPC[]> = {
   hogpatch: [],
   burrow: [
     { id: 'marius',  name: 'MARIUS ANDRA',  x: 15, y: 6,  dir: 2, dlg: 'marius_root',  drawFn: drawMarius  },
-    { id: 'michael', name: 'MICHAEL M.',    x: 11, y: 6,  dir: 2, dlg: 'michael_root', drawFn: drawMichael },
+    { id: 'michael', name: 'MICHAEL',       x: 11, y: 6,  dir: 2, dlg: 'michael_root', drawFn: drawMichael },
     { id: 'dylan',   name: 'DYLAN MARTIN',  x: 5,  y: 6,  dir: 2, dlg: 'dylan_root',   drawFn: drawDylan   },
-    { id: 'danilo',  name: 'DANILO CAMPOS', x: 3,  y: 11, dir: 2, dlg: 'danilo_root',  drawFn: drawDanilo  },
+    { id: 'danilo',  name: 'DANILO',        x: 3,  y: 11, dir: 2, dlg: 'danilo_root',  drawFn: drawDanilo  },
     { id: 'paul',    name: "PAUL D'AMBRA",  x: 9,  y: 11, dir: 2, dlg: 'paul_eng_root', drawFn: drawPaul   },
   ],
   den: [

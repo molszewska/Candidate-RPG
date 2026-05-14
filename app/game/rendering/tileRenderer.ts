@@ -304,6 +304,34 @@ export function drawInteriorTile(ctx: CanvasRenderingContext2D, tx: number, ty: 
     if (isTop) px(ctx, px1, by + TILE - 2, pageW, 2, '#5a3a08');
     else        px(ctx, px1, by,             pageW, 2, '#5a3a08');
   }
+  if (t === TI.SERVER) {
+    px(ctx, bx, by, TILE, TILE, '#0d0d10');
+    px(ctx, bx+1, by+1, TILE-2, TILE-2, '#13131a');
+    // rack screws
+    px(ctx, bx+1, by+1, 2, 2, '#2a2a35'); px(ctx, bx+29, by+1, 2, 2, '#2a2a35');
+    px(ctx, bx+1, by+29, 2, 2, '#2a2a35'); px(ctx, bx+29, by+29, 2, 2, '#2a2a35');
+    // drive bays (vary pattern by tx so adjacent racks look different)
+    const bays = [4, 10, 16, 22];
+    const ledCols = ['#00cc44', '#0066ff', '#F9BD2B', '#cc2200'];
+    for (let i = 0; i < bays.length; i++) {
+      const row = bays[i];
+      px(ctx, bx+3,  by+row,   20, 5, '#09090f');
+      px(ctx, bx+4,  by+row+1, 18, 3, '#111118');
+      const active = (tx + ty + i) % 3 !== 2;
+      px(ctx, bx+5,  by+row+2, 2,  1, active ? '#00ee55' : '#004422');
+      px(ctx, bx+9,  by+row+2, (tx*3+i*5)%8+4, 1, '#1a2a1a');
+    }
+    // status LEDs on right strip
+    for (let i = 0; i < 4; i++) {
+      const lit = (tx + ty + i) % 4 !== 3;
+      px(ctx, bx+26, by+bays[i], 3, 3, lit ? ledCols[i] : '#111');
+    }
+    // top cable management bar
+    px(ctx, bx+2, by+2, TILE-4, 1, '#1e1e28');
+    // vents at bottom
+    px(ctx, bx+3, by+28, 26, 1, '#09090f');
+    px(ctx, bx+3, by+30, 26, 1, '#09090f');
+  }
   if (t === TI.PAINTING) {
     px(ctx, bx, by, TILE, TILE, '#f0ede0');
   }
