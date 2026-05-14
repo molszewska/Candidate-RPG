@@ -85,12 +85,12 @@ export const DLG: Record<string, DlgNode> = {
       { l: "[ nice to meet you ]", n: null },
     ] },
 
-  magda_creator: { sp: 'MAGDA', tx: "Hola! I'm Magda. What's up?",
+  magda_creator: { sp: 'MAGDA', img: '/pixel_magda.png', tx: "Hola! I'm Magda. What's up?",
     opts: [
       { l: "Tell me about yourself", n: 'magda_creator_about' },
       { l: "[ nice to meet you ]", n: null },
     ] },
-  magda_creator_about: { sp: 'MAGDA', tx: "Poland born, now based in south Spain.\nI lead Onboarding at PostHog.\nObsessive travel planner — I research\nevery coffee shop before I land.\nAlso a full-time cat hostage.",
+  magda_creator_about: { sp: 'MAGDA', img: '/pixel_magda.png', tx: "Poland born, now based in south Spain.\nI lead Onboarding at PostHog.\nObsessive travel planner — I research\nevery coffee shop before I land.\nAlso a full-time cat hostage.",
     opts: [
       { l: "Check their community profile ↗", n: null, fn: 'open_magda_profile' },
       { l: "[ nice to meet you ]", n: null },
