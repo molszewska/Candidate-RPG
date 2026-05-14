@@ -224,6 +224,14 @@ export function GameCanvas() {
         if (nearCreators)     drawThoughtBubble(ctx, plx * TILE, ply * TILE, 'NICE, these are the coolest people');
         else if (nearAngryTwitter) drawThoughtBubble(ctx, plx * TILE, ply * TILE, 'ick');
       }
+      if (fresh.area === 'burrow') {
+        const { x: plx, y: ply } = fresh.player;
+        const plBx = plx * TILE, plBy = ply * TILE;
+        const nearPostIt = plx >= 12 && plx <= 18 && ply >= 1 && ply <= 4;
+        const nearDylan  = Math.abs(plx - 5) <= 2 && Math.abs(ply - 6) <= 2;
+        if (nearPostIt)   drawThoughtBubble(ctx, plBx, plBy, ['post-it? no idea', 'how to do it right']);
+        else if (nearDylan) drawThoughtBubble(ctx, plBx, plBy, 'thx Dylan!');
+      }
 
       rafRef.current = requestAnimationFrame(loop);
     };
