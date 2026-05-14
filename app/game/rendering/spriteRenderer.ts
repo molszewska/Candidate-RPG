@@ -232,12 +232,12 @@ export function drawAngryTwitterGuy(ctx: CanvasRenderingContext2D, bx: number, b
 export function drawThoughtBubble(ctx: CanvasRenderingContext2D, bx: number, by: number, lines: string | string[]) {
   const textLines = Array.isArray(lines) ? lines : [lines];
   ctx.save();
-  ctx.font = '6px "Press Start 2P"';
+  ctx.font = '8px "Press Start 2P"';
   ctx.textAlign = 'left';
 
   const maxW = Math.max(...textLines.map(l => Math.ceil(ctx.measureText(l).width)));
-  const pad = 6;
-  const lineH = 9;
+  const pad = 7;
+  const lineH = 11;
   const bw = maxW + pad * 2;
   const bh = pad + textLines.length * lineH + pad - 3;
   const rawBubX = bx + 16 - Math.floor(bw / 2);
@@ -269,7 +269,7 @@ export function drawThoughtBubble(ctx: CanvasRenderingContext2D, bx: number, by:
 
   ctx.fillStyle = '#1a1a1a';
   textLines.forEach((line, i) => {
-    ctx.fillText(line, bubX + pad, bubY + pad + 5 + i * lineH);
+    ctx.fillText(line, bubX + pad, bubY + pad + 7 + i * lineH);
   });
   ctx.restore();
 }
