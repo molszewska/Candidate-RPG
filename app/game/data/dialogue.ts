@@ -257,9 +257,6 @@ export const DLG: Record<string, DlgNode> = {
     opts: [{ l: "[ rattle it ]", n: null }] },
   ian_tv: { sp: 'TV', tx: "[ A TV showing a live counter ]\n\n10,247 GitHub usernames read.\n6h 14m.\n\nIan Vanagas read every single username\naloud when PostHog hit 10,000 stars.\nLive. On stream. All of them.",
     opts: [{ l: "[ salute Ian ]", n: null }] },
-  beanbag: { sp: 'BEAN BAG', tx: "[ A red bean bag. It looks\nvery comfortable. ]\n\n*you sit down*\n\n*you do not get up for 20 minutes*",
-    opts: [{ l: "[ eventually leave ]", n: null }] },
-
   trash_whitepaper: { sp: 'RECENTLY DELETED', tx: "Copy of whitepaper (2) - final FINAL.docx.pdf\n\n'7 years of iteration.\nStill not final.'",
     opts: [{ l: "[ close ]", n: null }] },
   trash_quickcalls: { sp: 'RECENTLY DELETED', tx: "quick calls script.txt\n\nhop on a quick call\nhop on a quick call\nhop on a quick call\n[file corrupted]",
