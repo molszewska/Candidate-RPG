@@ -494,6 +494,54 @@ export function drawInteriorTile(ctx: CanvasRenderingContext2D, tx: number, ty: 
     px(ctx, bx + 29, by + 14,  2,  4, '#444');
     px(ctx, bx + 30, by + 15,  1,  2, '#222');
   }
+  if (t === TI.FOOSBALL) {
+    px(ctx, bx, by, TILE, TILE, floorC);
+    const isLeft = (tx % 2) === 0;
+    const isTop  = (ty % 2) === 0;
+    const ox = isLeft ? bx : bx - TILE;
+    const oy = isTop  ? by : by - TILE;
+    ctx.save();
+    ctx.beginPath(); ctx.rect(bx, by, TILE, TILE); ctx.clip();
+    // Dark wood frame
+    px(ctx, ox+1, oy+1, 62, 62, '#3a2010');
+    // Green surface
+    px(ctx, ox+4, oy+4, 56, 56, '#2d7a32');
+    // Field lines
+    px(ctx, ox+31, oy+4, 2, 56, '#3a9a40');
+    px(ctx, ox+4,  oy+31, 56, 2, '#3a9a40');
+    ctx.strokeStyle = '#3a9a40'; ctx.lineWidth = 1.5;
+    ctx.beginPath(); ctx.arc(ox+32, oy+32, 9, 0, Math.PI*2); ctx.stroke();
+    // Ball
+    px(ctx, ox+31, oy+31, 2, 2, '#eee');
+    // Rods
+    ctx.fillStyle = '#aaa';
+    for (const ry of [16, 26, 38, 48]) ctx.fillRect(ox+1, oy+ry, 62, 2);
+    // Red team players
+    for (const ry of [16, 38]) {
+      for (const rx of [10, 32, 54]) px(ctx, ox+rx-2, oy+ry-4, 4, 9, '#c94040');
+    }
+    // Yellow team players
+    for (const rx of [10, 32, 54]) px(ctx, ox+rx-2, oy+26-4, 4, 9, '#F9BD2B');
+    for (const rx of [16, 32, 48]) px(ctx, ox+rx-2, oy+48-4, 4, 9, '#F9BD2B');
+    ctx.restore();
+  }
+  if (t === TI.LEADJAR) {
+    px(ctx, bx, by, TILE, TILE, floorC);
+    // Jar body
+    px(ctx, bx+9,  by+10, 14, 16, '#b8d0e8');
+    px(ctx, bx+10, by+11, 12, 14, '#d0e4f4');
+    // Lid
+    px(ctx, bx+8,  by+7,  16,  4, '#888');
+    px(ctx, bx+9,  by+8,  14,  2, '#aaa');
+    // Label
+    px(ctx, bx+10, by+14, 12,  7, '#f5f0e0');
+    px(ctx, bx+11, by+16,  4,  1, '#999');
+    px(ctx, bx+11, by+18,  6,  1, '#999');
+    // Shine
+    px(ctx, bx+11, by+12,  2,  8, '#e8f4ff');
+    // Dust at bottom (it's been empty a while)
+    px(ctx, bx+10, by+24, 12,  1, '#9ab0c8');
+  }
   if (t === TI.BOOK) {
     // Dark mahogany table surface
     px(ctx, bx, by, TILE, TILE, '#1a0d04');

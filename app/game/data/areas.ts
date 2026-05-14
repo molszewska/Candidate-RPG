@@ -27,7 +27,7 @@ export const AREA_NAMES: Record<Area, string> = {
 const SOLID_TILES: Set<number> = new Set([
   T.WALL, T.ROOF, T.BILL, T.DUMP, T.LAMP, T.STOREFRONT, T.DOOR, T.HOTDOG, T.HDSIGN,
   TI.SHELF, TI.DESK, TI.CHEST, TI.GLASS, TI.BOOK, TI.COUCH, TI.MERCH,
-  TI.WORKBENCH, TI.PAINTING, TI.BUST, TI.SERVER, TI.POSTIT, TI.COMPUTER, TI.BIGTV, TI.TV,
+  TI.WORKBENCH, TI.PAINTING, TI.BUST, TI.SERVER, TI.POSTIT, TI.COMPUTER, TI.BIGTV, TI.FOOSBALL, TI.LEADJAR, TI.TV,
   TI.PLANT, TI.SOFA, TI.STATUE, TI.ART, TI.OPENBOOK, TI.PENCIL,
 ]);
 
@@ -62,10 +62,13 @@ export function getTileAct(area: Area, tx: number, ty: number): string | null {
   }
 
   if (area === 'den') {
-    if (t === T.DOOR)     return 'exit_area';
-    if (t === TI.CHEST)   return 'ipo_chest';
+    if (t === T.DOOR)          return 'exit_area';
+    if (t === TI.CHEST)        return 'ipo_chest';
     if (t === TI.TV || t === TI.BIGTV) return 'ian_tv';
-return null;
+    if (t === TI.FOOSBALL)     return 'foosball';
+    if (t === TI.SHELF)        return 'gtm_podium';
+    if (t === TI.LEADJAR)      return 'leads_jar';
+    return null;
   }
 
   if (area === 'vault') {
