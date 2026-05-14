@@ -31,13 +31,13 @@ export type PlayerState = {
   dir: number;
 };
 
-const AREA_SPAWNS: Record<Area, { x: number; y: number }> = {
-  hogpatch: { x: 10, y: 7 },
-  burrow:   { x: 8,  y: 10 },
-  den:      { x: 8,  y: 10 },
-  vault:    { x: 8,  y: 10 },
-  trash:    { x: 8,  y: 10 },
-  lobby:    { x: 10, y: 12 },
+const AREA_SPAWNS: Record<Area, { x: number; y: number; dir: number }> = {
+  hogpatch: { x: 10, y: 1,  dir: 2 },
+  burrow:   { x: 8,  y: 12, dir: 0 },
+  den:      { x: 8,  y: 12, dir: 0 },
+  vault:    { x: 8,  y: 12, dir: 0 },
+  trash:    { x: 9,  y: 12, dir: 0 },
+  lobby:    { x: 10, y: 12, dir: 2 },
 };
 
 const AREA_NAMES: Record<Area, string> = {
@@ -112,7 +112,7 @@ export const useGameStore = create<GameState & GameActions>((set, get) => ({
     set((s) => ({
       area: a,
       areaName: AREA_NAMES[a],
-      player: { ...s.player, x: sp.x, y: sp.y, dir: returnSpawn?.dir ?? 2 },
+      player: { ...s.player, x: sp.x, y: sp.y, dir: sp.dir },
     }));
     window.history.pushState(null, '', AREA_PATHS[a]);
   },
