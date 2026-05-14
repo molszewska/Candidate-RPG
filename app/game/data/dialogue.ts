@@ -88,7 +88,7 @@ export const DLG: Record<string, DlgNode> = {
 
   marius_root: { sp: 'MARIUS ANDRA', tx: "*doesn't look up*\n\nOh. Hi. What.",
     opts: [{ l: "What do you do?", n: 'marius_role' }, { l: "Tell me about Post-it notes", n: 'marius_postit' }, { l: "What's the three finger rule?", n: 'marius_3finger' }] },
-  marius_role: { sp: 'MARIUS ANDRA', tx: "I lead infrastructure.\nAlso built the original SDKs back when\nthis was just James, Tim,\nand a Hacker News post.",
+  marius_role: { sp: 'MARIUS ANDRA', tx: "I'm working on Data Tools, and I\nteach how to use Post-it notes\nCORRECTLY. Also I built the\noriginal PostHog SDK.",
     opts: [{ l: "← Back", n: 'marius_root' }] },
   marius_postit: { sp: 'MARIUS ANDRA', tx: "The lift is everything.\nYou peel, not pull.\nIf you pull, you fold the corner\nand it won't stick.\n\nThis is not negotiable.",
     opts: [{ l: "Three finger rule? →", n: 'marius_3finger' }, { l: "← Back", n: 'marius_root' }] },
