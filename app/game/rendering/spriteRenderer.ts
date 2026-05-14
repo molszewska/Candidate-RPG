@@ -118,7 +118,7 @@ export function drawMichael(ctx: CanvasRenderingContext2D, bx: number, by: numbe
 }
 
 export function drawCharles(ctx: CanvasRenderingContext2D, bx: number, by: number) {
-  drawHuman(ctx, bx, by, '#D4A882', '#B8935A', '#334455', 'suit', 2, false, false);
+  drawHuman(ctx, bx, by, '#9a7848', '#2a1a0a', '#334455', 'suit', 2, false, false);
   px(ctx, bx+6*S, by+6*S, 4*S, S, '#E5E7E0');
 }
 
@@ -168,20 +168,26 @@ export function drawMrHog(ctx: CanvasRenderingContext2D, bx: number, by: number)
 }
 
 export function drawLandon(ctx: CanvasRenderingContext2D, bx: number, by: number) {
-  drawHuman(ctx, bx, by, '#D4A882', '#7a4a1a', '#3366cc', 'tshirt', 2, false, false);
+  drawHuman(ctx, bx, by, '#D4A882', '#1a1a1a', '#3366cc', 'tshirt', 2, false, false);
+  // Beard
+  px(ctx, bx+5*S,  by+5*S, 6*S, S,   '#222');
+  px(ctx, bx+4*S,  by+4*S, S,   S,   '#333');
+  px(ctx, bx+11*S, by+4*S, S,   S,   '#333');
+  px(ctx, bx+5*S,  by+4*S, S,   S,   '#2a2a2a');
+  px(ctx, bx+10*S, by+4*S, S,   S,   '#2a2a2a');
   // Phone in right hand
   px(ctx, bx+13*S, by+8*S, 3*S, 2*S, '#111');
   px(ctx, bx+14*S, by+7*S, 2*S, S, '#4488ff');
 }
 
 export function drawTyler(ctx: CanvasRenderingContext2D, bx: number, by: number) {
-  drawHuman(ctx, bx, by, '#C09878', '#1a1a1a', '#1a1a1a', 'hoodie', 2, false, false);
+  drawHuman(ctx, bx, by, '#C09878', '#a07830', '#1a1a1a', 'hoodie', 2, false, false);
   // Subtle hoodie pocket
   px(ctx, bx+6*S, by+9*S, 4*S, 2*S, '#2a2a2a');
 }
 
 export function drawSimon(ctx: CanvasRenderingContext2D, bx: number, by: number) {
-  drawHuman(ctx, bx, by, '#D8C4A0', '#c8a040', '#2a7755', 'tshirt', 2, false, false);
+  drawHuman(ctx, bx, by, '#D8C4A0', '#1a1a1a', '#2a7755', 'tshirt', 2, false, false);
   // Glasses
   px(ctx, bx+5*S, by+3*S, 2*S, S, '#555');
   px(ctx, bx+9*S, by+3*S, 2*S, S, '#555');
@@ -199,11 +205,7 @@ export function drawMagda(ctx: CanvasRenderingContext2D, bx: number, by: number)
 }
 
 export function drawDana(ctx: CanvasRenderingContext2D, bx: number, by: number) {
-  drawHuman(ctx, bx, by, '#7a5030', '#1a0800', '#335588', 'tshirt', 2, false, false);
-  // Wider natural hair
-  px(ctx, bx+3*S, by+0, 10*S, S, '#1a0800');
-  px(ctx, bx+3*S, by-S, 10*S, S, '#1a0800');
-  px(ctx, bx+4*S, by-2*S, 8*S, S, '#1a0800');
+  drawHuman(ctx, bx, by, '#D4B080', '#1a1a1a', '#335588', 'tshirt', 2, false, false);
 }
 
 export function drawAngryTwitterGuy(ctx: CanvasRenderingContext2D, bx: number, by: number) {

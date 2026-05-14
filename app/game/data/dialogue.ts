@@ -165,14 +165,14 @@ export const DLG: Record<string, DlgNode> = {
     opts: [{ l: "← Back", n: 'simon_root' }] },
 
   magda_root: { sp: 'MAGDA', tx: "*waves from across the room*\nHi! You made it this far!\nI'm Magda — I run Onboarding.\nAsk me anything.",
-    opts: [{ l: "What happens after the SuperDay?", n: 'magda_offer' }, { l: "What's week one like?", n: 'magda_firstweek' }, { l: "What does Onboarding mean here?", n: 'magda_job' }, { l: "[ leave ]", n: null }] },
+    opts: [{ l: "What happens after the SuperDay?", n: 'magda_offer' }, { l: "What's customer week one like?", n: 'magda_firstweek' }, { l: "What does Onboarding mean here?", n: 'magda_job' }, { l: "[ leave ]", n: null }] },
   magda_offer: { sp: 'MAGDA', tx: "We debrief fast after SuperDay.\nIf it's a yes, we move quickly.\nYou'll hear within a week.\nWe don't ghost. That's a promise.",
     opts: [{ l: "More →", n: 'magda_offer2' }, { l: "← Back", n: 'magda_root' }] },
   magda_offer2: { sp: 'MAGDA', tx: "The offer is straightforward.\nEquity, salary, no tricks.\nIf you have questions — ask Charles.\nHe enjoys numbers. Surprisingly.",
     opts: [{ l: "← Back", n: 'magda_root' }] },
-  magda_firstweek: { sp: 'MAGDA', tx: "Read the handbook. All of it.\nThen ask questions about it.\nWe pair you with someone on your team.\nThen we give you something to own.",
+  magda_firstweek: { sp: 'MAGDA', tx: "Events flowing. Dashboards built.\nBy day 7 they've answered a real question.\nIf a customer isn't getting value fast,\nsomething's broken. We fix it.",
     opts: [{ l: "← Back", n: 'magda_root' }] },
-  magda_job: { sp: 'MAGDA', tx: "I make sure new hires don't drown.\nFirst 90 days are critical.\nGood onboarding = lower churn.\nOf people, not just products.",
+  magda_job: { sp: 'MAGDA', tx: "We help customers actually use PostHog.\nNot just install it — get real value.\nMost churn happens in the first 30 days.\nWe make sure that doesn't happen.",
     opts: [{ l: "← Back", n: 'magda_root' }] },
 
   dana_root: { sp: 'DANA', tx: "*hangs up a call*\nSorry — customer escalation.\nAll good now. What's up?",
