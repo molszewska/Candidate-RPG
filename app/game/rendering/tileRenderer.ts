@@ -930,10 +930,10 @@ function drawMuseumDetails(ctx: CanvasRenderingContext2D) {
   ctx.restore();
 }
 
-export function drawVaultLabels(ctx: CanvasRenderingContext2D) {
+function drawLobbyExitLabel(ctx: CanvasRenderingContext2D, doorCol: number) {
   ctx.font = '6px "Press Start 2P"';
   ctx.textAlign = 'center';
-  const cx = 8 * TILE + 16;
+  const cx = doorCol * TILE + 16;
   const cy = 13 * TILE - 5;
   const text = 'LOBBY';
   const tw = ctx.measureText(text).width;
@@ -968,9 +968,12 @@ export function drawMap(ctx: CanvasRenderingContext2D, area: Area, map: MapGrid)
     ctx.fillRect(11 * TILE - 3, 3 * TILE, 3, 10 * TILE);
     drawTopSecretPainting(ctx);
     drawMuseumDetails(ctx);
+    drawLobbyExitLabel(ctx, 9);
     return;
   }
   if (area === 'hogpatch') drawHogpatchLabels(ctx);
   if (area === 'lobby') drawLobbyLabels(ctx);
-  if (area === 'vault') drawVaultLabels(ctx);
+  if (area === 'burrow') drawLobbyExitLabel(ctx, 8);
+  if (area === 'den')    drawLobbyExitLabel(ctx, 8);
+  if (area === 'vault')  drawLobbyExitLabel(ctx, 8);
 }
