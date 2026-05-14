@@ -300,6 +300,39 @@ export function drawInteriorTile(ctx: CanvasRenderingContext2D, tx: number, ty: 
   if (t === TI.PAINTING) {
     px(ctx, bx, by, TILE, TILE, '#f0ede0');
   }
+  if (t === TI.BUST) {
+    // Stone plinth
+    px(ctx, bx + 10, by + 24, 12, 6, '#6a6a6a');
+    px(ctx, bx + 8,  by + 28, 16, 3, '#555');
+    // Shoulders (turtleneck)
+    px(ctx, bx + 5,  by + 16, 22, 10, '#888');
+    px(ctx, bx + 7,  by + 14, 18, 4,  '#999');
+    px(ctx, bx + 10, by + 13, 12, 3,  '#aaa');
+    // Neck
+    px(ctx, bx + 13, by + 11, 6,  4,  '#b0b0b0');
+    // Head
+    px(ctx, bx + 10, by + 4,  12, 8,  '#c8c8c8');
+    px(ctx, bx + 9,  by + 5,  14, 7,  '#c8c8c8');
+    px(ctx, bx + 11, by + 3,  10, 3,  '#c8c8c8');
+    // Round glasses (iconic)
+    px(ctx, bx + 9,  by + 8,  5,  4,  '#555');
+    px(ctx, bx + 18, by + 8,  5,  4,  '#555');
+    px(ctx, bx + 10, by + 9,  3,  2,  '#b0b0b0'); // left lens
+    px(ctx, bx + 19, by + 9,  3,  2,  '#b0b0b0'); // right lens
+    px(ctx, bx + 14, by + 9,  4,  1,  '#555');    // bridge
+    // Nose
+    px(ctx, bx + 14, by + 11, 2,  2,  '#aaa');
+    // Hair shadow at top
+    px(ctx, bx + 11, by + 3,  10, 2,  '#999');
+    // Plaque
+    px(ctx, bx + 9,  by + 22, 14, 3,  '#8B6914');
+    ctx.save();
+    ctx.font = '4px "Press Start 2P"';
+    ctx.textAlign = 'center';
+    ctx.fillStyle = '#F9BD2B';
+    ctx.fillText('SJ', bx + 16, by + 25);
+    ctx.restore();
+  }
 }
 
 export function drawBillboard(ctx: CanvasRenderingContext2D) {

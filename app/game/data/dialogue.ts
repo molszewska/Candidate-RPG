@@ -215,4 +215,7 @@ export const DLG: Record<string, DlgNode> = {
 
   onlytoes_painting: { sp: 'PAINTING', tx: "[ A framed painting on the wall. ]\n\n  OnlyToes\n\n[ The artist is unknown.\n  The URL is not. ]",
     opts: [{ l: "[ open link ]", n: null, fn: 'open_feet' }, { l: "[ look away ]", n: null }] },
+
+  jobs_bust: { sp: 'MARBLE BUST', tx: "[ A marble bust on a stone plinth. ]\n\nSteve Jobs\n\n\"Dictator or tech bro?\"\n\n[ PostHog has thoughts. ]",
+    opts: [{ l: "[ open link ]", n: null, fn: 'open_dictator' }, { l: "[ step back ]", n: null }] },
 };
