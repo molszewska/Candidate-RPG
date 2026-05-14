@@ -270,8 +270,9 @@ export function drawThoughtBubble(ctx: CanvasRenderingContext2D, bx: number, by:
   ctx.fillRect(bubX + bw - 1, bubY, 1, bh);
 
   ctx.fillStyle = fgColor;
+  ctx.textAlign = 'center';
   textLines.forEach((line, i) => {
-    ctx.fillText(line, bubX + pad, bubY + pad + 7 + i * lineH);
+    ctx.fillText(line, bubX + bw / 2, bubY + pad + 7 + i * lineH);
   });
   ctx.restore();
 }
