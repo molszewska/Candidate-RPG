@@ -7,6 +7,7 @@ import { DLG } from '../data/dialogue';
 import { drawMap, drawLobbyLabels } from '../rendering/tileRenderer';
 import { drawPlayerSprite, drawGhost, drawThoughtBubble } from '../rendering/spriteRenderer';
 import { createBus, updateBus, drawBus } from '../rendering/busRenderer';
+import { createBlimp, updateBlimp, drawBlimp } from '../rendering/blimpRenderer';
 import { px } from '../rendering/utils';
 import { HUD } from '../ui/HUD';
 import { DialogueBox } from '../ui/DialogueBox';
@@ -81,6 +82,7 @@ export function GameCanvas() {
   const keysRef = useRef<Record<string, boolean>>({});
   const moveTimerRef = useRef(0);
   const busRef = useRef(createBus());
+  const blimpRef = useRef(createBlimp());
   const lastRef = useRef(0);
   const rafRef = useRef(0);
   const ghostRef = useRef({ x: 0, y: 0, init: false });
@@ -197,6 +199,8 @@ export function GameCanvas() {
         else if (nearEngineering) drawThoughtBubble(ctx, plBx, plBy, 'meep meep');
       }
       if (fresh.area === 'hogpatch') {
+        updateBlimp(blimpRef.current);
+        drawBlimp(ctx, blimpRef.current);
         updateBus(busRef.current);
         drawBus(ctx, busRef.current, busRef.current.x, 13 * TILE);
         const { x: plx, y: ply } = fresh.player;

@@ -23,9 +23,10 @@ export const NPCS_BY_AREA: Record<Area, NPC[]> = {
   ],
   hogpatch: [
     { id: 'angry_twitter_guy', name: 'ANGRY TWITTER GUY', x: 3,  y: 7, dir: 2, dlg: 'angry_twitter_guy', drawFn: drawAngryTwitterGuy },
-    { id: 'eli',               name: '',              x: 15, y: 2, dir: 2, dlg: 'creators_root',     drawFn: drawEli   },
-    { id: 'rune',              name: 'GAME CREATORS', x: 16, y: 2, dir: 2, dlg: 'creators_root',     drawFn: drawRune  },
-    { id: 'zbynek',            name: '',              x: 17, y: 2, dir: 2, dlg: 'creators_root',     drawFn: drawZbynek },
+    { id: 'eli',               name: '',              x: 15, y: 2, dir: 2, dlg: 'eli_root',          drawFn: drawEli    },
+    { id: 'rune',              name: 'GAME CREATORS', x: 16, y: 2, dir: 2, dlg: 'rune_root',         drawFn: drawRune   },
+    { id: 'zbynek',            name: '',              x: 17, y: 2, dir: 2, dlg: 'zbynek_root',        drawFn: drawZbynek },
+    { id: 'magda',             name: '',              x: 18, y: 2, dir: 2, dlg: 'magda_creator',      drawFn: drawMagda  },
   ],
   burrow: [
     { id: 'marius',  name: 'MARIUS ANDRA',  x: 15, y: 6,  dir: 2, dlg: 'marius_root',  drawFn: drawMarius  },
@@ -40,7 +41,6 @@ export const NPCS_BY_AREA: Record<Area, NPC[]> = {
     { id: 'landon',  name: 'LANDON',       x: 6,  y: 7,  dir: 2, dlg: 'landon_root',  drawFn: drawLandon  },
     { id: 'dana',    name: 'DANA',         x: 10, y: 7,  dir: 2, dlg: 'dana_root',    drawFn: drawDana    },
     { id: 'simon',   name: 'SIMON',        x: 16, y: 7,  dir: 2, dlg: 'simon_root',   drawFn: drawSimon   },
-    { id: 'magda',   name: 'MAGDA',        x: 3,  y: 11, dir: 2, dlg: 'magda_root',   drawFn: drawMagda   },
   ],
   vault: [
     { id: 'mr_hog', name: 'MR. HOG', x: 17, y: 12, dir: 2, dlg: 'mr_hog', drawFn: drawMrHog },

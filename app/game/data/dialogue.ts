@@ -52,6 +52,30 @@ export const DLG: Record<string, DlgNode> = {
       { l: "[ nice work! ]",     n: null },
     ] },
 
+  eli_root: { sp: 'ELI', img: '/pixel_eli.png', tx: "Hey! I'm Eli — I find great people\nfor PostHog.\nPsychology, Philosophy, Data Science.\nAlso deeply invested in Pokémon.",
+    opts: [
+      { l: "Community profile ↗", n: null, fn: 'open_eli_profile' },
+      { l: "[ nice to meet you ]", n: null },
+    ] },
+
+  rune_root: { sp: 'RUNE', img: '/pixel_rune.png', tx: "Hey — I'm Rune.\nDenmark born, now living in the Algarve.\n8+ years in recruitment.\nSci-fi nerd. Observer by nature.",
+    opts: [
+      { l: "Community profile ↗", n: null, fn: 'open_rune_profile' },
+      { l: "[ nice to meet you ]", n: null },
+    ] },
+
+  zbynek_root: { sp: 'ZBYNEK', img: '/pixel_zbynek.png', tx: "Hi! I'm Zbynek — from Prague.\nI work in People & Talent.\nBasketball fan. Big believer in therapy.\nAlso: my dog Yvon is exceptional.",
+    opts: [
+      { l: "Community profile ↗", n: null, fn: 'open_zbynek_profile' },
+      { l: "[ nice to meet you ]", n: null },
+    ] },
+
+  magda_creator: { sp: 'MAGDA', tx: "Hola! I'm Magda — Poland born,\nnow based in south of Spain.\nI lead Onboarding at PostHog.\nObsessive travel planner. Cat hostage.",
+    opts: [
+      { l: "Community profile ↗", n: null, fn: 'open_magda_profile' },
+      { l: "[ nice to meet you ]", n: null },
+    ] },
+
   enter_hogpatch: { sp: 'DOOR', tx: "[ THE STREET ]\n\nHogPatch, San Francisco.\nThe whole team hangs out here.\nAlso, there's a bus.",
     opts: [{ l: "Head outside →", n: null, fn: 'enter_hogpatch' }, { l: "Not now", n: null }] },
   enter_lobby_from_street: { sp: 'ENTRANCE', tx: "[ POSTHOG HQ ]\n\nYou head back inside.",
