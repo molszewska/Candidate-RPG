@@ -355,5 +355,5 @@ export function drawMap(ctx: CanvasRenderingContext2D, area: Area, map: MapGrid)
     }
   }
   if (area === 'trash') return;
-  if (area === 'hogpatch') { drawBillboard(ctx); drawHogpatchLabels(ctx); }
+  if (area === 'hogpatch') drawHogpatchLabels(ctx);
 }
