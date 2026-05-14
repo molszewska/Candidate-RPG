@@ -148,12 +148,19 @@ export function drawTile(ctx: CanvasRenderingContext2D, tx: number, ty: number, 
   }
 }
 
-export function drawInteriorTile(ctx: CanvasRenderingContext2D, tx: number, ty: number, t: number) {
+export function drawInteriorTile(ctx: CanvasRenderingContext2D, tx: number, ty: number, t: number, floorColor?: string) {
   const bx = tx * TILE, by = ty * TILE;
-  const floorC = '#2a2a2a', groutC = '#222';
+  const floorC = floorColor ?? '#2a2a2a';
+  const groutC = floorColor ? '#c0bdb4' : '#222';
   px(ctx, bx, by, TILE, TILE, floorC);
   ctx.fillStyle = groutC;
   ctx.fillRect(bx, by, TILE, 1); ctx.fillRect(bx, by, 1, TILE);
+  if (floorColor) {
+    // Subtle marble veining
+    const vc = '#c8c4bc';
+    if ((tx + ty * 3) % 7 === 0) px(ctx, bx + 5, by + 9,  16, 1, vc);
+    if ((tx * 2 + ty) % 9 === 0) px(ctx, bx + 2, by + 20, 12, 1, vc);
+  }
   if (t === TI.FLOOR) return;
 
   if (t === TI.DESK) {
@@ -514,6 +521,59 @@ function drawTopSecretPainting(ctx: CanvasRenderingContext2D) {
   ctx.restore();
 }
 
+function drawStanchion(ctx: CanvasRenderingContext2D, x: number, y: number) {
+  px(ctx, x - 1, y,      3, 14, '#8B6914');
+  px(ctx, x - 3, y - 3,  7,  3, '#F9BD2B');
+  px(ctx, x - 3, y + 14, 7,  3, '#8B6914');
+  px(ctx, x - 4, y + 17, 9,  2, '#6a4a08');
+}
+
+function drawMuseumDetails(ctx: CanvasRenderingContext2D) {
+  // Spotlight cone above painting — wide warm beam from ceiling
+  ctx.save();
+  const paintCx = 10 * TILE; // center of cols 7-12
+  const coneGrad = ctx.createLinearGradient(paintCx, 0, paintCx, 3 * TILE);
+  coneGrad.addColorStop(0,   'rgba(255,240,160,0.0)');
+  coneGrad.addColorStop(0.5, 'rgba(255,240,160,0.13)');
+  coneGrad.addColorStop(1,   'rgba(255,240,160,0.0)');
+  ctx.fillStyle = coneGrad;
+  ctx.beginPath();
+  ctx.moveTo(paintCx - 4, 0);
+  ctx.lineTo(paintCx + 4, 0);
+  ctx.lineTo(paintCx + 56, 3 * TILE);
+  ctx.lineTo(paintCx - 56, 3 * TILE);
+  ctx.closePath();
+  ctx.fill();
+  ctx.restore();
+
+  // Spotlight glow on bust
+  ctx.save();
+  const bustCx = 3 * TILE + 16, bustCy = 6 * TILE;
+  const bustGrad = ctx.createRadialGradient(bustCx, bustCy, 4, bustCx, bustCy, 56);
+  bustGrad.addColorStop(0, 'rgba(255,240,160,0.20)');
+  bustGrad.addColorStop(1, 'rgba(255,240,160,0)');
+  ctx.fillStyle = bustGrad;
+  ctx.fillRect(bustCx - 56, bustCy - 56, 112, 112);
+  ctx.restore();
+
+  // Rope barrier in front of bust
+  const postY = 8 * TILE + 10;
+  drawStanchion(ctx, 1 * TILE + 16, postY);
+  drawStanchion(ctx, 5 * TILE + 16, postY);
+  ctx.save();
+  ctx.strokeStyle = '#c49a14';
+  ctx.lineWidth = 2;
+  ctx.beginPath();
+  ctx.moveTo(1 * TILE + 16, postY + 10);
+  ctx.bezierCurveTo(
+    2 * TILE + 16, postY + 16,
+    4 * TILE,      postY + 16,
+    5 * TILE + 16, postY + 10
+  );
+  ctx.stroke();
+  ctx.restore();
+}
+
 export function drawMap(ctx: CanvasRenderingContext2D, area: Area, map: MapGrid) {
   for (let ty = 0; ty < ROWS; ty++) {
     for (let tx = 0; tx < COLS; tx++) {
@@ -523,10 +583,10 @@ export function drawMap(ctx: CanvasRenderingContext2D, area: Area, map: MapGrid)
       } else if (t === T.WALL || t === T.ROOF || t === T.DOOR) {
         drawTile(ctx, tx, ty, t);
       } else {
-        drawInteriorTile(ctx, tx, ty, t);
+        drawInteriorTile(ctx, tx, ty, t, area === 'trash' ? '#d8d4cc' : undefined);
       }
     }
   }
-  if (area === 'trash') { drawTopSecretPainting(ctx); return; }
+  if (area === 'trash') { drawTopSecretPainting(ctx); drawMuseumDetails(ctx); return; }
   if (area === 'hogpatch') drawHogpatchLabels(ctx);
 }
