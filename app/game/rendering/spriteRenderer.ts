@@ -110,7 +110,7 @@ export function drawTim(ctx: CanvasRenderingContext2D, bx: number, by: number) {
 }
 
 export function drawMarius(ctx: CanvasRenderingContext2D, bx: number, by: number) {
-  drawHuman(ctx, bx, by+S, '#C8946A', '#2a2a2a', '#446688', 'hoodie', 2, false, false);
+  drawHuman(ctx, bx, by+S, '#C8946A', '#c4a040', '#446688', 'hoodie', 2, false, false);
 }
 
 export function drawMichael(ctx: CanvasRenderingContext2D, bx: number, by: number) {
