@@ -108,7 +108,7 @@ export const DLG: Record<string, DlgNode> = {
   marius_superday: { sp: 'MARIUS ANDRA', tx: "Ship the core feature first.\nDon't over-engineer it.\nUse tech you know well.\n\nCommit often. Communicate via Slack.",
     opts: [{ l: "More →", n: 'marius_superday2' }, { l: "← Back", n: 'marius_root' }] },
   marius_superday2: { sp: 'MARIUS ANDRA', tx: "AI is fine for the project idea.\nNot for debugging your own code.\nRead the docs. Form a hypothesis.\nThen code. Not before.",
-    opts: [{ l: "Read more ↗", n: null, fn: 'open_hiring_process' }, { l: "← Back", n: 'marius_root' }] },
+    opts: [{ l: "Read more ↗", n: null, fn: 'open_eng_superday' }, { l: "← Back", n: 'marius_root' }] },
 
   michael_root: { sp: 'MICHAEL M.', tx: "Oh hey. What's up?",
     opts: [{ l: "How did you get here?", n: 'michael_bg' }, { l: "What did you build?", n: 'michael_built' }, { l: "Any advice for applicants?", n: 'michael_advice' }, { l: "What's a SuperDay?", n: 'michael_superday' }, { l: "Tips for the tech screen?", n: 'michael_techscreen' }] },
@@ -122,11 +122,11 @@ export const DLG: Record<string, DlgNode> = {
   michael_superday: { sp: 'MICHAEL M.', tx: "It's a paid work day with PostHog.\nIt's your opportunity to shine and\nshow us what you've got!\nGet creative and ship something\nreally cool!",
     opts: [{ l: "More →", n: 'michael_superday2' }, { l: "← Back", n: 'michael_root' }] },
   michael_superday2: { sp: 'MICHAEL M.', tx: "You propose the project yourself.\nWe don't hand you a brief.\nSlack us often — we're active all day.\nAt the end: show us what you shipped.",
-    opts: [{ l: "Read more ↗", n: null, fn: 'open_hiring_process' }, { l: "← Back", n: 'michael_root' }] },
+    opts: [{ l: "Read more ↗", n: null, fn: 'open_eng_superday' }, { l: "← Back", n: 'michael_root' }] },
   michael_techscreen: { sp: 'MICHAEL M.', tx: "60 minutes. Architecture and\ndesign. Open-ended problem.\nNo single right answer.\nSlow down before you speed up.",
     opts: [{ l: "More →", n: 'michael_techscreen2' }, { l: "← Back", n: 'michael_root' }] },
   michael_techscreen2: { sp: 'MICHAEL M.', tx: "Ask clarifying questions first.\nExplain WHY you chose something.\nTradeoffs matter more than\nthe answer. Think about users.",
-    opts: [{ l: "Read more ↗", n: null, fn: 'open_hiring_process' }, { l: "← Back", n: 'michael_root' }] },
+    opts: [{ l: "Read more ↗", n: null, fn: 'open_eng_techscreen' }, { l: "← Back", n: 'michael_root' }] },
 
   charles_root: { sp: 'CHARLES COOK', tx: "*adjusts tie*\nHello. Can I help you?",
     opts: [{ l: "Why are you wearing a suit?", n: 'charles_suit' }, { l: "What does Ops actually do?", n: 'charles_ops' }, { l: "Weirdest thing you've done?", n: 'charles_weird' }] },
@@ -236,7 +236,7 @@ export const DLG: Record<string, DlgNode> = {
   paul_exec_tips: { sp: "PAUL D'AMBRA", tx: "The exec round isn't a quiz.\nWe want to know how you think.\nHow do you understand users?\nWhat drives your product decisions?",
     opts: [{ l: "More →", n: 'paul_exec_tips2' }, { l: "← Back", n: 'paul_eng_root' }] },
   paul_exec_tips2: { sp: "PAUL D'AMBRA", tx: "Be genuinely curious. Ask us things.\nWe care about culture fit —\nnot in a vague way.\nCan you work low ego, high trust?",
-    opts: [{ l: "Read more ↗", n: null, fn: 'open_hiring_process' }, { l: "← Back", n: 'paul_eng_root' }] },
+    opts: [{ l: "← Back", n: 'paul_eng_root' }] },
 
   paul_root: { sp: "PAUL D'AMBRA", tx: "Welcome.\n\nBefore you enter — gelato?",
     opts: [{ l: "Yes please", n: 'paul_gelato_yes' }, { l: "No thanks", n: 'paul_gelato_no' }] },

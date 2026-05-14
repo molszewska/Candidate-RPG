@@ -21,7 +21,9 @@ function executeFn(fn: string, setArea: (a: Area) => void) {
     case 'open_dictator':     window.open('https://posthog.com/sparks-joy/dictator-or-tech-bro', '_blank'); break;
     case 'open_hogflix':      window.open('https://www.youtube.com/watch?v=xxBqKIBBxQw', '_blank'); break;
     case 'open_startup_jobs':   window.open('https://posthog.com/newsletter/how-to-get-job-startup', '_blank'); break;
-    case 'open_hiring_process': window.open('https://posthog.com/handbook/people/hiring-process', '_blank'); break;
+    case 'open_hiring_process':  window.open('https://posthog.com/handbook/people/hiring-process', '_blank'); break;
+    case 'open_eng_techscreen':  window.open('https://posthog.com/handbook/people/hiring-process/engineering-tech-screen', '_blank'); break;
+    case 'open_eng_superday':    window.open('https://posthog.com/handbook/people/hiring-process/engineering-superday', '_blank'); break;
     default: break;
   }
 }
