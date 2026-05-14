@@ -198,6 +198,16 @@ export function GameCanvas() {
         else if (nearGTM)        drawThoughtBubble(ctx, plBx, plBy, 'smells like money...');
         else if (nearEngineering) drawThoughtBubble(ctx, plBx, plBy, 'meep meep');
       }
+      if (fresh.area === 'vault') {
+        const { x: plx, y: ply } = fresh.player;
+        const plBx = plx * TILE, plBy = ply * TILE;
+        const nearBook    = Math.abs(plx - 8)  <= 2 && Math.abs(ply - 7)  <= 2;
+        const nearMrHog   = Math.abs(plx - 17) <= 2 && Math.abs(ply - 12) <= 2;
+        const nearShelves = plx <= 5 && ply >= 1 && ply <= 10;
+        if (nearBook)        drawThoughtBubble(ctx, plBx, plBy, ['source of truth', 'or open source?']);
+        else if (nearMrHog)  drawThoughtBubble(ctx, plBx, plBy, ['time to stop running', 'away from my feelings']);
+        else if (nearShelves) drawThoughtBubble(ctx, plBx, plBy, "let's nerd more");
+      }
       if (fresh.area === 'hogpatch') {
         updateBlimp(blimpRef.current);
         drawBlimp(ctx, blimpRef.current);
