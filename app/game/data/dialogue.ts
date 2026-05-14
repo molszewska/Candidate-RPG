@@ -380,8 +380,8 @@ export const DLG: Record<string, DlgNode> = {
   trash_aislop: { sp: 'ARCHIVE', tx: "ai slop.tsx\n\nThis was a close call.",
     opts: [{ l: "[ close ]", n: null }] },
 
-  onlytoes_painting: { sp: 'PAINTING', tx: "[ A framed painting on the wall. ]\n\n  OnlyToes\n\n[ The artist is unknown.\n  The URL is not. ]",
-    opts: [{ l: "[ open link ]", n: null, fn: 'open_feet' }, { l: "[ look away ]", n: null }] },
+  onlytoes_painting: { sp: 'PAINTING', bigImg: '/feet.png', tx: "A framed painting on the wall.\nThe artist is unknown.\nThe URL is not.",
+    opts: [{ l: "show me more please", n: null, fn: 'open_feet' }, { l: "I'm more into elbows tbh", n: null }] },
 
   jobs_bust: { sp: 'MARBLE BUST', tx: "[ A marble bust on a stone plinth. ]\n\nSteve Jobs\n\n\"Dictator or tech bro?\"\n\n[ PostHog has thoughts. ]",
     opts: [{ l: "[ open link ]", n: null, fn: 'open_dictator' }, { l: "[ step back ]", n: null }] },
