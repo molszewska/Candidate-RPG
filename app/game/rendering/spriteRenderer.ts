@@ -242,7 +242,7 @@ export function drawThoughtBubble(ctx: CanvasRenderingContext2D, bx: number, by:
   const bh = pad + textLines.length * lineH + pad - 3;
   const rawBubX = bx + 16 - Math.floor(bw / 2);
   const bubX = Math.max(2, Math.min(638 - bw, rawBubX));
-  const bubY = by - 14 - 4 - bh;
+  const bubY = Math.max(2, by - 14 - 4 - bh);
 
   // Ascending dots
   const dots = [
