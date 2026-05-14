@@ -182,6 +182,8 @@ export function GameCanvas() {
         const nearTopSecret  = plx >= 16 && plx <= 18 && Math.abs(ply - 4)  <= 2;
         const nearCompany    = plx <= 3  && Math.abs(ply - 7)  <= 2;
         const nearStreet     = Math.abs(plx - 5) <= 2 && ply >= 11 && ply <= 13;
+        const nearGTM        = Math.abs(plx - 14) <= 2 && ply <= 2;
+        const nearEngineering = Math.abs(plx - 5) <= 2 && ply <= 2;
         if (nearJames || nearTim) drawThoughtBubble(ctx, plBx, plBy, [
           'oh, I should talk to',
           'dis guys to increase',
@@ -191,6 +193,8 @@ export function GameCanvas() {
         else if (nearTopSecret)  drawThoughtBubble(ctx, plBx, plBy, 'interesting...');
         else if (nearCompany)    drawThoughtBubble(ctx, plBx, plBy, 'curious how is working here!');
         else if (nearStreet)     drawThoughtBubble(ctx, plBx, plBy, 'hot dog time!');
+        else if (nearGTM)        drawThoughtBubble(ctx, plBx, plBy, 'smells like money...');
+        else if (nearEngineering) drawThoughtBubble(ctx, plBx, plBy, 'meep meep');
       }
       if (fresh.area === 'hogpatch') {
         updateBus(busRef.current);
