@@ -10,7 +10,6 @@ import { createBus, updateBus, drawBus } from '../rendering/busRenderer';
 import { px } from '../rendering/utils';
 import { HUD } from '../ui/HUD';
 import { DialogueBox } from '../ui/DialogueBox';
-import { TrashOverlay } from '../ui/TrashOverlay';
 import { AchievementPopup } from '../ui/AchievementPopup';
 
 const TILE = 32;
@@ -193,7 +192,6 @@ export function GameCanvas() {
       />
       <HUD />
       <DialogueBox />
-      <TrashOverlay />
       <AchievementPopup />
     </div>
   );

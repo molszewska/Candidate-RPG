@@ -212,4 +212,7 @@ export const DLG: Record<string, DlgNode> = {
     opts: [{ l: "[ close ]", n: null }] },
   trash_aislop: { sp: 'ARCHIVE', tx: "ai slop.tsx\n\nThis was a close call.",
     opts: [{ l: "[ close ]", n: null }] },
+
+  onlytoes_painting: { sp: 'PAINTING', tx: "[ A framed painting on the wall. ]\n\n  OnlyToes\n\n[ The artist is unknown.\n  The URL is not. ]",
+    opts: [{ l: "[ open link ]", n: null, fn: 'open_feet' }, { l: "[ look away ]", n: null }] },
 };

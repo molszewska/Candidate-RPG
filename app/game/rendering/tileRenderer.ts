@@ -297,6 +297,9 @@ export function drawInteriorTile(ctx: CanvasRenderingContext2D, tx: number, ty: 
     if (isTop) px(ctx, px1, by + TILE - 2, pageW, 2, '#5a3a08');
     else        px(ctx, px1, by,             pageW, 2, '#5a3a08');
   }
+  if (t === TI.PAINTING) {
+    px(ctx, bx, by, TILE, TILE, '#f0ede0');
+  }
 }
 
 export function drawBillboard(ctx: CanvasRenderingContext2D) {
@@ -409,6 +412,58 @@ export function drawLobbyLabels(ctx: CanvasRenderingContext2D) {
   ctx.textAlign = 'left';
 }
 
+function drawTopSecretPainting(ctx: CanvasRenderingContext2D) {
+  // Painting spans rows 1-2, cols 7-12 (6×2 tiles = 192×64px)
+  const ox = 7 * TILE, oy = 1 * TILE;
+  const W = 6 * TILE, H = 2 * TILE;
+  const cx = ox + W / 2;
+
+  // Frame shadow + gold border
+  px(ctx, ox - 4, oy - 4, W + 8, H + 8, '#2a1a08');
+  px(ctx, ox - 2, oy - 2, W + 4, H + 4, '#8B6914');
+  px(ctx, ox - 1, oy - 1, W + 2, H + 2, '#F9BD2B');
+  // Canvas background — warm off-white
+  px(ctx, ox, oy, W, H, '#f5f0e8');
+
+  // Pixel art foot — top-down view, heel at top, toes pointing down
+  const sk  = '#D4A882'; // skin
+  const skd = '#b87850'; // shadow/edge
+  const nl  = '#f8ece6'; // toenail
+
+  // Heel (rounded rectangle at top)
+  px(ctx, cx - 14, oy + 4,  28, 2,  sk);
+  px(ctx, cx - 16, oy + 6,  32, 14, sk);
+  px(ctx, cx - 14, oy + 20, 28, 2,  skd); // heel bottom shadow
+
+  // Arch (slightly narrower)
+  px(ctx, cx - 12, oy + 22, 24, 8, sk);
+
+  // Ball of foot (wider than arch)
+  px(ctx, cx - 18, oy + 30, 36, 10, sk);
+
+  // Toes (big toe on left, pinky on right)
+  const toes = [
+    { dx: -18, w: 10, h: 13 },
+    { dx:  -7, w:  8, h: 11 },
+    { dx:   2, w:  7, h: 10 },
+    { dx:  10, w:  6, h:  9 },
+    { dx:  17, w:  5, h:  8 },
+  ];
+  for (const t of toes) {
+    px(ctx, cx + t.dx, oy + 39, t.w, t.h, sk);
+    px(ctx, cx + t.dx + 1, oy + 38, t.w - 2, 3, nl); // toenail
+    px(ctx, cx + t.dx, oy + 39 + t.h - 2, t.w, 2, skd); // toe shadow
+  }
+
+  // Caption
+  ctx.save();
+  ctx.font = '7px "Press Start 2P"';
+  ctx.textAlign = 'center';
+  ctx.fillStyle = '#4a3020';
+  ctx.fillText('OnlyToes', cx, oy + H - 5);
+  ctx.restore();
+}
+
 export function drawMap(ctx: CanvasRenderingContext2D, area: Area, map: MapGrid) {
   for (let ty = 0; ty < ROWS; ty++) {
     for (let tx = 0; tx < COLS; tx++) {
@@ -422,6 +477,6 @@ export function drawMap(ctx: CanvasRenderingContext2D, area: Area, map: MapGrid)
       }
     }
   }
-  if (area === 'trash') return;
+  if (area === 'trash') { drawTopSecretPainting(ctx); return; }
   if (area === 'hogpatch') drawHogpatchLabels(ctx);
 }
