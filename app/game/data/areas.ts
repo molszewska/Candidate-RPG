@@ -82,6 +82,7 @@ export function getTileAct(area: Area, tx: number, ty: number): string | null {
     if (t === T.DOOR) return 'exit_area';
     if (t === TI.PAINTING) return 'onlytoes_painting';
     if (t === TI.BUST) return 'jobs_bust';
+    if (t === TI.TV) return 'hogflix_tv';
     return null;
   }
 

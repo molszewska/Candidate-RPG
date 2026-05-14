@@ -19,6 +19,7 @@ function executeFn(fn: string, setArea: (a: Area) => void) {
     case 'open_lore':      window.open('https://posthog.com/handbook/company/lore', '_blank'); break;
     case 'open_deskhog':   window.open('https://posthog.com/deskhog', '_blank'); break;
     case 'open_dictator':  window.open('https://posthog.com/sparks-joy/dictator-or-tech-bro', '_blank'); break;
+    case 'open_hogflix':   window.open('https://www.youtube.com/watch?v=xxBqKIBBxQw', '_blank'); break;
     default: break;
   }
 }

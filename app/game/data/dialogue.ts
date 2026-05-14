@@ -239,4 +239,7 @@ export const DLG: Record<string, DlgNode> = {
 
   jobs_bust: { sp: 'MARBLE BUST', tx: "[ A marble bust on a stone plinth. ]\n\nSteve Jobs\n\n\"Dictator or tech bro?\"\n\n[ PostHog has thoughts. ]",
     opts: [{ l: "[ open link ]", n: null, fn: 'open_dictator' }, { l: "[ step back ]", n: null }] },
+
+  hogflix_tv: { sp: 'FLAT SCREEN', tx: "[ A TV mounted on the wall. ]\n\nHogFlix and Chill\n\n[ The screen flickers.\nSomething good is on. ]",
+    opts: [{ l: "[ watch ]", n: null, fn: 'open_hogflix' }, { l: "[ change channel ]", n: null }] },
 };
