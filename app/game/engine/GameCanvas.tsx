@@ -229,7 +229,9 @@ export function GameCanvas() {
         const plBx = plx * TILE, plBy = ply * TILE;
         const nearPostIt = plx >= 12 && plx <= 18 && ply >= 1 && ply <= 4;
         const nearDylan  = Math.abs(plx - 5) <= 2 && Math.abs(ply - 6) <= 2;
+        const nearMarius = Math.abs(plx - 15) <= 2 && Math.abs(ply - 6) <= 2;
         if (nearPostIt)   drawThoughtBubble(ctx, plBx, plBy, ['post-it? no idea', 'how to do it right']);
+        else if (nearMarius) drawThoughtBubble(ctx, plBx, plBy, ['post-it terrorist!', '*runs away*']);
         else if (nearDylan) drawThoughtBubble(ctx, plBx, plBy, 'thx Dylan!');
       }
       if (fresh.area === 'den') {
