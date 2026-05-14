@@ -3,7 +3,7 @@ export const T = {
   GRASS:0, PATH:1, WALL:2, ROOF:3, DOOR:4, SIGN:5, STAGE:6, DUMP:7,
   BILL:8, FENCE:9, TREE:10, FLOWER:11,
   ROAD:22, SIDEWALK:23, STOREFRONT:24, LAMP:25, HYDRANT:26, MANHOLE:27, BUS_STOP:28,
-  HOTDOG:36,
+  HOTDOG:36, HDSIGN:37,
 } as const;
 
 // Interior tile IDs
@@ -19,7 +19,7 @@ export type MapGrid = number[][];
 
 export const MAP: MapGrid = [
   [24,24,24,24,24,24,24,24,24, 4, 4,24,24,24,24,24,24,24,24,24],
-  [24,25,36,23,23, 1, 1, 1, 1, 1, 1, 1, 1,23,23,23,23,23,25,24],
+  [24,25,36,37,23, 1, 1, 1, 1, 1, 1, 1, 1,23,23,23,23,23,25,24],
   [24,23,23,26,23, 1, 6, 6, 8, 6, 6, 8, 1,23,26,23,26,23,23,24],
   [24,23,23,23,23, 1, 6, 6, 6, 6, 6, 6, 1,23,23,23,23,23,23,24],
   [24,23,26,23,23, 1, 1, 1, 1, 1, 1, 1, 1,23,23,23,23,26,23,24],

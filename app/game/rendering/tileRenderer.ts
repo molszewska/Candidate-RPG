@@ -126,6 +126,38 @@ export function drawTile(ctx: CanvasRenderingContext2D, tx: number, ty: number, 
     return;
   }
 
+  if (t === T.HDSIGN) {
+    // Sidewalk base
+    px(ctx, bx, by, TILE, TILE, '#7a7a72');
+    ctx.fillStyle = '#6e6e66'; ctx.fillRect(bx, by, TILE, 1); ctx.fillRect(bx, by, 1, TILE);
+    // A-frame legs (angled struts)
+    ctx.save();
+    ctx.strokeStyle = '#333'; ctx.lineWidth = 2;
+    ctx.beginPath(); ctx.moveTo(bx + 8, by + 21); ctx.lineTo(bx + 4, by + 30); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(bx + 24, by + 21); ctx.lineTo(bx + 28, by + 30); ctx.stroke();
+    // Cross-bar
+    ctx.strokeStyle = '#444'; ctx.lineWidth = 1;
+    ctx.beginPath(); ctx.moveTo(bx + 6, by + 26); ctx.lineTo(bx + 26, by + 26); ctx.stroke();
+    ctx.restore();
+    // Sign board — red face
+    px(ctx, bx + 4, by + 1,  24, 20, '#c94040');
+    px(ctx, bx + 5, by + 2,  22, 18, '#d44040');
+    // Yellow border
+    px(ctx, bx + 4, by + 1,  24, 2, '#F9BD2B');
+    px(ctx, bx + 4, by + 19, 24, 2, '#F9BD2B');
+    px(ctx, bx + 4, by + 1,  2,  20, '#F9BD2B');
+    px(ctx, bx + 26, by + 1, 2,  20, '#F9BD2B');
+    // "HOT HOGS" — two white text blocks
+    px(ctx, bx + 7, by + 5,  8, 2, '#fff');
+    px(ctx, bx + 17, by + 5, 8, 2, '#fff');
+    px(ctx, bx + 7, by + 9,  18, 1, '#ffe87a');
+    px(ctx, bx + 7, by + 12, 14, 1, '#ffe87a');
+    // Mini hotdog silhouette
+    px(ctx, bx + 9,  by + 15, 14, 3, '#8B4513');
+    px(ctx, bx + 10, by + 15, 12, 1, '#e05520');
+    return;
+  }
+
   const bases: Record<number, string> = {
     [T.PATH]: '#c8a96e', [T.WALL]: '#8B7355', [T.ROOF]: '#c94040',
     [T.DOOR]: '#b8996e', [T.SIGN]: '#c8a96e', [T.STAGE]: '#9B8060',
