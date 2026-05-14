@@ -241,6 +241,59 @@ export function drawInteriorTile(ctx: CanvasRenderingContext2D, tx: number, ty: 
     px(ctx, bx + 13, by + 14, 6, 6, '#F9BD2B');
     px(ctx, bx + 14, by + 15, 4, 4, '#8B6914');
   }
+  if (t === TI.BIGTV) {
+    px(ctx, bx, by, TILE, TILE, floorC);
+    const isLeft = (tx % 2) === 0;
+    const isTop  = (ty % 2) === 0;
+    const ox = isLeft ? bx : bx - TILE;
+    const oy = isTop  ? by : by - TILE;
+    ctx.save();
+    ctx.beginPath(); ctx.rect(bx, by, TILE, TILE); ctx.clip();
+    // Bezel — retro brownish plastic, simulated rounded corners
+    px(ctx, ox+2, oy,    60, 58, '#3a342c');
+    px(ctx, ox,   oy+2,  64, 54, '#3a342c');
+    px(ctx, ox+4, oy+2,  56,  2, '#4a443c'); // top highlight
+    px(ctx, ox+3, oy+4,   2, 48, '#4a443c'); // left highlight
+    // Screen area
+    const sx = ox+5, sy = oy+4, SW = 54, SH = 50;
+    px(ctx, sx, sy, SW, SH, '#7a7a7a');
+    // Grid background
+    ctx.fillStyle = '#8a8a8a';
+    for (let i = 0; i < SW; i += 4) ctx.fillRect(sx+i, sy, 1, SH);
+    for (let i = 0; i < SH; i += 4) ctx.fillRect(sx, sy+i, SW, 1);
+    // Color bars — top 16px
+    const cbars = ['#fff','#ff0','#0ff','#0a0','#f0f','#d33','#00f','#000'];
+    const bw = Math.floor(SW / cbars.length);
+    for (let i = 0; i < cbars.length; i++) px(ctx, sx+i*bw, sy, bw, 16, cbars[i]);
+    // Middle section — rows 16-37 (22px), circle + side blocks
+    px(ctx, sx,       sy+16, 8, 22, '#ff0');  // yellow left
+    px(ctx, sx+8,     sy+16, 8, 22, '#000');  // black
+    px(ctx, sx+SW-16, sy+16, 8, 22, '#000');  // black
+    px(ctx, sx+SW-8,  sy+16, 8, 22, '#fff');  // white right
+    // Circle ring
+    const cx = sx + SW/2, cy = sy + 27;
+    ctx.fillStyle = '#fff';
+    ctx.beginPath(); ctx.arc(cx, cy, 11, 0, Math.PI*2); ctx.fill();
+    ctx.fillStyle = '#7a7a7a';
+    ctx.beginPath(); ctx.arc(cx, cy,  9, 0, Math.PI*2); ctx.fill();
+    // Re-grid inside circle
+    ctx.fillStyle = '#8a8a8a';
+    for (let i = 0; i < SW; i += 4) ctx.fillRect(sx+i, sy+16, 1, 22);
+    for (let i = 0; i < 22; i += 4) ctx.fillRect(sx, sy+16+i, SW, 1);
+    // Crosshairs
+    px(ctx, cx-1, sy+16, 2, 22, '#fff');
+    px(ctx, sx+16, cy-1, SW-32, 2, '#fff');
+    px(ctx, cx-2, cy-2, 4, 4, '#000');
+    // Bottom — fine alternating bars (rows 38-45) + solid gray blocks
+    for (let i = 0; i < SW; i++) { ctx.fillStyle = i%2===0?'#000':'#fff'; ctx.fillRect(sx+i, sy+38, 1, 6); }
+    px(ctx, sx,    sy+44, 18, 6, '#111');
+    px(ctx, sx+18, sy+44, 18, 6, '#7a7a7a');
+    px(ctx, sx+36, sy+44, 18, 6, '#eee');
+    // Stand
+    px(ctx, ox+24, oy+58, 16, 4, '#2a2520');
+    px(ctx, ox+14, oy+62, 36,  2, '#1a1510');
+    ctx.restore();
+  }
   if (t === TI.TV) {
     px(ctx, bx, by, TILE, TILE, floorC);
     // Wall-mount arm (extends 12px above tile like bust)

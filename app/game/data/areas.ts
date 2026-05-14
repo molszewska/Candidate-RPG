@@ -27,7 +27,7 @@ export const AREA_NAMES: Record<Area, string> = {
 const SOLID_TILES: Set<number> = new Set([
   T.WALL, T.ROOF, T.BILL, T.DUMP, T.LAMP, T.STOREFRONT, T.DOOR,
   TI.SHELF, TI.DESK, TI.CHEST, TI.GLASS, TI.BOOK, TI.COUCH, TI.MERCH,
-  TI.WORKBENCH, TI.PAINTING, TI.BUST, TI.SERVER, TI.POSTIT, TI.COMPUTER,
+  TI.WORKBENCH, TI.PAINTING, TI.BUST, TI.SERVER, TI.POSTIT, TI.COMPUTER, TI.BIGTV,
 ]);
 
 export function isSolid(map: MapGrid, tx: number, ty: number): boolean {
@@ -62,7 +62,7 @@ export function getTileAct(area: Area, tx: number, ty: number): string | null {
   if (area === 'den') {
     if (t === T.DOOR)     return 'exit_area';
     if (t === TI.CHEST)   return 'ipo_chest';
-    if (t === TI.TV)      return 'ian_tv';
+    if (t === TI.TV || t === TI.BIGTV) return 'ian_tv';
     if (t === TI.BEANBAG) return 'beanbag';
     return null;
   }
