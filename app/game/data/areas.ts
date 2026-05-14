@@ -44,7 +44,6 @@ export function getTileAct(area: Area, tx: number, ty: number): string | null {
   const t = map[ty][tx];
 
   if (area === 'hogpatch') {
-    if (t === T.STAGE)  return 'stage';
     if (t === T.DUMP)   return 'dumpster';
     if (t === T.SIGN)   return 'sign';
     if (t === T.BILL)   return 'billboard';
