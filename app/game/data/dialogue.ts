@@ -134,6 +134,18 @@ export const DLG: Record<string, DlgNode> = {
   dylan_ok: { sp: 'DYLAN MARTIN', tx: "I have found peace.",
     opts: [{ l: "← Back", n: 'dylan_root' }] },
 
+  danilo_root: { sp: 'DANILO CAMPOS', tx: "*soldering something*\nHm? Oh. One sec.",
+    opts: [{ l: "What are you working on?", n: 'danilo_work' }, { l: "Tell me about DeskHog", n: 'danilo_deskhog' }, { l: "Your talk on LLM codegen?", n: 'danilo_llm' }] },
+  danilo_work: { sp: 'DANILO CAMPOS', tx: "AI tooling. Figuring out how\nhumans and LLMs actually\nship good software together.\nAlso occasionally hardware.",
+    opts: [{ l: "← Back", n: 'danilo_root' }] },
+  danilo_deskhog: { sp: 'DANILO CAMPOS', tx: "Palm-sized ESP32. Tiny screen,\nWiFi, Pong, Flappy Bird.\nHand-assembled. PostHog\nbut in your pocket.",
+    ach: { id: 'deskhog', name: '🎮 DESK HOG' },
+    opts: [{ l: "Check it out ↗", fn: 'open_deskhog', n: 'danilo_root' }, { l: "← Back", n: 'danilo_root' }] },
+  danilo_llm: { sp: 'DANILO CAMPOS', tx: "LLMs fail in predictable ways.\nMost failures are preventable.\nWe serve 5k+ users a month.\nYou learn fast what breaks.",
+    opts: [{ l: "How do you fix it? →", n: 'danilo_llm2' }, { l: "← Back", n: 'danilo_root' }] },
+  danilo_llm2: { sp: 'DANILO CAMPOS', tx: "Playbook. Constraints. Context.\nMake the model's job smaller.\nCorrectable beats clever.\nThat's the whole talk.",
+    opts: [{ l: "← Back", n: 'danilo_root' }] },
+
   paul_root: { sp: "PAUL D'AMBRA", tx: "Welcome.\n\nBefore you enter — gelato?",
     opts: [{ l: "Yes please", n: 'paul_gelato_yes' }, { l: "No thanks", n: 'paul_gelato_no' }] },
   paul_gelato_yes: { sp: "PAUL D'AMBRA", tx: "Smart.\n\nPistachio or stracciatella?",

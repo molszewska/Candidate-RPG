@@ -131,6 +131,17 @@ export function drawDylan(ctx: CanvasRenderingContext2D, bx: number, by: number)
   px(ctx, bx+5*S,  by-S,  6*S, 2*S, hair);
 }
 
+export function drawDanilo(ctx: CanvasRenderingContext2D, bx: number, by: number) {
+  const skin = '#9a7a50', hair = '#1a1a1a';
+  drawHuman(ctx, bx, by, skin, hair, '#3a5a3a', 'tshirt', 2, false, false);
+  // beard stubble
+  px(ctx, bx+5*S,  by+5*S, 6*S, S,   '#4a2e14');
+  px(ctx, bx+4*S,  by+4*S, S,   S,   '#5a3a1a');
+  px(ctx, bx+11*S, by+4*S, S,   S,   '#5a3a1a');
+  px(ctx, bx+5*S,  by+4*S, S,   S,   '#6a4a28');
+  px(ctx, bx+10*S, by+4*S, S,   S,   '#6a4a28');
+}
+
 export function drawPaul(ctx: CanvasRenderingContext2D, bx: number, by: number) {
   const skin = '#C09060', hair = '#1a1010';
   drawHuman(ctx, bx, by, skin, hair, '#cc7733', 'tshirt', 2, false, false);

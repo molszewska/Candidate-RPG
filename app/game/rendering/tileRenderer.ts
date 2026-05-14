@@ -173,6 +173,26 @@ export function drawInteriorTile(ctx: CanvasRenderingContext2D, tx: number, ty: 
     px(ctx, bx + 4, by + 5, 6, 1, '#8B6914'); px(ctx, bx + 4, by + 7, 4, 1, '#8B6914');
     px(ctx, bx + 16, by + 5, 6, 1, '#8B6914'); px(ctx, bx + 10, by + 15, 6, 1, '#8B6914');
   }
+  if (t === TI.WORKBENCH) {
+    // Workbench surface
+    px(ctx, bx+1,  by+8,  30, 7, '#5a3a1a');
+    px(ctx, bx+1,  by+8,  30, 2, '#8B6040');
+    // Legs
+    px(ctx, bx+2,  by+15, 4,  13, '#3a2010');
+    px(ctx, bx+26, by+15, 4,  13, '#3a2010');
+    px(ctx, bx+2,  by+25, 28,  2, '#3a2010');
+    // Circuit board
+    px(ctx, bx+4,  by+9,  10,  4, '#1a3a1a');
+    px(ctx, bx+6,  by+10,  2,  1, '#00cc44');
+    px(ctx, bx+9,  by+10,  2,  1, '#00cc44');
+    px(ctx, bx+7,  by+9,   1,  4, '#00cc44');
+    // Wires
+    px(ctx, bx+16, by+9,  10,  2, '#cc3333');
+    px(ctx, bx+16, by+11, 10,  2, '#2244cc');
+    // Soldering iron
+    px(ctx, bx+24, by+9,   2,  6, '#777');
+    px(ctx, bx+24, by+9,   2,  2, '#ffaa00');
+  }
   if (t === TI.SHELF) {
     // Podium / lectern
     px(ctx, bx+4,  by+6,  24, 10, '#5a3a1a');

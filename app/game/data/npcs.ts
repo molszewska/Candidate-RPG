@@ -1,7 +1,7 @@
 import type { Area } from './maps';
 import {
   drawJames, drawTim, drawMarius, drawMichael,
-  drawCharles, drawDylan,
+  drawCharles, drawDylan, drawDanilo,
 } from '../rendering/spriteRenderer';
 
 export type NPC = {
@@ -24,6 +24,7 @@ export const NPCS_BY_AREA: Record<Area, NPC[]> = {
     { id: 'marius',  name: 'MARIUS ANDRA',  x: 15, y: 6,  dir: 2, dlg: 'marius_root',  drawFn: drawMarius  },
     { id: 'michael', name: 'MICHAEL M.',    x: 11, y: 6,  dir: 2, dlg: 'michael_root', drawFn: drawMichael },
     { id: 'dylan',   name: 'DYLAN MARTIN',  x: 5,  y: 6,  dir: 2, dlg: 'dylan_root',   drawFn: drawDylan   },
+    { id: 'danilo',  name: 'DANILO CAMPOS', x: 3,  y: 11, dir: 2, dlg: 'danilo_root',  drawFn: drawDanilo  },
   ],
   den: [
     { id: 'charles', name: 'CHARLES COOK',  x: 5,  y: 7,  dir: 2, dlg: 'charles_root', drawFn: drawCharles },
