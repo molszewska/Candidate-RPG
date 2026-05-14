@@ -32,7 +32,7 @@ export function HowToPlay({ onStart }: { onStart: () => void }) {
         </div>
         <div className="inst-row">
           <div className="inst-keys"><span className="key">ESC</span></div>
-          <div className="inst-desc">Close dialogue</div>
+          <div className="inst-desc">Close dialogue / return to lobby</div>
         </div>
       </div>
       <div className="htp-lore">
