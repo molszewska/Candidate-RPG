@@ -176,22 +176,28 @@ export function GameCanvas() {
       if (fresh.area === 'lobby') {
         const { x: plx, y: ply } = fresh.player;
         const plBx = plx * TILE, plBy = ply * TILE;
-        const nearJames     = Math.abs(plx - 7)  <= 2 && Math.abs(ply - 6) <= 2;
-        const nearTim       = Math.abs(plx - 11) <= 2 && Math.abs(ply - 6) <= 2;
-        const nearAppCorner = plx >= 14 && plx <= 19 && ply >= 9 && ply <= 13;
+        const nearJames      = Math.abs(plx - 7)  <= 2 && Math.abs(ply - 6)  <= 2;
+        const nearTim        = Math.abs(plx - 11) <= 2 && Math.abs(ply - 6)  <= 2;
+        const nearAppCorner  = plx >= 14 && plx <= 19 && ply >= 9  && ply <= 13;
+        const nearTopSecret  = plx >= 16 && plx <= 18 && Math.abs(ply - 4)  <= 2;
+        const nearCompany    = plx <= 3  && Math.abs(ply - 7)  <= 2;
+        const nearStreet     = Math.abs(plx - 5) <= 2 && ply >= 11 && ply <= 13;
         if (nearJames || nearTim) drawThoughtBubble(ctx, plBx, plBy, [
           'oh, I should talk to',
           'dis guys to increase',
           'the shareholder value',
         ]);
-        else if (nearAppCorner) drawThoughtBubble(ctx, plBx, plBy, [
-          'PostHog is SLAY,',
-          "I'm gonna apply!",
-        ]);
+        else if (nearAppCorner)  drawThoughtBubble(ctx, plBx, plBy, ['PostHog is SLAY,', "I'm gonna apply!"]);
+        else if (nearTopSecret)  drawThoughtBubble(ctx, plBx, plBy, 'interesting...');
+        else if (nearCompany)    drawThoughtBubble(ctx, plBx, plBy, 'curious how is working here!');
+        else if (nearStreet)     drawThoughtBubble(ctx, plBx, plBy, 'hot dog time!');
       }
       if (fresh.area === 'hogpatch') {
         updateBus(busRef.current);
         drawBus(ctx, busRef.current, busRef.current.x, 13 * TILE);
+        const { x: plx, y: ply } = fresh.player;
+        const nearCreators = Math.abs(plx - 16) <= 3 && Math.abs(ply - 2) <= 2;
+        if (nearCreators) drawThoughtBubble(ctx, plx * TILE, ply * TILE, 'NICE, these are the coolest people');
       }
 
       rafRef.current = requestAnimationFrame(loop);
