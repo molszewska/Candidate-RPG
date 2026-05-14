@@ -229,20 +229,24 @@ export function drawAngryTwitterGuy(ctx: CanvasRenderingContext2D, bx: number, b
 }
 
 // ── Thought bubble ───────────────────────────────────────────────────────────
-export function drawThoughtBubble(ctx: CanvasRenderingContext2D, bx: number, by: number, text: string) {
+export function drawThoughtBubble(ctx: CanvasRenderingContext2D, bx: number, by: number, lines: string | string[]) {
+  const textLines = Array.isArray(lines) ? lines : [lines];
   ctx.save();
   ctx.font = '6px "Press Start 2P"';
   ctx.textAlign = 'left';
-  const tw = Math.ceil(ctx.measureText(text).width);
+
+  const maxW = Math.max(...textLines.map(l => Math.ceil(ctx.measureText(l).width)));
   const pad = 6;
-  const bw = tw + pad * 2;
-  const bh = 14;
-  const bubX = bx + 16 - Math.floor(bw / 2);
-  const bubY = by - 48;
+  const lineH = 9;
+  const bw = maxW + pad * 2;
+  const bh = pad + textLines.length * lineH + pad - 3;
+  const rawBubX = bx + 16 - Math.floor(bw / 2);
+  const bubX = Math.max(2, Math.min(638 - bw, rawBubX));
+  const bubY = by - 14 - 4 - bh;
 
   // Ascending dots
   const dots = [
-    { x: bx + 18, y: by - 5, s: 3 },
+    { x: bx + 18, y: by - 5,  s: 3 },
     { x: bx + 21, y: by - 15, s: 4 },
     { x: bx + 23, y: by - 27, s: 5 },
   ];
@@ -264,7 +268,9 @@ export function drawThoughtBubble(ctx: CanvasRenderingContext2D, bx: number, by:
   ctx.fillRect(bubX + bw - 1, bubY, 1, bh);
 
   ctx.fillStyle = '#1a1a1a';
-  ctx.fillText(text, bubX + pad, bubY + bh - 4);
+  textLines.forEach((line, i) => {
+    ctx.fillText(line, bubX + pad, bubY + pad + 5 + i * lineH);
+  });
   ctx.restore();
 }
 

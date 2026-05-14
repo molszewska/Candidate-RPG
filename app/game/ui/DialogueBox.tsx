@@ -3,7 +3,7 @@ import type { Area } from '../data/maps';
 import { useGameStore } from '../state/gameStore.client';
 import { DLG } from '../data/dialogue';
 
-function executeFn(fn: string, setArea: (a: Area) => void) {
+function executeFn(fn: string, setArea: (a: Area) => void, setVideoUrl: (url: string | null) => void) {
   switch (fn) {
     case 'enter_trash':    setArea('trash');    break;
     case 'enter_burrow':   setArea('burrow');   break;
@@ -19,7 +19,7 @@ function executeFn(fn: string, setArea: (a: Area) => void) {
     case 'open_lore':      window.open('https://posthog.com/handbook/company/lore', '_blank'); break;
     case 'open_deskhog':   window.open('https://posthog.com/deskhog', '_blank'); break;
     case 'open_dictator':     window.open('https://posthog.com/sparks-joy/dictator-or-tech-bro', '_blank'); break;
-    case 'open_hogflix':      window.open('https://www.youtube.com/watch?v=xxBqKIBBxQw', '_blank'); break;
+    case 'open_hogflix':      setVideoUrl('https://www.youtube.com/embed/xxBqKIBBxQw?autoplay=1'); break;
     case 'open_startup_jobs':   window.open('https://posthog.com/newsletter/how-to-get-job-startup', '_blank'); break;
     case 'open_hiring_process':  window.open('https://posthog.com/handbook/people/hiring-process', '_blank'); break;
     case 'open_eng_techscreen':    window.open('https://posthog.com/handbook/people/hiring-process/engineering-tech-screen', '_blank'); break;
@@ -39,6 +39,7 @@ export function DialogueBox() {
   const dialogue = useGameStore((s) => s.dialogue);
   const setDialogue = useGameStore((s) => s.setDialogue);
   const setArea = useGameStore((s) => s.setArea);
+  const setVideoUrl = useGameStore((s) => s.setVideoUrl);
   const optsRef = useRef<HTMLDivElement>(null);
 
   const close = () => setDialogue(null);
@@ -90,7 +91,7 @@ export function DialogueBox() {
               autoFocus={i === 0}
               onClick={(e) => {
                 e.stopPropagation();
-                if (opt.fn) executeFn(opt.fn, setArea);
+                if (opt.fn) executeFn(opt.fn, setArea, setVideoUrl);
                 if (opt.n) setDialogue(opt.n);
                 else close();
               }}

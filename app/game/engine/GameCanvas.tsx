@@ -11,6 +11,7 @@ import { px } from '../rendering/utils';
 import { HUD } from '../ui/HUD';
 import { DialogueBox } from '../ui/DialogueBox';
 import { AchievementPopup } from '../ui/AchievementPopup';
+import { YoutubeOverlay } from '../ui/YoutubeOverlay';
 
 const TILE = 32;
 
@@ -109,7 +110,7 @@ export function GameCanvas() {
       lastRef.current = ts;
       const store = useGameStore.getState();
 
-      if (!store.dialogue) {
+      if (!store.dialogue && !store.videoUrl) {
         moveTimerRef.current -= dt;
         if (moveTimerRef.current <= 0) {
           const { player, area } = store;
@@ -134,7 +135,7 @@ export function GameCanvas() {
       }
 
       const fresh = useGameStore.getState();
-      if (fresh.dialogue) {
+      if (fresh.dialogue || fresh.videoUrl) {
         store.setNearHint(false);
       } else {
         const { tx, ty } = getFacing(fresh.player);
@@ -161,6 +162,7 @@ export function GameCanvas() {
       if (fresh.area === 'lobby') drawLobbyLabels(ctx);
       NPCS_BY_AREA[fresh.area].forEach((n) => drawNPC(ctx, n));
       if (fresh.area === 'trash') drawGhost(ctx, ghostRef.current.x, ghostRef.current.y, ts);
+      renderPlayer(ctx, fresh.player);
       if (fresh.area === 'trash') {
         const { x: plx, y: ply } = fresh.player;
         const plBx = plx * TILE, plBy = ply * TILE;
@@ -171,7 +173,22 @@ export function GameCanvas() {
         else if (nearBust) drawThoughtBubble(ctx, plBx, plBy, "who's dis guy?");
         else if (nearTV) drawThoughtBubble(ctx, plBx, plBy, 'Barbie movie?');
       }
-      renderPlayer(ctx, fresh.player);
+      if (fresh.area === 'lobby') {
+        const { x: plx, y: ply } = fresh.player;
+        const plBx = plx * TILE, plBy = ply * TILE;
+        const nearJames     = Math.abs(plx - 7)  <= 2 && Math.abs(ply - 6) <= 2;
+        const nearTim       = Math.abs(plx - 11) <= 2 && Math.abs(ply - 6) <= 2;
+        const nearAppCorner = plx >= 14 && plx <= 19 && ply >= 9 && ply <= 13;
+        if (nearJames || nearTim) drawThoughtBubble(ctx, plBx, plBy, [
+          'oh, I should talk to',
+          'dis guys to increase',
+          'the shareholder value',
+        ]);
+        else if (nearAppCorner) drawThoughtBubble(ctx, plBx, plBy, [
+          'PostHog is SLAY,',
+          "I'm gonna apply!",
+        ]);
+      }
       if (fresh.area === 'hogpatch') {
         updateBus(busRef.current);
         drawBus(ctx, busRef.current, busRef.current.x, 13 * TILE);
@@ -229,6 +246,7 @@ export function GameCanvas() {
       />
       <HUD />
       <DialogueBox />
+      <YoutubeOverlay />
       <AchievementPopup />
     </div>
   );

@@ -63,6 +63,7 @@ type GameState = {
   areaName: string;
   player: PlayerState;
   dialogue: string | null;
+  videoUrl: string | null;
   achievementToast: { id: string; name: string } | null;
   achievements: Set<string>;
   trashOpened: Set<string>;
@@ -74,6 +75,7 @@ type GameActions = {
   setArea: (a: Area) => void;
   updatePlayer: (patch: Partial<PlayerState>) => void;
   setDialogue: (key: string | null) => void;
+  setVideoUrl: (url: string | null) => void;
   unlockAchievement: (id: string, name: string) => void;
   trackTrashFile: (dlg: string) => void;
   setNearHint: (v: boolean) => void;
@@ -89,6 +91,7 @@ export const useGameStore = create<GameState & GameActions>((set, get) => ({
   areaName: 'POSTHOG HQ',
   player: { species: 'human', color: '#E8B88A', outfit: 'hoodie', name: 'APPLICANT', x: 10, y: 12, dir: 2 },
   dialogue: null,
+  videoUrl: null,
   achievementToast: null,
   achievements: getInitialAchievements(),
   trashOpened: new Set(),
@@ -106,6 +109,7 @@ export const useGameStore = create<GameState & GameActions>((set, get) => ({
   },
   updatePlayer: (patch) => set((s) => ({ player: { ...s.player, ...patch } })),
   setDialogue: (key) => set({ dialogue: key }),
+  setVideoUrl: (url) => set({ videoUrl: url }),
 
   unlockAchievement: (id, name) => {
     const { achievements } = get();
