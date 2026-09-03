@@ -15,81 +15,83 @@ export function drawBlimp(ctx: CanvasRenderingContext2D, blimp: BlimpState) {
   const W = 260, H = 62;
   const x = blimp.x, y = 205; // vertically centred on canvas (480px tall)
   const cx = x + W / 2, cy = y + H / 2;
-  const BLUE_W = 62;
+  const CAP_W = 62;
 
   // ── BODY ────────────────────────────────────────────────────────────────
-  // Full ellipse in blue → becomes the end caps
-  ctx.fillStyle = '#1a55c0';
+  // Full ellipse in purple → the nose (right) and body base
+  ctx.fillStyle = '#5D2E8C';
   ctx.beginPath();
   ctx.ellipse(cx, cy, W / 2, H / 2, 0, 0, Math.PI * 2);
   ctx.fill();
 
-  // Orange centre section, clipped to ellipse
+  // Green tail cap on the left (rear), clipped to ellipse
   ctx.save();
   ctx.beginPath();
   ctx.ellipse(cx, cy, W / 2, H / 2, 0, 0, Math.PI * 2);
   ctx.clip();
 
-  ctx.fillStyle = '#F47B20';
-  ctx.fillRect(x + BLUE_W, y, W - BLUE_W * 2, H);
+  ctx.fillStyle = '#7FB93F';
+  ctx.fillRect(x, y, CAP_W, H);
 
-  // Orange top highlight
-  ctx.fillStyle = '#FFAA44';
-  ctx.fillRect(x + BLUE_W + 8, y + 4, W - BLUE_W * 2 - 16, Math.round(H / 3));
+  // Purple top highlight along the centre body
+  ctx.fillStyle = '#7B4BB0';
+  ctx.fillRect(x + CAP_W + 8, y + 4, W - CAP_W * 2 - 16, Math.round(H / 3));
 
   ctx.restore();
 
-  // Shine on blue caps
+  // Shine — green on the tail cap, light purple on the nose cap
   ctx.save();
   ctx.beginPath();
   ctx.ellipse(cx, cy, W / 2, H / 2, 0, 0, Math.PI * 2);
   ctx.clip();
-  ctx.fillStyle = '#3a70e0';
-  ctx.fillRect(x + 8,           y + 6, BLUE_W - 20, Math.round(H / 2) - 8);
-  ctx.fillRect(x + W - BLUE_W + 10, y + 6, BLUE_W - 22, Math.round(H / 2) - 10);
+  ctx.fillStyle = '#9FD25F';
+  ctx.fillRect(x + 8,           y + 6, CAP_W - 20, Math.round(H / 2) - 8);
+  ctx.fillStyle = '#8A5CC0';
+  ctx.fillRect(x + W - CAP_W + 10, y + 6, CAP_W - 22, Math.round(H / 2) - 10);
   ctx.restore();
 
   // Body outline
-  ctx.strokeStyle = '#0a2a80';
+  ctx.strokeStyle = '#3A1B5C';
   ctx.lineWidth = 2;
   ctx.beginPath();
   ctx.ellipse(cx, cy, W / 2, H / 2, 0, 0, Math.PI * 2);
   ctx.stroke();
 
-  // Division seams between blue and orange
+  // Division seams — green/purple at the tail, subtle panel line near the nose
   ctx.save();
   ctx.beginPath();
   ctx.ellipse(cx, cy, W / 2, H / 2, 0, 0, Math.PI * 2);
   ctx.clip();
-  ctx.strokeStyle = '#0a2a80';
   ctx.lineWidth = 2;
-  ctx.beginPath(); ctx.moveTo(x + BLUE_W,     y); ctx.lineTo(x + BLUE_W,     y + H); ctx.stroke();
-  ctx.beginPath(); ctx.moveTo(x + W - BLUE_W, y); ctx.lineTo(x + W - BLUE_W, y + H); ctx.stroke();
+  ctx.strokeStyle = '#4F7A28';
+  ctx.beginPath(); ctx.moveTo(x + CAP_W,     y); ctx.lineTo(x + CAP_W,     y + H); ctx.stroke();
+  ctx.strokeStyle = '#3A1B5C';
+  ctx.beginPath(); ctx.moveTo(x + W - CAP_W, y); ctx.lineTo(x + W - CAP_W, y + H); ctx.stroke();
   ctx.restore();
 
-  // Tail fin — small rounded protrusion on left (rear)
-  ctx.fillStyle = '#1a55c0';
+  // Tail fin — small rounded green protrusion on left (rear)
+  ctx.fillStyle = '#7FB93F';
   ctx.beginPath();
   ctx.ellipse(x - 4, cy, 16, 20, 0, 0, Math.PI * 2);
   ctx.fill();
-  ctx.fillStyle = '#3a70e0';
+  ctx.fillStyle = '#9FD25F';
   ctx.beginPath();
   ctx.ellipse(x - 6, cy - 5, 9, 12, 0, 0, Math.PI * 2);
   ctx.fill();
-  ctx.strokeStyle = '#0a2a80';
+  ctx.strokeStyle = '#4F7A28';
   ctx.lineWidth = 1;
   ctx.beginPath();
   ctx.ellipse(x - 4, cy, 16, 20, 0, 0, Math.PI * 2);
   ctx.stroke();
 
   // ── LOGO AREA ────────────────────────────────────────────────────────────
-  // Hedgehog (scale 3) upper-right of orange section
+  // Hedgehog (scale 3) upper-right of body
   busHog(ctx, Math.round(cx + 32), y + 4, 3);
 
-  // "POSTHOG" in dark below the hedgehog
+  // "POSTHOG" in white below the hedgehog
   ctx.save();
   ctx.font = 'bold 8px "Press Start 2P"';
-  ctx.fillStyle = '#111111';
+  ctx.fillStyle = '#FFFFFF';
   ctx.textAlign = 'center';
   ctx.fillText('POSTHOG', cx - 8, cy + 14);
   ctx.restore();
@@ -105,13 +107,13 @@ export function drawBlimp(ctx: CanvasRenderingContext2D, blimp: BlimpState) {
   ctx.beginPath(); ctx.moveTo(gx + gW - 16, gy); ctx.lineTo(cx + 28, y + H + 1); ctx.stroke();
 
   // Gondola shell
-  ctx.fillStyle = '#0a2a80';
+  ctx.fillStyle = '#3A1B5C';
   ctx.fillRect(gx, gy, gW, gH);
-  ctx.fillStyle = '#1a55c0';
+  ctx.fillStyle = '#5D2E8C';
   ctx.fillRect(gx + 1, gy + 1, gW - 2, gH - 2);
 
-  // Orange lower band with POSTHOG
-  ctx.fillStyle = '#F47B20';
+  // Green lower band with POSTHOG
+  ctx.fillStyle = '#7FB93F';
   ctx.fillRect(gx + 1, gy + gH - 12, gW - 2, 11);
   ctx.save();
   ctx.font = 'bold 5px "Press Start 2P"';
